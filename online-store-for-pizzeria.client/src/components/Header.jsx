@@ -11,8 +11,6 @@ function Header() {
                 <li><Link to="/profile">Личный кабинет</Link></li>
             </ul>
             <input className='search'></input>
-            <button className='cart'>Корзина</button>
-            <button className='profile'>Личный кабинет</button>
         </header>
     );
 }
