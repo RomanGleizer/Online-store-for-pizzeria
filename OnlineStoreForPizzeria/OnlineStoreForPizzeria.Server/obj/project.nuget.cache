@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "lLFObFvpJ1KE+fMAe33C0hjnnzAeBIk+8K0OXrzTx55hN9uERieo4cqfF8Afrf4MPKqfkNlKHRBkS6N5gspSpw==",
+  "success": true,
+  "projectFilePath": "E:\\Programming\\C# and ASP.NET\\Pizzeria\\Online-store-for-pizzeria\\OnlineStoreForPizzeria\\OnlineStoreForPizzeria.Server\\OnlineStoreForPizzeria.Server.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\romy4\\.nuget\\packages\\microsoft.aspnetcore.spaproxy\\8.0.0\\microsoft.aspnetcore.spaproxy.8.0.0.nupkg.sha512",
+    "C:\\Users\\romy4\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "C:\\Users\\romy4\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\romy4\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
+    "C:\\Users\\romy4\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
+    "C:\\Users\\romy4\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.4.0\\swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
+    "C:\\Users\\romy4\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.4.0\\swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512"
+  ],
+  "logs": []
+}
