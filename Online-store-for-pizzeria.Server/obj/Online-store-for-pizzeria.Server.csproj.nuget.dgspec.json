@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Programming\\C# and ASP.NET\\Pizzeria\\Online-store-for-pizzeria\\Online-store-for-pizzeria.Server\\Online-store-for-pizzeria.Server.csproj": {}
+    "E:\\Programming\\C# and ASP.NET\\Online-store-for-pizzeria\\Online-store-for-pizzeria.Server\\Online-store-for-pizzeria.Server.csproj": {}
   },
   "projects": {
-    "E:\\Programming\\C# and ASP.NET\\Pizzeria\\Online-store-for-pizzeria\\Online-store-for-pizzeria.Server\\Online-store-for-pizzeria.Server.csproj": {
+    "E:\\Programming\\C# and ASP.NET\\Online-store-for-pizzeria\\Online-store-for-pizzeria.Server\\Online-store-for-pizzeria.Server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Programming\\C# and ASP.NET\\Pizzeria\\Online-store-for-pizzeria\\Online-store-for-pizzeria.Server\\Online-store-for-pizzeria.Server.csproj",
+        "projectUniqueName": "E:\\Programming\\C# and ASP.NET\\Online-store-for-pizzeria\\Online-store-for-pizzeria.Server\\Online-store-for-pizzeria.Server.csproj",
         "projectName": "Online-store-for-pizzeria.Server",
-        "projectPath": "E:\\Programming\\C# and ASP.NET\\Pizzeria\\Online-store-for-pizzeria\\Online-store-for-pizzeria.Server\\Online-store-for-pizzeria.Server.csproj",
+        "projectPath": "E:\\Programming\\C# and ASP.NET\\Online-store-for-pizzeria\\Online-store-for-pizzeria.Server\\Online-store-for-pizzeria.Server.csproj",
         "packagesPath": "C:\\Users\\romy4\\.nuget\\packages\\",
-        "outputPath": "E:\\Programming\\C# and ASP.NET\\Pizzeria\\Online-store-for-pizzeria\\Online-store-for-pizzeria.Server\\obj\\",
+        "outputPath": "E:\\Programming\\C# and ASP.NET\\Online-store-for-pizzeria\\Online-store-for-pizzeria.Server\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\romy4\\AppData\\Roaming\\NuGet\\NuGet.Config",

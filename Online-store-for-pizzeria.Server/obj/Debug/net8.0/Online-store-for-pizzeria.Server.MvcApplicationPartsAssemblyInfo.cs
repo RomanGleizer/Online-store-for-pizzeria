@@ -11,13 +11,7 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("Online-store-for-pizzeria.Server")]
-[assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
-[assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+aba21793bc3e48efd51def7a28378b972310d487")]
-[assembly: System.Reflection.AssemblyProductAttribute("Online-store-for-pizzeria.Server")]
-[assembly: System.Reflection.AssemblyTitleAttribute("Online-store-for-pizzeria.Server")]
-[assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
+[assembly: Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPartAttribute("Swashbuckle.AspNetCore.SwaggerGen")]
 
 // Создано классом WriteCodeFragment MSBuild.
 

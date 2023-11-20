@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\Online-store-for-pizzeria.Server.props" />
+</Project>

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "mwT9VXb+yIRbAlbLmXcq9SrjMObVZfbJI5jVdn+3JB+toQqwiGsSI33WyE1Aivv4Vs2ZV6elX6S4JPpTgwBDiQ==",
+  "dgSpecHash": "/jjoJKqORWeOQK/zZGph0WSw4ieDXxKCVuD4pKvWRIKKSdkH8kGie91T5q+GubN65VOZ94LQfjgCe7OW2RDYCg==",
   "success": true,
-  "projectFilePath": "E:\\Programming\\C# and ASP.NET\\Pizzeria\\Online-store-for-pizzeria\\Online-store-for-pizzeria.Server\\Online-store-for-pizzeria.Server.csproj",
+  "projectFilePath": "E:\\Programming\\C# and ASP.NET\\Online-store-for-pizzeria\\Online-store-for-pizzeria.Server\\Online-store-for-pizzeria.Server.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\romy4\\.nuget\\packages\\microsoft.aspnetcore.spaproxy\\8.0.0\\microsoft.aspnetcore.spaproxy.8.0.0.nupkg.sha512",
     "C:\\Users\\romy4\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
