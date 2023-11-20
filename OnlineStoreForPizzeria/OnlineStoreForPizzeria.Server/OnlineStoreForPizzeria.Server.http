@@ -1,6 +1,0 @@
-@OnlineStoreForPizzeria.Server_HostAddress = http://localhost:5012
-
-GET {{OnlineStoreForPizzeria.Server_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
