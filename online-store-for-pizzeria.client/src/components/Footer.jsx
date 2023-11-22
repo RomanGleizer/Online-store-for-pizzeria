@@ -1,24 +1,18 @@
-import '../App.css';
+import '../styles/Footer.css';
 
 function Footer() {
     return (
-        <footer>
-            <ul className='footer-categories'>
-                <li className='footer-categories-item'>Недавние заказы</li>
-                <li className='footer-categories-item'>Популярные</li>
-                <li className='footer-categories-item'>Мясные</li>
-                <li className='footer-categories-item'>Вегетарианские</li>
-                <li className='footer-categories-item'>Малокалорийные</li>
-                <li className='footer-categories-item'>Сытные</li>
+        <footer className='footer'>            
+            <ul className='pizza-contacts'>
+                <li className='pizza-contact-item'>Малышева 32</li>
+                <li className='pizza-contact-item'>Контакты: +7-000-000-00-00</li>
+                <li className='pizza-contact-item telegram'>Наш чат-бот в Телеграмм</li>
             </ul>
-            <ul className='data'>
-                <li className='adress'>Малышева 32</li>
-                <li className='contacts'>Контакты: +7-000-000-00-00</li>
-                <li className='telegram'>Наш чат-бот в Телеграмм</li>
-            </ul>
-            <p className='copyright'>©  Pizz&duck</p>
+            <div className='copyright'>©  Pizz&duck</div>
         </footer>
     );
+
+    //adress contacts telegram
 }
 
 export default Footer;

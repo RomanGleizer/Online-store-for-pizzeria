@@ -6,6 +6,9 @@
     background-image: url("../image/Header.png");
     margin-left: auto;
     margin-right: auto;
+    position: fixed;
+    top: 0;
+    z-index: 100;
 }
 
 .cart-header {
