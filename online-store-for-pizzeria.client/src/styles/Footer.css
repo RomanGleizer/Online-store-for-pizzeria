@@ -8,6 +8,7 @@
     z-index: 100;
     width: 100vw;
     margin-left: calc(50% - 50vw);
+    
 }
 
 .pizza-contacts {    
@@ -15,6 +16,15 @@
     align-items: center;
     justify-content: center;
     padding-top: 35px;
+    width: 1100px;
+    margin: 0;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 16px;
+
+    border-bottom: solid;
+    border-bottom-color: rgba(255, 235, 182, 0.41);;
+    border-bottom-width: 1px;
 }
 
 .pizza-contact-item {
@@ -36,4 +46,6 @@
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+    margin: 0;
+    margin-top: 10px;
     }
