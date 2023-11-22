@@ -1,0 +1,27 @@
+.profile-body {
+    background-color: #CA792D;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    
+    width: 1280px;
+    height: 1070px;
+    border-radius: 49px;
+    background-color: #FFEBB6;
+}
+
+.App {
+    background-color: #CA792D;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+body {
+    background-color: #CA792D;
+}
+
+#root {
+    margin-left: auto;
+    margin-right: auto;
+}

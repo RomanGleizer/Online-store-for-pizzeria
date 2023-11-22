@@ -11,6 +11,11 @@ function Home() {
 
         return ( 
         <div className="home-div">
+            <div className='autentification'>
+                <input className='login' type="text" placeholder="Это логин"></input>                
+                <input className='password' type="text" placeholder="Это пароль"></input>
+                <button className='btn-log'>Войти</button>
+            </div>
             <div className="container">
                 <div className="search-container">
                     <input id="search" 

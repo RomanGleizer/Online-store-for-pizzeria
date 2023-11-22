@@ -1,9 +1,8 @@
-import './App.css';
+import './styles/Cart.css';
 import logo from './image/logo.svg';
 
 function Cart() {
     return (
-        <div className='Cart-div'>
             <div className='cart-body'>
                 <h1 className='cart-h'>Оформление заказа</h1>
                 <div className='cart-name-h'>
@@ -54,7 +53,6 @@ function Cart() {
                 </div>
                 <button className='cart-button-order'>Заказать</button> 
             </div>
-        </div>
     )
 }
 

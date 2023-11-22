@@ -1,10 +1,9 @@
-import './App.css';
+import './styles/Profile.css';
 import logo from './image/logo.svg';
 import visa from './image/visa.svg';
 
 function Profile() {
     return(
-        <div className='Profile-div'>
             <div className='profile-body'>
                 <h1 className='profile-h'>Личный кабинет</h1>
                 <div className='profile-name-h'>
@@ -40,9 +39,7 @@ function Profile() {
                         </li>    
                     </ul>    
                 </div>                
-            </div>
-        </div>
-        
+            </div>        
     )
 }
 
