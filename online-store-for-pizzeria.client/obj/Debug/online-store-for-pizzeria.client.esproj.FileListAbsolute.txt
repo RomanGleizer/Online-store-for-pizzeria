@@ -1,2 +1,0 @@
-E:\Programming\C# and ASP.NET\Online-store-for-pizzeria\online-store-for-pizzeria.client\obj\Debug\online-store-for-pizzeria.client.esproj.CoreCompileInputs.cache
-E:\Programming\C#ASP.NET\Pizzeria\Online-store-for-pizzeria\online-store-for-pizzeria.client\obj\Debug\online-store-for-pizzeria.client.esproj.CoreCompileInputs.cache
