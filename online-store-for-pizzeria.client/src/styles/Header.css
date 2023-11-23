@@ -1,0 +1,59 @@
+.header {
+    width: 1286px;
+    height: 131px;
+    display: flex;
+    align-items: center;
+    background-image: url("../image/Header.png");
+    margin-left: auto;
+    margin-right: auto;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+}
+
+.cart-header {
+
+    line-height: 51px;
+    width: 112px;
+    height: 51px;
+    
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+    background-color: #FFF9EA;
+    margin-right: 16px;
+    margin-left: auto;
+
+    border-radius: 10px;
+}
+
+.profile-header {
+
+    line-height: 51px;
+    width: 167px;
+    height: 51px;
+
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+    background-color: #FFF9EA;
+    margin-right: 55px;
+    margin-left: 0;
+    
+    border-radius: 10px;
+}
+
+.profile-header-a, .cart-header-a {    
+    text-decoration:none;
+    color: #F08F34;
+    text-align: center;
+    
+}
+
+.logo {
+    margin-left: 20px;
+    margin-right: 21px;
+}
+
+
+ 
