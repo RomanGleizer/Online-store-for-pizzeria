@@ -1,0 +1,9 @@
+﻿@model IEnumerable<Online_store_for_pizzeria.Server.Models.Customers>
+
+<h2>Покупатели :</h2>
+<p>
+    @foreach (var item in Model)
+    {
+        <em>@item.Id</em>
+    }
+</p>

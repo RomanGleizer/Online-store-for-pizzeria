@@ -1,30 +1,28 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.EntityFrameworkCore;
+using Online_store_for_pizzeria.Server.AppContext;
+
 var builder = WebApplication.CreateBuilder(args);
+var dbConnection = builder.Configuration.GetConnectionString("DefaultConnection");
 
-// Add services to the container.
+builder.Services.AddControllersWithViews();
+builder.Services
+    .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options => options.LoginPath = "/login");
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(dbConnection));
 
 var app = builder.Build();
 
-app.UseDefaultFiles();
-app.UseStaticFiles();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
-app.UseHttpsRedirection();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllers();
+app.MapControllerRoute(
+    name: "customer",
+    pattern: "{controller=Customer}/{action=Index}");
 
-app.MapFallbackToFile("/index.html");
+app.MapControllerRoute(
+    name: "authentication",
+    pattern: "{controller=Authentication}/{action=Index}");
 
 app.Run();
