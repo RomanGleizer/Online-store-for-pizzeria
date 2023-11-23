@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Online_store_for_pizzeria.Server.AppContext;
 
@@ -13,7 +14,14 @@ public class CustomerController : Controller
         _applicationContext = context;
     }
 
-    public async Task<IActionResult> Index()
+    [Authorize]
+    public IActionResult Index()
+    {
+        return Content("Hello");
+    }
+
+    [Authorize]
+    public async Task<IActionResult> Customers()
     {
         return View(await _applicationContext.Customers.ToListAsync());
     }
