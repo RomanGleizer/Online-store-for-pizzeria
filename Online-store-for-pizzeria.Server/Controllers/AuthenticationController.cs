@@ -29,7 +29,7 @@ public class AuthenticationController : Controller
         if (!form.ContainsKey("email") || !form.ContainsKey("password"))
             return BadRequest("Email и/или пароль не установлены");
 
-        var person = _applicationContext?.Customers?.FirstOrDefault(p => p.Email == email && p.Password == password);
+        var person = _applicationContext?.Users?.FirstOrDefault(p => p.Email == email && p.Password == password);
         if (person is null) return Unauthorized();
 
         var claims = new List<Claim> { new Claim(ClaimTypes.Name, person.Email) };
