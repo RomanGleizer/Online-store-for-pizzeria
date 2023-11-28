@@ -4,6 +4,7 @@ using Online_store_for_pizzeria.Server.Services;
 
 namespace Online_store_for_pizzeria.Server.Controllers;
 
+[Route("Order")]
 public class OrderController : Controller
 {
     private OrderService _orderService;

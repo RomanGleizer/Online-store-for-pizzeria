@@ -12,7 +12,7 @@ public class UserService
         _context = context;
     }
 
-    public User Register(User? user)
+    public User LogIn(User? user)
     {
         if (_context.Users.Any(c => c.Email == user.Email))
             throw new Exception("User with same email was registered");
@@ -20,7 +20,6 @@ public class UserService
         return new User
         {
             Name = user.Name,
-            Surname = user.Surname,
             Phone = user.Phone,
             Email = user.Email,
             Password = user.Password

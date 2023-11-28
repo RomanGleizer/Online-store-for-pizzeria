@@ -17,12 +17,4 @@ var app = builder.Build();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "customer",
-    pattern: "{controller=Customer}/{action=Index}");
-
-app.MapControllerRoute(
-    name: "authentication",
-    pattern: "{controller=Authentication}/{action=Index}");
-
 app.Run();

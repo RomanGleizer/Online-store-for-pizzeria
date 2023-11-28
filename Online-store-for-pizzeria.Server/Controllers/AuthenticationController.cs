@@ -6,6 +6,7 @@ using System.Security.Claims;
 
 namespace Online_store_for_pizzeria.Server.Controllers;
 
+[Route("Authentication")]
 public class AuthenticationController : Controller
 {
     private ApplicationContext? _applicationContext;
@@ -28,7 +29,7 @@ public class AuthenticationController : Controller
         if (!form.ContainsKey("email") || !form.ContainsKey("password"))
             return BadRequest("Email и/или пароль не установлены");
 
-        var person = _applicationContext?.Customers?.FirstOrDefault(p => p.Email == email && p.Password == password);
+        var person = _applicationContext?.Users?.FirstOrDefault(p => p.Email == email && p.Password == password);
         if (person is null) return Unauthorized();
 
         var claims = new List<Claim> { new Claim(ClaimTypes.Name, person.Email) };
