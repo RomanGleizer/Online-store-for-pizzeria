@@ -6,6 +6,7 @@ using System.Security.Claims;
 
 namespace Online_store_for_pizzeria.Server.Controllers;
 
+[Route("Authentication")]
 public class AuthenticationController : Controller
 {
     private ApplicationContext? _applicationContext;
