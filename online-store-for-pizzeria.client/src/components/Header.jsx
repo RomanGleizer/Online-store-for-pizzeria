@@ -13,7 +13,7 @@ function Header() {
                             setSearchTerm(event.target.value);
                         }} />
             </div>             */}
-            <div className='cart-header'><Link className='cart-header-a' to="/cart">Корзина</Link></div>
+            <div className='cart-header'><Link className='cart-header-a' to="/cartModal">Корзина</Link></div>
             <div className='profile-header'><Link className='profile-header-a' to="/profile">Личный кабинет</Link></div>            
         </header>
     );
