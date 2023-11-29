@@ -3,6 +3,7 @@ import './styles/Home.css';
 import present from './image/present.png';
 import data from "./Data.json";
 import pizFoCh from './image/pizFourCheese.jpg';
+import { NavLink } from 'react-router-dom';
 
 function Home() {
     const [searchTerm, setSearchTerm] = useState("");
@@ -65,14 +66,15 @@ function Home() {
                                         <div className='hit'>Хит!</div>
                                         <div className='pizza-price'>{val.price}р.</div>
                                     </div>
-                                    <div className='description'>                                        
-                                        <button className='pizza-name'>{val.title}</button>
-                                        <p className='pizza-description'>{val.description}</p>
+                                    <div className='description'> 
+                                        <NavLink to={`/products/${val.id}`} className="pizza-name">{val.title}</NavLink>                                       
+                                        {/* <button className='pizza-name'>{val.title}</button> */}
+                                        <p className='pizza-description'>{val.description}</p>                                        
                                     </div>
                                 </div> 
                                 )
                             })
-                    }
+                    } 
                 </div>
             </div>
         </div>

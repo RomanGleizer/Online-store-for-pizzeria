@@ -5,6 +5,8 @@ import Cart from './Cart';
 import Profile from './Profile';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import PizzaDetails from './components/PizzaDetails';
+import CartModal from './components/CartModal';
 import {
     createBrowserRouter,
     RouterProvider,
@@ -35,6 +37,14 @@ import {
           path: "/profile",
           element: <Profile />,
         },
+        {
+          path: "/products/:id",
+          element: <PizzaDetails />,
+        },
+        {
+          path: "/cartmodal",
+          element: <CartModal />,
+        },        
       ],
     }
   ]);
