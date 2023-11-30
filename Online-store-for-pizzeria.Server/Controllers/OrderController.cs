@@ -1,54 +1,72 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Online_store_for_pizzeria.Server.Models.Database;
-using Online_store_for_pizzeria.Server.Services;
+using Microsoft.EntityFrameworkCore;
+using Online_store_for_pizzeria.Server.Models;
 
 namespace Online_store_for_pizzeria.Server.Controllers;
 
-[Route("Order")]
+[ApiController]
+[Route("api/[controller]")]
 public class OrderController : Controller
 {
-    private OrderService _orderService;
+    private readonly ApplicationContext? _applicationContext;
 
-    public OrderController(OrderService service)
+    public OrderController(ApplicationContext applicationContext)
     {
-        _orderService = service;
+        _applicationContext = applicationContext;
     }
 
-    public IActionResult Index()
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<Order>>> GetOrders()
     {
-        return View();
+        return await _applicationContext.Orders.Include(o => o.Customer).Include(o => o.Pizzas).ToListAsync();
     }
 
-    public async Task<IActionResult> Edit(int? id)
+    [HttpGet("{id}")]
+    public async Task<ActionResult<Order>> GetOrder(int id)
     {
-        if (id is not null)
-        {
-            var order = _orderService.FindOrderById(id);
-            if (order is not null) return View(order);
-        }
+        var order = await _applicationContext.Orders.Include(o => o.Customer).Include(o => o.Pizzas).FirstOrDefaultAsync(o => o.Id == id);
 
-        return NotFound();
-    }
-
-    [HttpPost]
-    public async Task<IActionResult> Create(int? userId)
-    {
-        if (userId is not null)
-        {
-            var order = _orderService.CreateOrder(userId);
-            _orderService.Context.Add(order);
-            await _orderService.Context.SaveChangesAsync();
-            return RedirectToAction("Index");
-        }
-
-        return NotFound();
+        if (order is null) return NotFound();
+        return Ok(order);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Edit(Order order)
+    public async Task<ActionResult<Order>> PostOrder(Order order)
     {
-        _orderService?.Context?.Orders?.Update(order);
-        await _orderService.Context.SaveChangesAsync();
-        return RedirectToAction("Index");
+        _applicationContext.Orders.Add(order);
+        await _applicationContext.SaveChangesAsync();
+        return Ok(order);
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Put(int id, Order order)
+    {
+        if (id != order.Id) return BadRequest();
+        _applicationContext.Entry(order).State = EntityState.Modified;
+
+        try
+        {
+            await _applicationContext.SaveChangesAsync();
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            if (!_applicationContext.Orders.Any(o => o.Id == id))
+                return NotFound();
+        }
+
+        return Ok(order);
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteOrder(int id)
+    {
+        var order = await _applicationContext.Orders.FindAsync(id);
+
+        if (order == null)
+            return NotFound();
+
+        _applicationContext.Orders.Remove(order);
+        await _applicationContext.SaveChangesAsync();
+        return Ok(order);
     }
 }

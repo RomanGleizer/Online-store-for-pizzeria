@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
-using Online_store_for_pizzeria.Server.AppContext;
+using Online_store_for_pizzeria.Server.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 var dbConnection = builder.Configuration.GetConnectionString("DefaultConnection");

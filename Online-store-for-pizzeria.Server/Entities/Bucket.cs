@@ -1,4 +1,4 @@
-﻿using Online_store_for_pizzeria.Server.Models.Database;
+﻿using Online_store_for_pizzeria.Server.Models;
 
 namespace Online_store_for_pizzeria.Server.Entities;
 

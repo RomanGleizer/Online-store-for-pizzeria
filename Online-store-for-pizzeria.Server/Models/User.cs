@@ -1,4 +1,4 @@
-﻿namespace Online_store_for_pizzeria.Server.Models.Database;
+﻿namespace Online_store_for_pizzeria.Server.Models;
 
 public class User
 {
