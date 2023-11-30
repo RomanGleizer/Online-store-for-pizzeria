@@ -1,13 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Online_store_for_pizzeria.Server.Models.Registration;
+namespace Online_store_for_pizzeria.Server.ViewModels;
 
 public class RegisterModel
 {
     [Required]
     public string Name { get; set; }
 
-    [Required]  
+    [Required]
     public string Phone { get; set; }
 
     [Required]

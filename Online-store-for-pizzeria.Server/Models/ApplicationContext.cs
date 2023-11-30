@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Online_store_for_pizzeria.Server.Models.Database;
 
-namespace Online_store_for_pizzeria.Server.AppContext;
+namespace Online_store_for_pizzeria.Server.Models;
 
 public class ApplicationContext : DbContext
 {
@@ -11,7 +10,7 @@ public class ApplicationContext : DbContext
 
     public DbSet<Pizza>? Pizzas { get; set; } = null;
 
-    public ApplicationContext(DbContextOptions<ApplicationContext> options) 
+    public ApplicationContext(DbContextOptions<ApplicationContext> options)
         : base(options)
     {
         Database.EnsureCreated();
