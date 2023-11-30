@@ -1,4 +1,5 @@
 import React from "react";
+import '../../styles/Modal.css'
 
 const Login = () => {
   return (
@@ -16,15 +17,12 @@ const Login = () => {
       {/* <!-- Modal --> */}
       <div
         className="modal fade"
-        id="loginModal"
-        tabIndex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
+        id="loginModal"        
       >
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">
+              <h5 className="modal-title">
                 Login
               </h5>
               <button
