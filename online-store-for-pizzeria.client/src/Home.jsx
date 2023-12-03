@@ -4,6 +4,7 @@ import present from './image/present.png';
 import data from "./Data.json";
 import pizFoCh from './image/pizFourCheese.jpg';
 import { NavLink } from 'react-router-dom';
+import Test from './Test';
 
 function Home() {
     const [searchTerm, setSearchTerm] = useState("");
@@ -13,10 +14,10 @@ function Home() {
         return ( 
         <div className="home-div">
             <div className='autentification'>
-                <input className='login' type="text" placeholder="Это логин"></input>                
-                <input className='password' type="text" placeholder="Это пароль"></input>
-                <button className='btn-log'>Войти</button>
+                <input className='login' type="text" placeholder="Это текст"></input>
+                <button className='btn-log'>Отправить</button>
             </div>
+            <Test />
             <div className="container">
                 <div className="search-container">
                     <input id="search" 

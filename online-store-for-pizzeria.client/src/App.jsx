@@ -44,7 +44,15 @@ import {
         {
           path: "/cartmodal",
           element: <CartModal />,
-        },        
+        },   
+        // {
+        //   path: "/login",
+        //   element: <Login />,
+        // },  
+        // {
+        //   path: "/register",
+        //   element: <Register />,
+        // },       
       ],
     }
   ]);

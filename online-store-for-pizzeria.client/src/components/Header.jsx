@@ -3,10 +3,21 @@ import logo from "../image/logo.svg";
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import CartBtn from "./buttons/CartBtn";
-import Login from "./buttons/Login";
-import Signup from "./buttons/Signup";
+import Login from "./buttons/LoginBtn";
+import Signup from "./buttons/RegisterBtn";
 
 function Header() {
+
+const isLogin = false;
+const rootLogin = <Login />
+
+// if (isLogin) {
+//   rootLogin = <Login />
+// }
+// else {
+//   rootLogin = <Profile />;
+// }
+
   return (
     <header className="header">
       <div className="logo">
@@ -21,23 +32,15 @@ function Header() {
           />
         </Link>
       </div>
-      {/* <div className='search-container'>
-                <input className='search' type='text' placeholder="Найти пиццу" onChange={(event) => {
-                            setSearchTerm(event.target.value);
-                        }} />
-            </div>             */}
       <div className="cart-header">
-        <Link className="cart-header-a" to="/cartModal">
-          Корзина
-        </Link>
+        <CartBtn />
       </div>
-      <CartBtn />
-      <Login />
       <Signup />
       <div className="profile-header">
-        <Link className="profile-header-a" to="/profile">
+        {rootLogin}
+        {/* <Link className="profile-header-a" to={rootLogin}>
           Личный кабинет
-        </Link>
+        </Link> */}
       </div>
     </header>
   );
