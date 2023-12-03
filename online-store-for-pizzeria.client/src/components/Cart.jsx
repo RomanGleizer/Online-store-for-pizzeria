@@ -3,8 +3,10 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { delItem } from "../redux/actions/index";
 import { NavLink } from "react-router-dom";
+import pizFoCh from '../image/pizFourCheese.jpg';
 
 const Cart = () => {
+    let images = [pizFoCh, pizFoCh, pizFoCh, pizFoCh, pizFoCh];
   const state = useSelector((state) => state.addItem);
   const dispatch = useDispatch();
 
@@ -23,7 +25,7 @@ const Cart = () => {
           <div className="row justify-content-center">
             <div className="col-md-4">
               <img
-                src={cartItem.img}
+                src={images[cartItem.id]}
                 alt={cartItem.title}
                 height="200px"
                 width="180px"
@@ -52,7 +54,7 @@ const Cart = () => {
     return (
       <div className="container">
         <div className="row">
-          <NavLink to="/cart" className="Payment">
+          <NavLink to="/payment" className="Payment">
             К оформлению заказа
           </NavLink>
         </div>

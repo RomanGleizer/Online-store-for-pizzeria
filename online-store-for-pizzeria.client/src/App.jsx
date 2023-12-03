@@ -6,7 +6,7 @@ import Profile from './Profile';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import PizzaDetails from './components/PizzaDetails';
-import Cart from './components/Cart';
+import Cart from './components/Cart.jsx';
 import Login from './components/Login';
 import Register from './components/Register.jsx';
 import {
