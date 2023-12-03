@@ -79,14 +79,14 @@ public class AccountController : Controller
         return BadRequest();
     }
 
-    public async Task<IActionResult> ChangePassword(int id)
-    {
-        var user = await _applicationContext.Users.FirstOrDefaultAsync(u => u.Id == id);
+    //public async Task<IActionResult> ChangePassword(int id)
+    //{
+    //    var user = await _applicationContext.Users.FirstOrDefaultAsync(u => u.Id == id);
 
-        if (user is null) return NotFound();
-        var model = new ChangePasswordViewModel { Id = user.Id, Email = user.Email };
-        return Ok(user);
-    }
+    //    if (user is null) return NotFound();
+    //    var model = new ChangePasswordViewModel { Id = user.Id, Email = user.Email };
+    //    return Ok(user);
+    //}
 
     public async Task<IActionResult> Logout()
     {
