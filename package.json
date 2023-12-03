@@ -1,8 +1,0 @@
-{
-  "dependencies": {
-    "react-router-dom": "^6.19.0"
-  },
-  "devDependencies": {
-    "run-script-os": "^1.1.6"
-  }
-}
