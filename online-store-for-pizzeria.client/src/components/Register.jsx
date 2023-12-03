@@ -1,14 +1,16 @@
-import RegisterBtn from './buttons/RegisterBtn'
+import { NavLink } from "react-router-dom";
 
-function Login() {
+function Register() {
   return (
-    <div className="cont">
+    <div>
       <form>
-        <div className="email">
-          <label className="email-name">Почта</label>
+        <div className="user-cont">
+          <label className="email-name">Логин</label>
           <input className="email-input" />
-          <div className="dont-tell">Мы никому не скажем почту</div>
         </div>
+
+        <div className="dont-tell">Мы никому не сообщим вашу почту</div>
+
         <div className="password">
           <label className="pass-name">Пароль</label>
           <input type="password" className="password-input" />
@@ -18,12 +20,13 @@ function Login() {
           <label className="remember">Запомнить меня</label>
         </div>
         <button type="submit" className="sub-btn">
-          Войти
+          <NavLink to="/" className="btn">
+            <span className="home">Загеристрироваться</span>
+          </NavLink>
         </button>
       </form>
-      <RegisterBtn />
     </div>
   );
 }
 
-export default Login;
+export default Register;

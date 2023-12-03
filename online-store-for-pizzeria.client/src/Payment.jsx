@@ -3,7 +3,7 @@ import logo from "./image/logo.svg";
 import React from "react";
 import { useSelector } from "react-redux";
 
-function Cart() {
+function Payment() {
   const state = useSelector((state) => state.addItem);
 
   var total = 0;
@@ -75,7 +75,7 @@ function Cart() {
         <div className="row g-5">
           <div className="col-md-5 col-lg-4 order-md-last">
             <h4 className="d-flex justify-content-between align-items-center mb-3">
-              <span className="text-primary">Your cart</span>
+              <span className="text-primary">Оформление заказа</span>
               <span className="badge bg-primary rounded-pill">
                 {state.length}
               </span>
@@ -118,9 +118,6 @@ function Cart() {
                     defaultValue=''
                     required=""
                   />
-                  <div className="invalid-feedback">
-                    Valid first name is required.
-                  </div>
                 </div>
 
                 <div className="col-sm-6">
@@ -135,9 +132,6 @@ function Cart() {
                     defaultValue=''
                     required=""
                   />
-                  <div className="invalid-feedback">
-                    Valid last name is required.
-                  </div>
                 </div>                
 
                 <div className="col-12">
@@ -150,9 +144,6 @@ function Cart() {
                     id="email"
                     placeholder="you@example.com"
                   />
-                  <div className="invalid-feedback">
-                    Please enter a valid email address htmlFor shipping updates.
-                  </div>
                 </div>
 
                 <div className="col-12">
@@ -166,9 +157,6 @@ function Cart() {
                     placeholder="1234 Main St"
                     required=""
                   />
-                  <div className="invalid-feedback">
-                    Please enter your shipping address.
-                  </div>
                 </div>                
               </div>
 
@@ -196,7 +184,7 @@ function Cart() {
                     required=""
                   />
                   <label className="form-check-label" htmlFor="paypal">
-                    PayPal
+                    Наличные
                   </label>
                 </div>
               </div>
@@ -213,12 +201,6 @@ function Cart() {
                     placeholder=""
                     required=""
                   />
-                  <small className="text-muted">
-                    Full name as displayed on card
-                  </small>
-                  <div className="invalid-feedback">
-                    Name on card is required
-                  </div>
                 </div>
 
                 <div className="col-md-6">
@@ -264,7 +246,6 @@ function Cart() {
                     placeholder=""
                     required=""
                   />
-                  <div className="invalid-feedback">Security code required</div>
                 </div>
               </div>
 
@@ -281,4 +262,4 @@ function Cart() {
   );
 }
 
-export default Cart;
+export default Payment;

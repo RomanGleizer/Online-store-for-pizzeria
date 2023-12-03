@@ -9,26 +9,24 @@ import '../styles/PizzaDetails.css';
 
 const PizzaDetails = () => {
 
-    let images = [pizFoCh];  
+    let images = [pizFoCh, pizFoCh, pizFoCh, pizFoCh, pizFoCh];
 
-    const [cartBtn, setCartBtn] = useState("Add to Cart")
-    {/* Now we need a product id which is pass from the product page. */}
+    const [cartBtn, setCartBtn] = useState("Добавить в корзину")
     const proid = useParams();
     const proDetail = data.filter(x=>x.id == proid.id)
     const product = proDetail[0];
     console.log(product);
 
-    // We need to store useDispatch in a variable
     const dispatch = useDispatch()
 
     const handleCart = (product) => {
-        if (cartBtn === "Add to Cart") {
+        if (cartBtn === "Добавить в корзину") {
             dispatch(addItem(product))
-            setCartBtn("Remove from Cart")
+            setCartBtn("Удалить из корзины")
         }
         else{
             dispatch(delItem(product))
-            setCartBtn("Add to Cart")
+            setCartBtn("Добавить в корзину")
         }
     }
 
@@ -37,7 +35,7 @@ const PizzaDetails = () => {
         <div className="c">
             <div className="a">
                 <div className="image">
-                    <img src={images[0]} alt={product.title}height="400px" />
+                    <img src={images[product.id-1]} alt={product.title} height="400px" />
                 </div>
                 <div className="all-description">
                     <h1 className="title">{product.title}</h1>
@@ -45,6 +43,7 @@ const PizzaDetails = () => {
                     <h2 className="price">${product.price}</h2>
                     <p className="descrip">{product.description}</p>
                     <button onClick={()=>handleCart(product)} className="cartBtn">{cartBtn}</button>
+                    
                 </div>
             </div>
         </div>

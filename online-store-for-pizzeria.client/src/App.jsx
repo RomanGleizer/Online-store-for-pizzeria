@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import Home from "./Home";
-import Cart from './Cart';
+import Payment from './Payment';
 import Profile from './Profile';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import PizzaDetails from './components/PizzaDetails';
-import CartModal from './components/CartModal';
+import Cart from './components/Cart';
+import Login from './components/Login';
+import Register from './components/Register.jsx';
 import {
     createBrowserRouter,
     RouterProvider,
@@ -30,8 +32,8 @@ import {
           element: <Home />,
         },
         {
-          path: "/cart",
-          element: <Cart />,
+          path: "/payment",
+          element: <Payment />,
         },
         {
           path: "/profile",
@@ -42,17 +44,17 @@ import {
           element: <PizzaDetails />,
         },
         {
-          path: "/cartmodal",
-          element: <CartModal />,
+          path: "/cart",
+          element: <Cart />,
         },   
-        // {
-        //   path: "/login",
-        //   element: <Login />,
-        // },  
-        // {
-        //   path: "/register",
-        //   element: <Register />,
-        // },       
+        {
+          path: "/login",
+          element: <Login />,
+        },  
+        {
+          path: "/register",
+          element: <Register />,
+        },       
       ],
     }
   ]);
