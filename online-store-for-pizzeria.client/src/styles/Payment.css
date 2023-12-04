@@ -15,8 +15,6 @@ border-radius: 22px;
 background: #F3F3F3;
 color: #231F15;
 text-align: center;
-
-font-family: Montserrat Alternates;
 font-size: 55px;
 font-style: normal;
 font-weight: 500;
@@ -24,10 +22,8 @@ line-height: 93px;
 letter-spacing: -3.575px;
 }
 
-.label {
+.payment span {
     color: #000;
-
-font-family: Montserrat Alternates;
 font-size: 25px;
 font-style: normal;
 font-weight: 500;
@@ -35,11 +31,8 @@ line-height: normal;
 letter-spacing: -1.625px;
 }
 
-label input {
-    margin-left: 25px;
-}
 
-.deliv {
+.card-details {
     display: flex;
     flex-direction: column;
 }

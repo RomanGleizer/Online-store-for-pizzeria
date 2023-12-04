@@ -66,24 +66,28 @@ function Payment() {
           <div className="delivery-type">
             <div className="deliv">
               <p>Выберите:</p>
-              <input
-                type="radio"
-                name="deliveryGroup"
-                value="delivery"
-                onChange={handleDeliveryChange}
-              />{" "}
-              <span>Доставка</span>
-              <input
-                className="left"
-                type="radio"
-                name="deliveryGroup"
-                value="pickUp"
-                onChange={handleDeliveryChange}
-              />{" "}
-              <span>Самовывоз</span>
+              <ul>
+                <li>
+                  <input
+                    type="radio"
+                    name="deliveryGroup"
+                    value="delivery"
+                    onChange={handleDeliveryChange}
+                  />{" "}
+                  <span>Доставка</span>
+                </li>
+                <li>
+                  <input
+                    className="left"
+                    type="radio"
+                    name="deliveryGroup"
+                    value="pickUp"
+                    onChange={handleDeliveryChange}
+                  />{" "}
+                  <span>Самовывоз</span>
+                </li>
+              </ul>
             </div>
-
-            <br />
 
             <div className="adress-div">
               <span>Адрес доставки</span>
@@ -103,20 +107,26 @@ function Payment() {
 
         <div className="payment-type">
           <p>Выберите:</p>
-          <input
-            type="radio"
-            name="radioGroup"
-            value="card"
-            onChange={handleCardChange}
-          />{" "}
-          <span>По карте</span>
-          <input
-            type="radio"
-            name="radioGroup"
-            value="cash"
-            onChange={handleCardChange}
-          />{" "}
-          <span>Наличные</span>
+          <ul>
+            <li>
+              <input
+                type="radio"
+                name="radioGroup"
+                value="card"
+                onChange={handleCardChange}
+              />{" "}
+              <span>По карте</span>
+            </li>
+            <li>
+              <input
+                type="radio"
+                name="radioGroup"
+                value="cash"
+                onChange={handleCardChange}
+              />{" "}
+              <span>Наличные</span>
+            </li>
+          </ul>
           <div className="card-details">
             <span>Номер карты:</span>
             <input type="text" required={isCard} />
