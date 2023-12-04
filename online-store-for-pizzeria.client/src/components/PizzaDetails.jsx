@@ -1,8 +1,17 @@
 import React from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from 'react-router'
+import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
-import { addToCart } from "../slices/cartSlice";
+import {
+  addToCart,
+  clearCart,
+  decreaseCart,
+  removeFromCart,
+} from "../slices/cartSlice";
+
+import Selector from "./Selector";
+
 import { useGetAllProductsQuery } from "../slices/productsApi";
 import data from "../Data.json";
 import pizFoCh from "../image/pizFourCheese.jpg";
@@ -14,14 +23,31 @@ const PizzaDetails = () => {
   //   const { items: products, status } = useSelector((state) => state.products);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const cart = useSelector((state) => state.cart);
 
   //   const {  error, isLoading } = useGetAllProductsQuery();
   //   console.log("Api", isLoading);
+
+  const handleDecreaseCart = (product) => {
+    dispatch(decreaseCart(product));
+  };
+  const handleRemoveFromCart = (product) => {
+    dispatch(removeFromCart(product));
+  };
 
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
     navigate("/cart");
   };
+
+  const [isRemove, setAddRemove] = useState(false);
+
+  function handleAddRemoveClick() {
+    setAddRemove(!isRemove);
+    if (isRemove) handleRemoveFromCart(product);
+    else handleAddToCart(product);
+    console.log(product);
+  }
 
   const proid = useParams();
   const proDetail = data.filter((x) => x.id == proid.id);
@@ -29,13 +55,30 @@ const PizzaDetails = () => {
 
   return (
     <div key={product.id} className="product">
-      <h3>{product.name}</h3>
-      <img src={images[product.id - 1]} alt={product.title} />
-      <div className="details">
-        <span>{product.description}</span>
-        <span className="price">${product.price}</span>
+      <img className="image" src={images[product.id - 1]} alt={product.title} />
+      <div className="info">
+        <h3 className="title">{product.title}</h3>
+        <div className="details">
+          <div className="ingredients">{product.ingredients}</div>
+          <div className="price">${product.price}</div>
+        </div>
+
+        <button className="btn" onClick={() => handleAddToCart(product)}>Добавить в корзину</button>
+
+        {/* <div className="btn">
+          <button onClick={handleAddRemoveClick}>
+            {isRemove ? "Удалить из корзины" : "Добавить в корзину"}
+          </button>
+          {isRemove && (
+            <div className="cart-product-quantity">
+              <button onClick={() => handleDecreaseCart(product)}>-</button>
+              <div className="count">{count}</div>
+              <button onClick={() => handleAddToCart(product)}>+</button>
+            </div>
+          )}
+        </div> */}
+        {/* <Selector pizza={product}/> */}
       </div>
-      <button onClick={() => handleAddToCart(product)}>Add To Cart</button>
     </div>
   );
 };

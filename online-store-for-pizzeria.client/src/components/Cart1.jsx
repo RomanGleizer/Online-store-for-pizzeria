@@ -7,11 +7,13 @@ import {
   getTotals,
   removeFromCart,
 } from "../slices/cartSlice";
-
+import pizFoCh from "../image/pizFourCheese.jpg";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 
 const Cart = () => {
+  let images = [pizFoCh, pizFoCh, pizFoCh, pizFoCh, pizFoCh];
+
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
@@ -30,43 +32,58 @@ const Cart = () => {
   };
   const handleClearCart = () => {
     dispatch(clearCart());
+    console.log(cart);
   };
   return (
     <div className="cart-container">
-      <h2>Корзина</h2>
       {cart.cartItems.length === 0 ? (
         <div className="cart-empty">
-          <p>Ваша корзина пуста</p>
+          <p>В корзине пока пусто :(</p>
           <p>Не заставляйте Дака злиться...</p>
           <div className="start-shopping">
-            <Link to="/">              
-              <span>На главную страницу</span>
+            <Link to="/">
+              <span>Нажимай и начнём покупки!</span>
             </Link>
           </div>
         </div>
       ) : (
-        <div>
+        <div className="cart-not-empty">
+          <div className="all-info">
+      {cart.cartTotalQuantity} товаров на сумму {cart.cartTotalAmount} рублей
+          </div>
           <div className="cart-items">
             {cart.cartItems &&
               cart.cartItems.map((cartItem) => (
                 <div className="cart-item" key={cartItem.id}>
-                  <div className="cart-product">
-                    <img src={cartItem.image} alt={cartItem.name} />
-                    <div>
-                      <h3>{cartItem.name}</h3>
-                      <p>{cartItem.desc}</p>
-                      <button onClick={() => handleRemoveFromCart(cartItem)}>
-                        Удалить
-                      </button>
-                    </div>
-                  </div>
+                  <img
+                    className="cart-image"
+                    src={images[cartItem.id - 1]}
+                    alt={cartItem.title}
+                  />
+
+                  <h3 className="title-item">{cartItem.title}</h3>
+                  <p>{cartItem.desc}</p>
+                  <button
+                    className="del-item"
+                    onClick={() => handleRemoveFromCart(cartItem)}
+                  >
+                    Удалить
+                  </button>
                   <div className="cart-product-price">{cartItem.price}р.</div>
-                  <div className="cart-product-quantity">
-                    <button onClick={() => handleDecreaseCart(cartItem)}>
+                  <div className="count-div">
+                    <button
+                      className="minus"
+                      onClick={() => handleDecreaseCart(cartItem)}
+                    >
                       -
                     </button>
                     <div className="count">{cartItem.cartQuantity}</div>
-                    <button onClick={() => handleAddToCart(cartItem)}>+</button>
+                    <button
+                      className="plus"
+                      onClick={() => handleAddToCart(cartItem)}
+                    >
+                      +
+                    </button>
                   </div>
                   <div className="cart-product-total-price">
                     {cartItem.price * cartItem.cartQuantity}р.
@@ -85,10 +102,10 @@ const Cart = () => {
               </div>
               <p>Полный расчет и учет промокодов будет при оформлении заказа</p>
               <NavLink to="/payment" className="Payment">
-            К оформлению заказа
-          </NavLink>
+                К оформлению заказа
+              </NavLink>
               <div className="continue-shopping">
-                <Link to="/">                  
+                <Link to="/">
                   <span>Продолжить заказ</span>
                 </Link>
               </div>
