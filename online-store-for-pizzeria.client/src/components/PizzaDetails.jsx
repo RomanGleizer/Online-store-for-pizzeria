@@ -1,54 +1,43 @@
-import React from 'react'
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from 'react-router'
-import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
+import { addToCart } from "../slices/cartSlice";
+import { useGetAllProductsQuery } from "../slices/productsApi";
 import data from "../Data.json";
-import { useDispatch } from 'react-redux';
-import {addItem, delItem} from '../redux/actions/index'
-import pizFoCh from '../image/pizFourCheese.jpg';
-import '../styles/PizzaDetails.css';
+import pizFoCh from "../image/pizFourCheese.jpg";
+import "../styles/PizzaDetails.css";
 
 const PizzaDetails = () => {
+  let images = [pizFoCh, pizFoCh, pizFoCh, pizFoCh, pizFoCh];
 
-    let images = [pizFoCh, pizFoCh, pizFoCh, pizFoCh, pizFoCh];
+  //   const { items: products, status } = useSelector((state) => state.products);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-    const [cartBtn, setCartBtn] = useState("Добавить в корзину")
-    const proid = useParams();
-    const proDetail = data.filter(x=>x.id == proid.id)
-    const product = proDetail[0];
-    console.log(product);
+  //   const {  error, isLoading } = useGetAllProductsQuery();
+  //   console.log("Api", isLoading);
 
-    const dispatch = useDispatch()
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product));
+    navigate("/cart");
+  };
 
-    const handleCart = (product) => {
-        if (cartBtn === "Добавить в корзину") {
-            dispatch(addItem(product))
-            setCartBtn("Удалить из корзины")
-        }
-        else{
-            dispatch(delItem(product))
-            setCartBtn("Добавить в корзину")
-        }
-    }
+  const proid = useParams();
+  const proDetail = data.filter((x) => x.id == proid.id);
+  const product = proDetail[0];
 
-    return (
-        <>
-        <div className="c">
-            <div className="a">
-                <div className="image">
-                    <img src={images[product.id-1]} alt={product.title} height="400px" />
-                </div>
-                <div className="all-description">
-                    <h1 className="title">{product.title}</h1>
-                    <hr />
-                    <h2 className="price">${product.price}</h2>
-                    <p className="descrip">{product.description}</p>
-                    <button onClick={()=>handleCart(product)} className="cartBtn">{cartBtn}</button>
-                    
-                </div>
-            </div>
-        </div>
-        </>
-    )
-}
+  return (
+    <div key={product.id} className="product">
+      <h3>{product.name}</h3>
+      <img src={images[product.id - 1]} alt={product.title} />
+      <div className="details">
+        <span>{product.description}</span>
+        <span className="price">${product.price}</span>
+      </div>
+      <button onClick={() => handleAddToCart(product)}>Add To Cart</button>
+    </div>
+  );
+};
 
 export default PizzaDetails;

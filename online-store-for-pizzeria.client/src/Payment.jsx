@@ -1,202 +1,164 @@
 import "./styles/Cart.css";
-import logo from "./image/logo.svg";
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import {
+  addToCart,
+  clearCart,
+  decreaseCart,
+  getTotals,
+  removeFromCart,
+} from "./slices/cartSlice";
 
 function Payment() {
-  const state = useSelector((state) => state.addItem);
+  const { cartTotalQuantity } = useSelector((state) => state.cart);
+  const { cartTotalAmount } = useSelector((state) => state.cart);
+  const cart = useSelector((state) => state.cart);
 
-  var total = 0;
-  const itemList = (item) => {
-    total = total + item.price;
-    return (
-      <li className="list-group-item d-flex justify-content-between lh-sm">
-        <div>
-          <h6 className="my-0">{item.title}</h6>
-        </div>
-        <span className="text-muted">${item.price}</span>
-      </li>
-    );
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getTotals());
+  }, [cart, dispatch]);
+
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product));
+  };
+  const handleDecreaseCart = (product) => {
+    dispatch(decreaseCart(product));
+  };
+  const handleRemoveFromCart = (product) => {
+    dispatch(removeFromCart(product));
+  };
+  const handleClearCart = () => {
+    dispatch(clearCart());
+  };
+
+  const [isRadioSelected, setIsRadioSelected] = useState(false);
+
+  const handleRadioChange = (event) => {
+    setIsRadioSelected(event.target.value === "yes");
   };
 
   return (
     <>
-      <div className="container my-5">
-        <div className="row g-5">
-          <div className="col-md-5 col-lg-4 order-md-last">
-            <h4 className="d-flex justify-content-between align-items-center mb-3">
-              <span className="text-primary">Оформление заказа</span>
-              <span className="badge bg-primary rounded-pill">
-                {state.length}
-              </span>
-            </h4>
-            <ul className="list-group mb-3">
-              {state.map(itemList)}
+      <div className="about-customer">
+        <h4 className="order">Оформление заказа</h4>
+        <form className="form-cust">
+          <div className="div-cust">
+            <div className="phone">
+              <label className="form-label">Номер телефона</label>
+              <input type="phone" placeholder="+79000000000" required />
+            </div>
 
-              <li className="list-group-item d-flex justify-content-between">
-                <span>Total (USD)</span>
-                <strong>${total}</strong>
-              </li>
-            </ul>
-
-            <form className="card p-2">
-              <div className="input-group">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Promo code"
-                />
-                <button type="submit" className="btn btn-secondary">
-                  Redeem
-                </button>
-              </div>
-            </form>
+            <div className="adress-div">
+              <label className="adress">
+                Адрес
+              </label>
+              <input
+                type="text"
+                className="adress"
+                placeholder="Малышева 32"
+                required
+              />
+            </div>
           </div>
-          <div className="col-md-7 col-lg-8">
-            <h4 className="mb-3">Billing address</h4>
-            <form className="needs-validation" noValidate="">
-              <div className="row g-3">
-                <div className="col-sm-6">
-                  <label htmlFor="firstName" className="form-label">
-                    First name
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="firstName"
-                    placeholder=""
-                    defaultValue=''
-                    required=""
-                  />
-                </div>
 
-                <div className="col-sm-6">
-                  <label htmlFor="lastName" className="form-label">
-                    Last name
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="lastName"
-                    placeholder=""
-                    defaultValue=''
-                    required=""
-                  />
-                </div>                
+          <h4 className="h-pay">Оплата</h4>
 
-                <div className="col-12">
-                  <label htmlFor="email" className="form-label">
-                    Email <span className="text-muted">(Optional)</span>
-                  </label>
-                  <input
-                    type="email"
-                    className="form-control"
-                    id="email"
-                    placeholder="you@example.com"
-                  />
-                </div>
+          <div className="payment-type">
+            <label>
+              Выберите:
+              <input
+                type="radio"
+                name="radioGroup"
+                value="yes"
+                onChange={handleRadioChange}
+              />{" "}
+              По карте
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="radioGroup"
+                value="no"
+                onChange={handleRadioChange}
+              />{" "}
+              Наличные
+            </label>
 
-                <div className="col-12">
-                  <label htmlFor="address" className="form-label">
-                    Address
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="address"
-                    placeholder="1234 Main St"
-                    required=""
-                  />
-                </div>                
-              </div>
+            <br />
+            <div className="card-details">
+              <label>
+                Номер карты:
+                <input type="text" required={isRadioSelected} />
+              </label>
+              <label>
+                Дата:
+                <input type="text" required={isRadioSelected} />
+              </label>
+              <label>
+                CCV:
+                <input type="text" required={isRadioSelected} />
+              </label>
+            </div>
 
-              <h4 className="mb-3">Payment</h4>
-
-              <div className="my-3">
-                <div className="form-check">
-                  <input
-                    id="debit"
-                    name="paymentMethod"
-                    type="radio"
-                    className="form-check-input"
-                    required=""
-                  />
-                  <label className="form-check-label" htmlFor="debit">
-                    Debit card
-                  </label>
-                </div>
-                <div className="form-check">
-                  <input
-                    id="paypal"
-                    name="paymentMethod"
-                    type="radio"
-                    className="form-check-input"
-                    required=""
-                  />
-                  <label className="form-check-label" htmlFor="paypal">
-                    Наличные
-                  </label>
-                </div>
-              </div>
-
-              <div className="row gy-3">
-                <div className="col-md-6">
-                  <label htmlFor="cc-name" className="form-label">
-                    Name on card
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="cc-name"
-                    placeholder=""
-                    required=""
-                  />
-                </div>
-
-                <div className="col-md-6">
-                  <label htmlFor="cc-number" className="form-label">
-                    Credit card number
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder=""
-                  />
-                </div>
-
-                <div className="col-md-3">
-                  <label htmlFor="cc-expiration" className="form-label">
-                    Expiration
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder=""
-                  />
-                </div>
-
-                <div className="col-md-3">
-                  <label className="form-label">
-                    CVV
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="cc-cvv"
-                    placeholder=""
-                    required=""
-                  />
-                </div>
-              </div>
-
-              <hr className="my-4" />
-
-              <button className="w-100 btn btn-primary btn-lg" type="submit">
-                Continue to checkout
-              </button>
-            </form>
+            <br />
           </div>
-        </div>
+        </form>
+      </div>
+
+      <div className="cart-cont">
+        <ul className="items-cart">
+          {cart.cartItems &&
+            cart.cartItems.map((cartItem) => (
+              <div className="cart-item" key={cartItem.id}>
+                <div className="cart-product">
+                  <img src={cartItem.image} alt={cartItem.name} />
+                  <div>
+                    <h3>{cartItem.name}</h3>
+                    <p>{cartItem.desc}</p>
+                    <button onClick={() => handleRemoveFromCart(cartItem)}>
+                      Remove
+                    </button>
+                  </div>
+                </div>
+                <div className="cart-product-price">${cartItem.price}</div>
+                <div className="cart-product-quantity">
+                  <button onClick={() => handleDecreaseCart(cartItem)}>
+                    -
+                  </button>
+                  <div className="count">{cartItem.cartQuantity}</div>
+                  <button onClick={() => handleAddToCart(cartItem)}>+</button>
+                </div>
+                <div className="cart-product-total-price">
+                  ${cartItem.price * cartItem.cartQuantity}
+                </div>
+              </div>
+            ))}
+
+          <li className="total-amount">
+            <span>Total (USD)</span>
+            <strong>${cartTotalAmount}</strong>
+          </li>
+        </ul>
+
+        <form className="form-payment">
+          <div className="input-promo">
+            <input
+              type="text"
+              className="promo"
+              placeholder="Введите промокод"
+            />
+            <button type="submit" className="btn-promo">
+              Применить
+            </button>
+          </div>
+        </form>
+
+        <button className="w-100 btn btn-primary btn-lg" type="submit">
+          Оформить заказ
+        </button>
       </div>
     </>
   );
