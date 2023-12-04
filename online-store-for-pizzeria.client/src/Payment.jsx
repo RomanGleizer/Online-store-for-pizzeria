@@ -46,117 +46,93 @@ function Payment() {
     setIsDeliverySelected(event.target.value === "delivery");
   };
 
-  
-
   return (
     <div className="payment">
       <div className="about-customer">
-        <h4 className="order">Оформление заказа</h4>
-        <form className="form-cust">
-          <div className="div-cust">
-            <div className="name">
-              <label className="label">Имя</label>
-              <input type="text" placeholder="Ваше имя" required />
-            </div>
-
-            <div className="phone">
-              <label className="label">Номер телефона</label>
-              <input type="phone" placeholder="+79000000000" required />
-            </div>
-
-            <h4 className="h-pay">Оплата</h4>
-
-            <div className="payment-type">
-              <label>
-                Выберите:
-                <input
-                  type="radio"
-                  name="deliveryGroup"
-                  value="delivery"
-                  onChange={handleDeliveryChange}
-                />{" "}
-                Доставка
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="deliveryGroup"
-                  value="pickUp"
-                  onChange={handleDeliveryChange}
-                />{" "}
-                Самовывоз
-              </label>
-
-              <br />
-
-              <div className="adress-div">
-                <label className="adress">Адрес доставки</label>
-                <input
-                  type="text"
-                  className="adress"
-                  placeholder="Малышева 32"
-                  required={isDelivery}
-                />
-              </div>
-
-              <br />
-            </div>
+        <h4 className="order-title">Оформление заказа</h4>
+        <div className="div-cust">
+          <div className="name">
+            <span>Имя</span>
+            <input type="text" placeholder="Ваше имя" required />
           </div>
 
-          <h4 className="h-pay">Оплата</h4>
+          <div className="phone">
+            <span>Номер телефона</span>
+            <input type="phone" placeholder="+79000000000" required />
+          </div>
 
-          <div className="payment-type">
-            <label>
-              Выберите:
+          <h4 className="h-pay">Тип доставки</h4>
+
+          <div className="delivery-type">
+            <div className="deliv">
+              <p>Выберите:</p>
               <input
                 type="radio"
-                name="radioGroup"
-                value="card"
-                onChange={handleCardChange}
+                name="deliveryGroup"
+                value="delivery"
+                onChange={handleDeliveryChange}
               />{" "}
-              По карте
-            </label>
-            <label>
+              <span>Доставка</span>
               <input
+                className="left"
                 type="radio"
-                name="radioGroup"
-                value="cash"
-                onChange={handleCardChange}
+                name="deliveryGroup"
+                value="pickUp"
+                onChange={handleDeliveryChange}
               />{" "}
-              Наличные
-            </label>
-
-            <br />
-            <div className="card-details">
-              <label>
-                Номер карты:
-                <input type="text" required={isCard} />
-              </label>
-              <label>
-                Дата:
-                <input type="text" required={isCard} />
-              </label>
-              <label>
-                CCV:
-                <input type="text" required={isCard} />
-              </label>
+              <span>Самовывоз</span>
             </div>
 
             <br />
-          </div>
-          <form className="form-payment">
-            <div className="input-promo">
+
+            <div className="adress-div">
+              <span>Адрес доставки</span>
               <input
                 type="text"
-                className="promo"
-                placeholder="Введите промокод"
+                className="adress"
+                placeholder="Малышева 32"
+                required={isDelivery}
               />
-              <button type="submit" className="btn-promo">
-                Применить
-              </button>
             </div>
-          </form>
-        </form>
+
+            <br />
+          </div>
+        </div>
+
+        <h4 className="h-pay">Оплата</h4>
+
+        <div className="payment-type">
+          <p>Выберите:</p>
+          <input
+            type="radio"
+            name="radioGroup"
+            value="card"
+            onChange={handleCardChange}
+          />{" "}
+          <span>По карте</span>
+          <input
+            type="radio"
+            name="radioGroup"
+            value="cash"
+            onChange={handleCardChange}
+          />{" "}
+          <span>Наличные</span>
+          <div className="card-details">
+            <span>Номер карты:</span>
+            <input type="text" required={isCard} />
+            <span>Дата:</span>
+            <input type="text" required={isCard} />
+            <span>CCV:</span>
+            <input type="text" required={isCard} />
+          </div>
+        </div>
+        <div className="input-promo">
+          <p>Промокод</p>
+          <input type="text" className="promo" placeholder="Введите промокод" />
+          <button type="submit" className="btn-promo">
+            Применить
+          </button>
+        </div>
       </div>
 
       <div className="cart-cont">
@@ -165,23 +141,14 @@ function Payment() {
             cart.cartItems.map((cartItem) => (
               <div className="cart-item" key={cartItem.id}>
                 <div className="cart-product">
-                  <img src={cartItem.image} alt={cartItem.name} />
                   <div>
                     <h3>{cartItem.name}</h3>
-                    <p>{cartItem.desc}</p>
-                    <button onClick={() => handleRemoveFromCart(cartItem)}>
-                      Remove
-                    </button>
+                    <p>{cartItem.price}р.</p>
                   </div>
                 </div>
-                <div className="cart-product-price">${cartItem.price}</div>
-                <div className="cart-product-quantity">
-                  <button onClick={() => handleDecreaseCart(cartItem)}>
-                    -
-                  </button>
-                  <div className="count">{cartItem.cartQuantity}</div>
-                  <button onClick={() => handleAddToCart(cartItem)}>+</button>
-                </div>
+
+                <div className="count">{cartItem.cartQuantity}</div>
+
                 <div className="cart-product-total-price">
                   ${cartItem.price * cartItem.cartQuantity}
                 </div>
