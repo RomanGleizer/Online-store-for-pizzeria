@@ -1,14 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Online_store_for_pizzeria.Server.Controllers;
-
 [ApiController]
 [Route("api/[controller]")]
-public class TestController : Controller
+public class TestController : ControllerBase
 {
     [HttpGet]
-    public IActionResult ProcessString(string inputString)
+    public IActionResult Get()
     {
-        return Ok("Вы отправили: " + inputString);
+        var responseData = new { message = "Hello from the server!" };
+        return Ok(responseData);
     }
 }
