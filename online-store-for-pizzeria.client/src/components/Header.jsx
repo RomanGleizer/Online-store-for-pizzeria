@@ -4,19 +4,8 @@ import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import CartBtn from "./buttons/CartBtn";
 import Login from "./buttons/LoginBtn";
-import Signup from "./buttons/RegisterBtn";
 
 function Header() {
-
-const isLogin = false;
-const rootLogin = <Login />
-
-// if (isLogin) {
-//   rootLogin = <Login />
-// }
-// else {
-//   rootLogin = <Profile />;
-// }
 
   return (
     <header className="header">
@@ -35,12 +24,8 @@ const rootLogin = <Login />
       <div className="cart-header">
         <CartBtn />
       </div>
-      <Signup />
       <div className="profile-header">
-        {rootLogin}
-        {/* <Link className="profile-header-a" to={rootLogin}>
-          Личный кабинет
-        </Link> */}
+      <Login />
       </div>
     </header>
   );

@@ -1,14 +1,16 @@
 import React from "react";
-import "../../styles/Modal.css";
 
-import { NavLink } from 'react-router-dom'
+import { NavLink } from "react-router-dom";
 
-const Login = () => {
+const LoginBtn = () => {
+  const isLogin = true;
+  const myRoot = isLogin ? "/profile" : "/login";
+
   return (
-    <NavLink to="/profile" className="btn">
-      <span className="fa fa-shopping-cart me-1">Login</span> 
+    <NavLink to={myRoot} className="btn">
+      <span className="btn-log">Login</span>
     </NavLink>
   );
 };
 
-export default Login;
+export default LoginBtn;

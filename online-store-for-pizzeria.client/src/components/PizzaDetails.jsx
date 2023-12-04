@@ -1,55 +1,86 @@
-import React from 'react'
-import { useParams } from 'react-router'
-import { useState } from 'react';
+import React from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router";
+import { useNavigate } from "react-router-dom";
+import {
+  addToCart,
+  clearCart,
+  decreaseCart,
+  removeFromCart,
+} from "../slices/cartSlice";
+
+import Selector from "./Selector";
+
+import { useGetAllProductsQuery } from "../slices/productsApi";
 import data from "../Data.json";
-import { useDispatch } from 'react-redux';
-import {addItem, delItem} from '../redux/actions/index'
-import pizFoCh from '../image/pizFourCheese.jpg';
-import '../styles/PizzaDetails.css';
+import pizFoCh from "../image/pizFourCheese.jpg";
+import "../styles/PizzaDetails.css";
 
 const PizzaDetails = () => {
+  let images = [pizFoCh, pizFoCh, pizFoCh, pizFoCh, pizFoCh];
 
-    let images = [pizFoCh];  
+  //   const { items: products, status } = useSelector((state) => state.products);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const cart = useSelector((state) => state.cart);
 
-    const [cartBtn, setCartBtn] = useState("Add to Cart")
-    {/* Now we need a product id which is pass from the product page. */}
-    const proid = useParams();
-    const proDetail = data.filter(x=>x.id == proid.id)
-    const product = proDetail[0];
+  //   const {  error, isLoading } = useGetAllProductsQuery();
+  //   console.log("Api", isLoading);
+
+  const handleDecreaseCart = (product) => {
+    dispatch(decreaseCart(product));
+  };
+  const handleRemoveFromCart = (product) => {
+    dispatch(removeFromCart(product));
+  };
+
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product));
+    navigate("/cart");
+  };
+
+  const [isRemove, setAddRemove] = useState(false);
+
+  function handleAddRemoveClick() {
+    setAddRemove(!isRemove);
+    if (isRemove) handleRemoveFromCart(product);
+    else handleAddToCart(product);
     console.log(product);
+  }
 
-    // We need to store useDispatch in a variable
-    const dispatch = useDispatch()
+  const proid = useParams();
+  const proDetail = data.filter((x) => x.id == proid.id);
+  const product = proDetail[0];
 
-    const handleCart = (product) => {
-        if (cartBtn === "Add to Cart") {
-            dispatch(addItem(product))
-            setCartBtn("Remove from Cart")
-        }
-        else{
-            dispatch(delItem(product))
-            setCartBtn("Add to Cart")
-        }
-    }
-
-    return (
-        <>
-        <div className="c">
-            <div className="a">
-                <div className="image">
-                    <img src={images[0]} alt={product.title}height="400px" />
-                </div>
-                <div className="all-description">
-                    <h1 className="title">{product.title}</h1>
-                    <hr />
-                    <h2 className="price">${product.price}</h2>
-                    <p className="descrip">{product.description}</p>
-                    <button onClick={()=>handleCart(product)} className="cartBtn">{cartBtn}</button>
-                </div>
-            </div>
+  return (
+    <div key={product.id} className="product">
+      <img className="image" src={images[product.id - 1]} alt={product.title} />
+      <div className="info">
+        <h3 className="title">{product.title}</h3>
+        <div className="details">
+          <div className="ingredients">{product.ingredients}</div>
+          <div className="price">${product.price}</div>
         </div>
-        </>
-    )
-}
+
+        <button className="btn" onClick={() => handleAddToCart(product)}>Добавить в корзину</button>
+
+        {/* <div className="btn">
+          <button onClick={handleAddRemoveClick}>
+            {isRemove ? "Удалить из корзины" : "Добавить в корзину"}
+          </button>
+          {isRemove && (
+            <div className="cart-product-quantity">
+              <button onClick={() => handleDecreaseCart(product)}>-</button>
+              <div className="count">{count}</div>
+              <button onClick={() => handleAddToCart(product)}>+</button>
+            </div>
+          )}
+        </div> */}
+        {/* <Selector pizza={product}/> */}
+      </div>
+    </div>
+  );
+};
 
 export default PizzaDetails;

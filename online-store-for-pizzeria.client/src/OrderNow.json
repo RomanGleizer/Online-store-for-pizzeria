@@ -1,0 +1,25 @@
+[
+    {
+        "Date": "дата",
+        "TotalPrice": 0,
+        "PaymentType": "тип оплаты",
+        "DeliveryType": "тип доставки",
+        "Address": "адрес",
+        "Comments": "по желанию",
+        "Customer": {
+          "Name": "имя",
+          "Phone": "телефон",
+          "Email": "почта"
+        },
+        "Pizzas": [
+          {
+            "Name": "Что-то",
+            "Price": 0,
+            "Amount": 0,
+            "Description": "описание на сайте",
+            "Ingredients": "ингредиенты"
+          }    
+        ]
+      
+    }
+]

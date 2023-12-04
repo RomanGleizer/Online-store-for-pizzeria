@@ -4,15 +4,15 @@ import { useSelector } from 'react-redux'
 
 const CartBtn = () => {
 
-    const state = useSelector((state)=> state.addItem)
+    const { cartTotalQuantity } = useSelector((state) => state.cart);
     
     return (
         <>
-            <NavLink to="/cartModal" className="btn">
-                <span className="fa fa-shopping-cart me-1"></span> Cart ({state.length})
+            <NavLink to="/cart" className="btn">
+                <span className="fa fa-shopping-cart me-1">Cart ({cartTotalQuantity})</span> 
             </NavLink>
         </>
     )
 }
 
-export default CartBtn
+export default CartBtn;

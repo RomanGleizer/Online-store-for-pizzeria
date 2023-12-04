@@ -1,30 +1,88 @@
 .image {
-    grid-area: img;
-    justify-self: center;
-    align-self: center;
+  grid-area: img;
+  justify-self: center;
+  align-self: center;
 }
 
-.descrip {    
-    
-    margin: 0;
+.descrip {
+  margin: 0;
 
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 3px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3px;
 
-    text-align: center;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    color: #000;
+  text-align: center;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  color: #000;
 }
 
 .App {
-    margin-left: auto;
-    margin-right: auto;
-    width: 100vh;
-    align-items: center;
-    justify-content: center;
-    display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100vh;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.product {
+  width: 1108px;
+  height: 492px;
+  border-radius: 91px;
+  display: flex;
+  justify-self: center;
+  align-items: center;
+  background-image: url("../image/product.png");   
+  padding: 50px;
+
+}
+
+.title {
+  color: #f08f34;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.ingredients {
+  color: #000;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.image {
+  width: 392px;
+  height: 377px;
+  border-radius: 70px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.btn {
+  margin-top: 100px;
+}
+
+.cart-product-quantity {
+  display: flex;
+}
+
+.info {
+  margin-left: 25px;
+}
+
+.price {
+  margin-top: 25px;
+  width: 90px;
+  height: 26px;
+  flex-shrink: 0;
+  color: #000;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
