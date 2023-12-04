@@ -1,29 +1,40 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+/* eslint-disable no-unused-vars */
+import React, { useState, useEffect } from 'react';
 
 function Test() {
-  const [inputString, setInputString] = useState('');
+    const [responseData, setResponseData] = useState(null);
 
-  const sendRequest = () => {
-    axios.get('https://localhost:7106/api/Test/ProcessString', {
-      params: {
-        inputString: inputString
-      }
-    })
-    .then(response => {
-      console.log(response.data); // обработка полученного ответа от сервера
-    })
-    .catch(error => {
-      console.error('Произошла ошибка:', error);
-    });
-  }
+    useEffect(() => {
+        fetchData();
+    }, []);
 
-  return (
-    <div>
-      <input type="text" value={inputString} onChange={(e) => setInputString(e.target.value)} />
-      <button onClick={sendRequest}>Отправить запрос</button>
-    </div>
-  );
+    const fetchData = async () => {
+        try {
+            const response = await fetch('https://localhost:7106/api/test', {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            setResponseData(data);
+        } catch (error) {
+            console.error('An error occurred:', error);
+        }
+    };
+
+    return (
+        <div>
+            <h1>React ASP.NET App</h1>
+            <p>Response from the server: {responseData?.message}</p>
+        </div>
+    );
 }
 
 export default Test;
