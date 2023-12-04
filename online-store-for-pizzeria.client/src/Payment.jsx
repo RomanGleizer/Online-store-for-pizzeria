@@ -1,4 +1,4 @@
-import "./styles/Cart.css";
+import "./styles/Payment.css";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
@@ -34,33 +34,72 @@ function Payment() {
     dispatch(clearCart());
   };
 
-  const [isRadioSelected, setIsRadioSelected] = useState(false);
+  const [isCard, setIsCardSelected] = useState(false);
 
-  const handleRadioChange = (event) => {
-    setIsRadioSelected(event.target.value === "yes");
+  const handleCardChange = (event) => {
+    setIsCardSelected(event.target.value === "card");
   };
 
+  const [isDelivery, setIsDeliverySelected] = useState(false);
+
+  const handleDeliveryChange = (event) => {
+    setIsDeliverySelected(event.target.value === "delivery");
+  };
+
+  
+
   return (
-    <>
+    <div className="payment">
       <div className="about-customer">
         <h4 className="order">Оформление заказа</h4>
         <form className="form-cust">
           <div className="div-cust">
+            <div className="name">
+              <label className="label">Имя</label>
+              <input type="text" placeholder="Ваше имя" required />
+            </div>
+
             <div className="phone">
-              <label className="form-label">Номер телефона</label>
+              <label className="label">Номер телефона</label>
               <input type="phone" placeholder="+79000000000" required />
             </div>
 
-            <div className="adress-div">
-              <label className="adress">
-                Адрес
+            <h4 className="h-pay">Оплата</h4>
+
+            <div className="payment-type">
+              <label>
+                Выберите:
+                <input
+                  type="radio"
+                  name="deliveryGroup"
+                  value="delivery"
+                  onChange={handleDeliveryChange}
+                />{" "}
+                Доставка
               </label>
-              <input
-                type="text"
-                className="adress"
-                placeholder="Малышева 32"
-                required
-              />
+              <label>
+                <input
+                  type="radio"
+                  name="deliveryGroup"
+                  value="pickUp"
+                  onChange={handleDeliveryChange}
+                />{" "}
+                Самовывоз
+              </label>
+
+              <br />
+
+              <div className="adress-div">
+                <label className="adress">Адрес доставки</label>
+                <input
+                  type="text"
+                  className="adress"
+                  placeholder="Малышева 32"
+                  required={isDelivery}
+                />
+              </div>
+
+              <br />
             </div>
           </div>
 
@@ -72,8 +111,8 @@ function Payment() {
               <input
                 type="radio"
                 name="radioGroup"
-                value="yes"
-                onChange={handleRadioChange}
+                value="card"
+                onChange={handleCardChange}
               />{" "}
               По карте
             </label>
@@ -81,8 +120,8 @@ function Payment() {
               <input
                 type="radio"
                 name="radioGroup"
-                value="no"
-                onChange={handleRadioChange}
+                value="cash"
+                onChange={handleCardChange}
               />{" "}
               Наличные
             </label>
@@ -91,20 +130,32 @@ function Payment() {
             <div className="card-details">
               <label>
                 Номер карты:
-                <input type="text" required={isRadioSelected} />
+                <input type="text" required={isCard} />
               </label>
               <label>
                 Дата:
-                <input type="text" required={isRadioSelected} />
+                <input type="text" required={isCard} />
               </label>
               <label>
                 CCV:
-                <input type="text" required={isRadioSelected} />
+                <input type="text" required={isCard} />
               </label>
             </div>
 
             <br />
           </div>
+          <form className="form-payment">
+            <div className="input-promo">
+              <input
+                type="text"
+                className="promo"
+                placeholder="Введите промокод"
+              />
+              <button type="submit" className="btn-promo">
+                Применить
+              </button>
+            </div>
+          </form>
         </form>
       </div>
 
@@ -142,25 +193,11 @@ function Payment() {
             <strong>${cartTotalAmount}</strong>
           </li>
         </ul>
-
-        <form className="form-payment">
-          <div className="input-promo">
-            <input
-              type="text"
-              className="promo"
-              placeholder="Введите промокод"
-            />
-            <button type="submit" className="btn-promo">
-              Применить
-            </button>
-          </div>
-        </form>
-
-        <button className="w-100 btn btn-primary btn-lg" type="submit">
+        <button className="order" type="submit">
           Оформить заказ
         </button>
       </div>
-    </>
+    </div>
   );
 }
 

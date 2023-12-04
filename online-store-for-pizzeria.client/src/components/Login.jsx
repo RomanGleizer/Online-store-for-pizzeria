@@ -1,9 +1,13 @@
-import RegisterBtn from './buttons/RegisterBtn'
+import RegisterBtn from "./buttons/RegisterBtn";
 
 function Login() {
   return (
     <div className="cont">
       <form>
+        <div className="name">
+          <label className="name-name">Почта</label>
+          <input className="name-input" />
+        </div>
         <div className="email">
           <label className="email-name">Почта</label>
           <input className="email-input" />

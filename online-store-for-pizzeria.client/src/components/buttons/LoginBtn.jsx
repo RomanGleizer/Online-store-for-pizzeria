@@ -8,7 +8,7 @@ const LoginBtn = () => {
 
   return (
     <NavLink to={myRoot} className="btn">
-      <span className="btn-log">Login</span>
+      <span className="btn-log">Личный кабинет</span>
     </NavLink>
   );
 };

@@ -31,8 +31,10 @@ const Cart = () => {
     dispatch(removeFromCart(product));
   };
   const handleClearCart = () => {
-    dispatch(clearCart());
-    console.log(cart);
+    if (confirm("Точно удалить всё из корзины?")) {
+      dispatch(clearCart());
+      console.log(cart);
+    }
   };
   return (
     <div className="cart-container">
@@ -48,8 +50,14 @@ const Cart = () => {
         </div>
       ) : (
         <div className="cart-not-empty">
+          <div className="continue-shopping">
+            <Link to="/">
+              <span>Продолжить выбирать товары</span>
+            </Link>
+          </div>
           <div className="all-info">
-      {cart.cartTotalQuantity} товаров на сумму {cart.cartTotalAmount} рублей
+            {cart.cartTotalQuantity} товаров на сумму {cart.cartTotalAmount}{" "}
+            рублей
           </div>
           <div className="cart-items">
             {cart.cartItems &&
@@ -95,20 +103,14 @@ const Cart = () => {
             <button className="clear-btn" onClick={() => handleClearCart()}>
               Очистить корзину
             </button>
-            <div className="cart-checkout">
-              <div className="subtotal">
-                <span>Сумма заказа:</span>
-                <span className="amount">{cart.cartTotalAmount}р.</span>
-              </div>
-              <p>Полный расчет и учет промокодов будет при оформлении заказа</p>
-              <NavLink to="/payment" className="Payment">
+            <div className="subtotal">
+              <div className="span-total">Сумма заказа:</div>
+              <div className="amount">{cart.cartTotalAmount}р.</div>
+            </div>
+            <div className="payment">
+              <NavLink to="/payment" className="payment-btn">
                 К оформлению заказа
               </NavLink>
-              <div className="continue-shopping">
-                <Link to="/">
-                  <span>Продолжить заказ</span>
-                </Link>
-              </div>
             </div>
           </div>
         </div>
