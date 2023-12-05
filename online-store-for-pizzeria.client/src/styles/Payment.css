@@ -1,5 +1,5 @@
 .payment-cont {
-  width: 1280px;
+  /* width: 1280px; */
   min-height: 570px;
   flex-shrink: 0;
   border-radius: 49px;
@@ -27,12 +27,12 @@
 
 .main-span {
   color: #000;
-  font-size: 25px;
+  font-size: 23px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   letter-spacing: -1.625px;
-  margin-left: auto;
+  /* margin-left: auto; */
   margin-right: 10px;
 }
 
@@ -93,7 +93,7 @@ padding: 35px;
 }
 
 .about-customer {
-  margin-right: 25px;
+  margin-right: 100px;
 }
 
 li {
