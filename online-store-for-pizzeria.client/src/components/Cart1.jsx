@@ -10,6 +10,7 @@ import {
 import pizFoCh from "../image/pizFourCheese.jpg";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
+import "../styles/Cart.css"
 
 const Cart = () => {
   let images = [pizFoCh, pizFoCh, pizFoCh, pizFoCh, pizFoCh];

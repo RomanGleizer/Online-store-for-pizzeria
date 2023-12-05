@@ -5,18 +5,22 @@ import visa from './image/visa.svg';
 function Profile() {
     return(
             <div className='profile-body'>
+                <div>
                 <h1 className='profile-h'>Личный кабинет</h1>
                 <div className='profile-name-h'>
                     <h2 className='profile-name'>Имя</h2>
+                    <input className="name-input" />
                     <button className='profile-name-change'>Изменить</button>
                 </div>
                 <div className='profile-phone'>
                     <h2 className='profile-phone-h'>Номер телефона</h2>
+                    <input className="name-input" />
                     <button className='profile-phone-change'>Изменить</button>
                 </div> 
                 <div className='profile-notification'>
                     <h2 className='profile-notification-h'>Смс-рассылки</h2>
-                    <button className='profile-notification-change'>хочу получать смс-рассылки с акциями и промокодами</button>
+                    <input type='checkbox' className='profile-notification-change'></input>
+                    <span>хочу получать смс-рассылки с акциями и промокодами</span>
                 </div> 
                 <div className='profile-credit-cards'>
                     <h2 className='profile-credit-cards'>Привязанные карты</h2>
@@ -29,6 +33,7 @@ function Profile() {
                     </ul>
                 </div>
                 <button className='profile-exit'>Выйти</button>
+                </div>
                 <div className='orders'>
                     <h2>История заказов</h2>
                     <ul className='orders-list'>

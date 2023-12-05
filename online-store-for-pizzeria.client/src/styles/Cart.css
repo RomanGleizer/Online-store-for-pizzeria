@@ -34,7 +34,12 @@ span {
   letter-spacing: -1.17px;
 }
 
+a:hover {
+  color:#FFF;
+}
+
  a {
+  color:#FFF;
   position: relative;
   cursor: pointer;
   line-height: 1; /*задаём высоту строки*/

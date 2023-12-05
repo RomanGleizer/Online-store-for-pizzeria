@@ -4,13 +4,14 @@
     background-color: #CA792D;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 10%;
-    margin-bottom: 10%;
-    
+    margin-top: 15%;
+    margin-bottom: 15%;
+    padding: 35px;
     width: 1280px;
     height: 1070px;
     border-radius: 49px;
     background-color: #FFEBB6;
+    display: flex;
 }
 
 .App {
