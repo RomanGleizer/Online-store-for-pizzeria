@@ -8,12 +8,16 @@ import {
   removeFromCart,
 } from "../slices/cartSlice";
 import pizFoCh from "../image/pizFourCheese.jpg";
+import pep from "../image/pep.jpg";
+import karbo from "../image/karbo.jpg";
+import sez from "../image/sez.jpg";
+import vetch from "../image/vetch.jpg";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import "../styles/Cart.css"
 
 const Cart = () => {
-  let images = [pizFoCh, pizFoCh, pizFoCh, pizFoCh, pizFoCh];
+  let images = [sez, vetch, karbo, pizFoCh, pep];
 
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();

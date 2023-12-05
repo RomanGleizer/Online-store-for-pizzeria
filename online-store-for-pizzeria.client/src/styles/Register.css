@@ -1,0 +1,41 @@
+.reg-cont {
+    width: 979px;
+    height: 1000px;
+    margin-top: 15%;
+    margin-bottom: 15%;
+    background-image: url("../image/register.png");
+    background-size: 979px 1000px;
+    padding: 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .regi {
+    color: #000;
+font-size: 34px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+letter-spacing: -2.21px;
+margin-bottom: 38px;
+  }
+
+  .delo {
+    color: #000;
+font-size: 24px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+letter-spacing: -1.56px;
+  }
+
+  .r-p {
+    color: #000;
+font-size: 24px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+letter-spacing: -1.56px;
+  }

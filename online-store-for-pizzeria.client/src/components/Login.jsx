@@ -1,30 +1,26 @@
 import RegisterBtn from "./buttons/RegisterBtn";
+import "../styles/Login.css"
 
 function Login() {
   return (
     <div className="cont">
-      <form>
-        <div className="name">
-          <label className="name-name">Почта</label>
-          <input className="name-input" />
-        </div>
+        
         <div className="email">
-          <label className="email-name">Почта</label>
-          <input className="email-input" />
-          <div className="dont-tell">Мы никому не скажем почту</div>
+          <p className="email-name l-p">Почта</p>
+          <input placeholder="Ваш логин" className="email-input l-input no-radio" required />
+          {/* <div className="dont-tell">Мы никому не скажем почту</div> */}
         </div>
         <div className="password">
-          <label className="pass-name">Пароль</label>
-          <input type="password" className="password-input" />
+          <p className="pass-name l-p">Пароль</p>
+          <input type="password" placeholder="Ваш пароль" className="password-input l-input no-radio" required/>
         </div>
-        <div className="rem-cont">
+        {/* <div className="rem-cont">
           <input type="checkbox" className="checkbox" />
-          <label className="remember">Запомнить меня</label>
-        </div>
+          <span className="remember">Запомнить меня</span>
+        </div> */}
         <button type="submit" className="sub-btn">
           Войти
         </button>
-      </form>
       <RegisterBtn />
     </div>
   );

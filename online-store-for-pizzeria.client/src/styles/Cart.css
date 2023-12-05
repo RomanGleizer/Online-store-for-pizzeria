@@ -42,23 +42,23 @@ a:hover {
   color:#FFF;
   position: relative;
   cursor: pointer;
-  line-height: 1; /*задаём высоту строки*/
-  text-decoration: none; /*убираем подчёркивание*/
+  line-height: 1; 
+  text-decoration: none; 
 }
  a:after {
   display: block;
   position: absolute;
-  left: 0; /*изменить на right:0;, чтобы изменить направление подчёркивания */
-  width: 0; /*задаём длинну линии до наведения курсора*/
-  height: 2px; /*задаём ширину линии*/
-  background-color: #ca792d; /*задаём цвет линии*/
+  left: 0; 
+  width: 0; 
+  height: 2px; 
+  background-color: #ca792d; 
   content: "";
-  transition: width 0.3s ease-out; /*задаём время анимации*/
+  transition: width 0.3s ease-out; 
 }
 
  a:hover:after,
 a:focus:after {
-  width: 100%; /*устанавливаем значение 100% чтобы ссылка подчёркивалась полностью*/
+  width: 100%; 
 }
 
 .cart-item {
@@ -266,5 +266,5 @@ box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 
 .payment a:hover:after,
 .payment a:focus:after {
-  width: 100%; /*устанавливаем значение 100% чтобы ссылка подчёркивалась полностью*/
+  width: 100%; 
 }

@@ -3,7 +3,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 const LoginBtn = () => {
-  const isLogin = true;
+  const isLogin = false;
   const myRoot = isLogin ? "/profile" : "/login";
 
   return (

@@ -70,7 +70,7 @@
   min-height: 385px;
   border-radius: 11px;
   background: #fff;
-padding: 35px;
+  padding: 35px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
@@ -154,46 +154,151 @@ li {
   letter-spacing: -1.56px;
 }
 .p-cart-item {
-    display: grid;
-    grid-template-columns: auto 50px 100px;
-    margin-bottom: 10px;
+  display: grid;
+  grid-template-columns: auto 50px 100px;
+  margin-bottom: 10px;
 }
 
 .create-line {
-    width: 430px;
-    border-top: 1px solid #C2C2C2;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    
-  }
+  width: 430px;
+  border-top: 1px solid #c2c2c2;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 
-  .order-name {
-    width: 69px;
+.order-name {
+  width: 69px;
 
-    color: #231F15;
-font-size: 24px;
+  color: #231f15;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -1.56px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.p-order {
+  margin-top: 30px;
+  width: 403px;
+  height: 61px;
+  border-radius: 18px;
+  background: #f08f34;
+
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  flex-shrink: 0;
+  color: #fff;
+
+  text-align: center;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.credit-cards-list {
+  display: flex;
+  width: 517px;
+  height: 47px;
+  flex-shrink: 0;
+  border-radius: 11px;
+  background: #fff;
+
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  align-self: center;
+  justify-content: space-between;
+}
+
+.credit-card-img {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 10px;
+}
+
+.credit-card-number {
+  margin-top: auto;
+  margin-bottom: auto;
+  color: #000;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.975px;
+}
+
+.credit-card-delete {
+  background-color: #CA792D;
+  width: 28px;
+height: 28px;
+margin-top: auto;
+  margin-bottom: auto;
+  text-align: center;
+  padding: 0;
+  border-radius: 100%;
+  margin-right: 10px;
+}
+
+.profile-notification {
+  margin-bottom: 33px;
+  
+}
+
+.notification {
+  width: 517px;
+  height: 47px;
+  flex-shrink: 0;
+  border-radius: 11px;
+  background: #fff;
+  display: flex;
+
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  align-self: center;
+}
+
+.profile-notification-change {
+  margin-top: auto;
+  margin-bottom: auto;
+  color: #000;
+font-size: 15px;
 font-style: normal;
 font-weight: 500;
 line-height: normal;
-letter-spacing: -1.56px;
-margin-left: auto;
-margin-right: auto;
-  }
+letter-spacing: -0.975px;
+margin-left: 10px;
+}
 
-  .p-order{
-    margin-top: 30px;
-    width: 403px;
-height: 61px;
-border-radius: 18px;
-background: #F08F34;
+.phone {
+  margin-bottom: 33px;
+}
+
+.profile-credit-cards, .profile-notification-h {
+  color: #000;
+font-size: 25px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+letter-spacing: -1.625px;
+margin-bottom: 10px;
+}
+
+.credit-cards {
+  margin-bottom: 33px;
+}
+
+.profile-exit {
+  width: 195px;
+height: 53px;
+border-radius: 11px;
+background: #E74848;
 
 box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-flex-shrink: 0;
 color: #FFF;
 
 text-align: center;
 font-size: 20px;
 font-style: normal;
-font-weight: 600;
+font-weight: 500;
 line-height: normal;
-  }
+letter-spacing: -1.3px;
+}
