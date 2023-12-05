@@ -53,6 +53,10 @@ body {
     margin-right: auto; 
 }
 
+.pizza-name:hover {
+    color:#CA792D;
+  }
+
 .slidebar {
     width: 1280px;
     height: 80px;

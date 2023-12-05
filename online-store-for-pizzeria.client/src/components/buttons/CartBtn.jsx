@@ -9,7 +9,7 @@ const CartBtn = () => {
     return (
         <>
             <NavLink to="/cart" className="btn">
-                <span className="fa fa-shopping-cart me-1">Cart ({cartTotalQuantity})</span> 
+                <span className="fa fa-shopping-cart me-1">Корзина ({cartTotalQuantity})</span> 
             </NavLink>
         </>
     )

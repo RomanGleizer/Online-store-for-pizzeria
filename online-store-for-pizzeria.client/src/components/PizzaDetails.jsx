@@ -15,10 +15,14 @@ import Selector from "./Selector";
 import { useGetAllProductsQuery } from "../slices/productsApi";
 import data from "../Data.json";
 import pizFoCh from "../image/pizFourCheese.jpg";
+import pep from "../image/pep.jpg";
+import karbo from "../image/karbo.jpg";
+import sez from "../image/sez.jpg";
+import vetch from "../image/vetch.jpg";
 import "../styles/PizzaDetails.css";
 
 const PizzaDetails = () => {
-  let images = [pizFoCh, pizFoCh, pizFoCh, pizFoCh, pizFoCh];
+  let images = [sez, vetch, karbo, pizFoCh, pep];
 
   //   const { items: products, status } = useSelector((state) => state.products);
   const dispatch = useDispatch();

@@ -3,13 +3,17 @@ import "./styles/Home.css";
 import present from "./image/present.png";
 import data from "./Data.json";
 import pizFoCh from "./image/pizFourCheese.jpg";
+import pep from "./image/pep.jpg";
+import karbo from "./image/karbo.jpg";
+import sez from "./image/sez.jpg";
+import vetch from "./image/vetch.jpg";
 import { NavLink } from "react-router-dom";
 import Test from "./Test";
 
 function Home() {
   const [searchTerm, setSearchTerm] = useState("");
 
-  let images = [pizFoCh, pizFoCh, pizFoCh, pizFoCh, pizFoCh];
+  let images = [sez, vetch, karbo, pizFoCh, pep];
 
   return (
     <div className="home-div">

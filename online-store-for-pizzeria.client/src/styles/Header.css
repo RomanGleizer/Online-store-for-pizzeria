@@ -57,5 +57,9 @@
     margin-right: 21px;
 }
 
+.logo a:hover:after,
+.logo a:focus:after {
+  width: 0;
+} 
 
  
