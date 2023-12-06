@@ -46,7 +46,6 @@ public class OrdersController : ControllerBase
 
         _mapper.Map(orderViewModel, existingOrder);
         await _orderService.UpdateOrderAsync(existingOrder);
-
         return NoContent();
     }
 
@@ -55,9 +54,7 @@ public class OrdersController : ControllerBase
     {
         var existingOrder = await _orderService.GetOrderByIdAsync(id);
         if (existingOrder is null) return NotFound();
-
         await _orderService.DeleteOrderByIdAsync(id);
-
         return NoContent();
     }
 }

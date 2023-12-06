@@ -13,5 +13,8 @@ public class MappingProfile : Profile
 
         CreateMap<PizzaViewModel, Pizza>()
             .ReverseMap();
+
+        CreateMap<RegisterViewModel, User>()
+            .ReverseMap();
     }
 }

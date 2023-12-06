@@ -2,9 +2,9 @@
 
 public class OrderService : IOrderService
 {
-    private readonly ApplicationContext _context;
+    private readonly PizzaShopContext _context;
 
-    public OrderService(ApplicationContext context)
+    public OrderService(PizzaShopContext context)
     {
         _context = context;
     }
