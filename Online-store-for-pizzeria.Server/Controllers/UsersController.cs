@@ -45,4 +45,16 @@ public class UsersController : ControllerBase
         return CreatedAtAction(nameof(GetUserById), new { id = createdUser.Id }, new { User = userViewModel, Customer = customerViewModel });
     }
 
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateUser(int id, [FromBody] UserViewModel userViewModel)
+    {
+        if (!ModelState.IsValid) return BadRequest(ModelState);
+
+        var user = await _userService.GetUserByIdAsync(id);
+        if (user is null) return NotFound();
+
+        _mapper.Map(userViewModel, user);
+        await _userService.UpdateUserAsync(user);
+        return NoContent();
+    }
 }

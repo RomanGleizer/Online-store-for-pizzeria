@@ -20,40 +20,41 @@ public class OrdersController : ControllerBase
         var order = await _orderService.GetOrderByIdAsync(id);
         if (order is null) return NotFound();
 
-        var orderViewModel = _mapper.Map<OrderViewModel>(order);
+        var orderViewModel = _mapper.Map<UserViewModel>(order);
         return Ok(orderViewModel);
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateOrder([FromBody] OrderViewModel orderViewModel)
+    public async Task<IActionResult> CreateOrder([FromBody] UserViewModel orderViewModel)
     {
         if (!ModelState.IsValid) return BadRequest(ModelState);
 
         var order = _mapper.Map<Order>(orderViewModel);
         var createdOrder = await _orderService.CreateOrderAsync(order);
-        var createdOrderViewModel = _mapper.Map<OrderViewModel>(createdOrder);
+        var createdOrderViewModel = _mapper.Map<UserViewModel>(createdOrder);
 
         return CreatedAtAction(nameof(GetOrderById), new { id = createdOrder.Id }, createdOrderViewModel);
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateOrder(int id, [FromBody] OrderViewModel orderViewModel)
+    public async Task<IActionResult> UpdateOrder(int id, [FromBody] UserViewModel orderViewModel)
     {
         if (!ModelState.IsValid) return BadRequest(ModelState);
 
-        var existingOrder = await _orderService.GetOrderByIdAsync(id);
-        if (existingOrder is null) return NotFound();
+        var order = await _orderService.GetOrderByIdAsync(id);
+        if (order is null) return NotFound();
 
-        _mapper.Map(orderViewModel, existingOrder);
-        await _orderService.UpdateOrderAsync(existingOrder);
+        _mapper.Map(orderViewModel, order);
+        await _orderService.UpdateOrderAsync(order);
         return NoContent();
     }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteOrder(int id)
     {
-        var existingOrder = await _orderService.GetOrderByIdAsync(id);
-        if (existingOrder is null) return NotFound();
+        var order = await _orderService.GetOrderByIdAsync(id);
+        if (order is null) return NotFound();
+
         await _orderService.DeleteOrderByIdAsync(id);
         return NoContent();
     }

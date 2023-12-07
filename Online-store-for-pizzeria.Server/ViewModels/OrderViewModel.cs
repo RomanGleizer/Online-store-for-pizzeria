@@ -6,7 +6,6 @@
     public string DeliveryType { get; set; }
     public string Address { get; set; }
     public string Comments { get; set; }
-
     public int CustomerId { get; set; }
     public List<PizzaViewModel> Pizzas { get; set; }
 }

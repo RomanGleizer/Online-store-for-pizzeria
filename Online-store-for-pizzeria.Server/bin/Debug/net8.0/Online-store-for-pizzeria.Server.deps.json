@@ -9,24 +9,14 @@
       "Online-store-for-pizzeria.Server/1.0.0": {
         "dependencies": {
           "AutoMapper": "12.0.1",
-          "JavaScriptEngineSwitcher.ChakraCore": "3.21.0",
-          "JavaScriptEngineSwitcher.Extensions.MsDependencyInjection": "3.21.0",
           "Microsoft.AspNetCore.SpaProxy": "8.0.0",
           "Microsoft.EntityFrameworkCore.Design": "8.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.0",
-          "React.AspNet": "5.2.12",
-          "Swashbuckle.AspNetCore": "6.4.0"
+          "Moq": "4.20.70",
+          "Swashbuckle.AspNetCore": "6.5.0"
         },
         "runtime": {
           "Online-store-for-pizzeria.Server.dll": {}
-        }
-      },
-      "AdvancedStringBuilder/0.1.0": {
-        "runtime": {
-          "lib/netstandard2.0/AdvancedStringBuilder.dll": {
-            "assemblyVersion": "0.1.0.0",
-            "fileVersion": "0.1.0.0"
-          }
         }
       },
       "AutoMapper/12.0.1": {
@@ -74,67 +64,22 @@
           }
         }
       },
+      "Castle.Core/5.1.1": {
+        "dependencies": {
+          "System.Diagnostics.EventLog": "6.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/Castle.Core.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.1.1.0"
+          }
+        }
+      },
       "Humanizer.Core/2.14.1": {
         "runtime": {
           "lib/net6.0/Humanizer.dll": {
             "assemblyVersion": "2.14.0.0",
             "fileVersion": "2.14.1.48190"
-          }
-        }
-      },
-      "JavaScriptEngineSwitcher.ChakraCore/3.21.0": {
-        "dependencies": {
-          "AdvancedStringBuilder": "0.1.0",
-          "JavaScriptEngineSwitcher.Core": "3.21.0"
-        },
-        "runtime": {
-          "lib/netstandard2.1/JavaScriptEngineSwitcher.ChakraCore.dll": {
-            "assemblyVersion": "3.21.0.0",
-            "fileVersion": "3.21.0.0"
-          }
-        },
-        "resources": {
-          "lib/netstandard2.1/ru-RU/JavaScriptEngineSwitcher.ChakraCore.resources.dll": {
-            "locale": "ru-RU"
-          }
-        }
-      },
-      "JavaScriptEngineSwitcher.Core/3.21.0": {
-        "dependencies": {
-          "AdvancedStringBuilder": "0.1.0"
-        },
-        "runtime": {
-          "lib/netstandard2.0/JavaScriptEngineSwitcher.Core.dll": {
-            "assemblyVersion": "3.21.0.0",
-            "fileVersion": "3.21.0.0"
-          }
-        },
-        "resources": {
-          "lib/netstandard2.0/ru-RU/JavaScriptEngineSwitcher.Core.resources.dll": {
-            "locale": "ru-RU"
-          }
-        }
-      },
-      "JavaScriptEngineSwitcher.Extensions.MsDependencyInjection/3.21.0": {
-        "dependencies": {
-          "JavaScriptEngineSwitcher.Core": "3.21.0",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0"
-        },
-        "runtime": {
-          "lib/netstandard2.0/JavaScriptEngineSwitcher.Extensions.MsDependencyInjection.dll": {
-            "assemblyVersion": "3.21.0.0",
-            "fileVersion": "3.21.0.0"
-          }
-        }
-      },
-      "JSPool/4.0.0": {
-        "dependencies": {
-          "JavaScriptEngineSwitcher.Core": "3.21.0"
-        },
-        "runtime": {
-          "lib/netstandard2.0/JSPool.dll": {
-            "assemblyVersion": "4.0.0.0",
-            "fileVersion": "4.0.0.0"
           }
         }
       },
@@ -693,86 +638,52 @@
           }
         }
       },
-      "Newtonsoft.Json/12.0.3": {
-        "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
-            "assemblyVersion": "12.0.0.0",
-            "fileVersion": "12.0.3.23909"
-          }
-        }
-      },
-      "React.AspNet/5.2.12": {
+      "Moq/4.20.70": {
         "dependencies": {
-          "React.AspNet.Middleware": "5.2.12",
-          "React.Core": "5.2.12"
+          "Castle.Core": "5.1.1"
         },
         "runtime": {
-          "lib/netcoreapp3.0/React.AspNet.dll": {
-            "assemblyVersion": "5.2.0.0",
-            "fileVersion": "5.2.12.29"
+          "lib/net6.0/Moq.dll": {
+            "assemblyVersion": "4.20.70.0",
+            "fileVersion": "4.20.70.0"
           }
         }
       },
-      "React.AspNet.Middleware/5.2.12": {
-        "dependencies": {
-          "React.Core": "5.2.12"
-        },
-        "runtime": {
-          "lib/netcoreapp3.0/React.AspNet.Middleware.dll": {
-            "assemblyVersion": "5.2.0.0",
-            "fileVersion": "5.2.12.29"
-          }
-        }
-      },
-      "React.Core/5.2.12": {
-        "dependencies": {
-          "JSPool": "4.0.0",
-          "JavaScriptEngineSwitcher.Core": "3.21.0",
-          "Microsoft.Extensions.DependencyModel": "8.0.0",
-          "Newtonsoft.Json": "12.0.3"
-        },
-        "runtime": {
-          "lib/netstandard2.0/React.Core.dll": {
-            "assemblyVersion": "5.2.0.0",
-            "fileVersion": "5.2.12.29"
-          }
-        }
-      },
-      "Swashbuckle.AspNetCore/6.4.0": {
+      "Swashbuckle.AspNetCore/6.5.0": {
         "dependencies": {
           "Microsoft.Extensions.ApiDescription.Server": "6.0.5",
-          "Swashbuckle.AspNetCore.Swagger": "6.4.0",
-          "Swashbuckle.AspNetCore.SwaggerGen": "6.4.0",
-          "Swashbuckle.AspNetCore.SwaggerUI": "6.4.0"
+          "Swashbuckle.AspNetCore.Swagger": "6.5.0",
+          "Swashbuckle.AspNetCore.SwaggerGen": "6.5.0",
+          "Swashbuckle.AspNetCore.SwaggerUI": "6.5.0"
         }
       },
-      "Swashbuckle.AspNetCore.Swagger/6.4.0": {
+      "Swashbuckle.AspNetCore.Swagger/6.5.0": {
         "dependencies": {
           "Microsoft.OpenApi": "1.2.3"
         },
         "runtime": {
-          "lib/net6.0/Swashbuckle.AspNetCore.Swagger.dll": {
-            "assemblyVersion": "6.4.0.0",
-            "fileVersion": "6.4.0.0"
+          "lib/net7.0/Swashbuckle.AspNetCore.Swagger.dll": {
+            "assemblyVersion": "6.5.0.0",
+            "fileVersion": "6.5.0.0"
           }
         }
       },
-      "Swashbuckle.AspNetCore.SwaggerGen/6.4.0": {
+      "Swashbuckle.AspNetCore.SwaggerGen/6.5.0": {
         "dependencies": {
-          "Swashbuckle.AspNetCore.Swagger": "6.4.0"
+          "Swashbuckle.AspNetCore.Swagger": "6.5.0"
         },
         "runtime": {
-          "lib/net6.0/Swashbuckle.AspNetCore.SwaggerGen.dll": {
-            "assemblyVersion": "6.4.0.0",
-            "fileVersion": "6.4.0.0"
+          "lib/net7.0/Swashbuckle.AspNetCore.SwaggerGen.dll": {
+            "assemblyVersion": "6.5.0.0",
+            "fileVersion": "6.5.0.0"
           }
         }
       },
-      "Swashbuckle.AspNetCore.SwaggerUI/6.4.0": {
+      "Swashbuckle.AspNetCore.SwaggerUI/6.5.0": {
         "runtime": {
-          "lib/net6.0/Swashbuckle.AspNetCore.SwaggerUI.dll": {
-            "assemblyVersion": "6.4.0.0",
-            "fileVersion": "6.4.0.0"
+          "lib/net7.0/Swashbuckle.AspNetCore.SwaggerUI.dll": {
+            "assemblyVersion": "6.5.0.0",
+            "fileVersion": "6.5.0.0"
           }
         }
       },
@@ -866,6 +777,7 @@
           "System.Runtime.CompilerServices.Unsafe": "6.0.0"
         }
       },
+      "System.Diagnostics.EventLog/6.0.0": {},
       "System.Drawing.Common/6.0.0": {
         "dependencies": {
           "Microsoft.Win32.SystemEvents": "6.0.0"
@@ -1032,13 +944,6 @@
       "serviceable": false,
       "sha512": ""
     },
-    "AdvancedStringBuilder/0.1.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-IbN3r5whlJvi8MhCDPVpIb+NVScyUcKSdcJZrnoXFDyzPDISl3AbWouNBYIHRdZdfGuzqCQEhM1vkxbIKqQVaQ==",
-      "path": "advancedstringbuilder/0.1.0",
-      "hashPath": "advancedstringbuilder.0.1.0.nupkg.sha512"
-    },
     "AutoMapper/12.0.1": {
       "type": "package",
       "serviceable": true,
@@ -1060,40 +965,19 @@
       "path": "azure.identity/1.7.0",
       "hashPath": "azure.identity.1.7.0.nupkg.sha512"
     },
+    "Castle.Core/5.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-rpYtIczkzGpf+EkZgDr9CClTdemhsrwA/W5hMoPjLkRFnXzH44zDLoovXeKtmxb1ykXK9aJVODSpiJml8CTw2g==",
+      "path": "castle.core/5.1.1",
+      "hashPath": "castle.core.5.1.1.nupkg.sha512"
+    },
     "Humanizer.Core/2.14.1": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-lQKvtaTDOXnoVJ20ibTuSIOf2i0uO0MPbDhd1jm238I+U/2ZnRENj0cktKZhtchBMtCUSRQ5v4xBCUbKNmyVMw==",
       "path": "humanizer.core/2.14.1",
       "hashPath": "humanizer.core.2.14.1.nupkg.sha512"
-    },
-    "JavaScriptEngineSwitcher.ChakraCore/3.21.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-rJLy5KuyC9EJI6sKwG9w3fXWEXKX767ewJuP45VgjWxaFqamPO6hhzI19u7TXj3d9/bKQIUD9Vwc54PCYOKDtA==",
-      "path": "javascriptengineswitcher.chakracore/3.21.0",
-      "hashPath": "javascriptengineswitcher.chakracore.3.21.0.nupkg.sha512"
-    },
-    "JavaScriptEngineSwitcher.Core/3.21.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-/gXflCb9CMjXkoY84mOZcVoezfT6/pIPvgAsaSm+ADrOE4PSFCVyMg5/e9JRuGCHPnQRo6Cj34WgAVJ0BKJVLw==",
-      "path": "javascriptengineswitcher.core/3.21.0",
-      "hashPath": "javascriptengineswitcher.core.3.21.0.nupkg.sha512"
-    },
-    "JavaScriptEngineSwitcher.Extensions.MsDependencyInjection/3.21.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-YtBxucm4ONwBBGKL+O66C7R5gNfe0Sldyjw4YZQjKjcTK6J3A0snUrYIG0om4nqXRvVbs37QhPTTOnAurhLjZA==",
-      "path": "javascriptengineswitcher.extensions.msdependencyinjection/3.21.0",
-      "hashPath": "javascriptengineswitcher.extensions.msdependencyinjection.3.21.0.nupkg.sha512"
-    },
-    "JSPool/4.0.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-r+AeQ9R50HxU+HLqASYvZz6Mvg7RmZwEnCVhQ+xGYVexFjYYqlkW6by9HaflGaHjy+/28YLbb3qxDLRJ3AbZGQ==",
-      "path": "jspool/4.0.0",
-      "hashPath": "jspool.4.0.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore.SpaProxy/8.0.0": {
       "type": "package",
@@ -1382,61 +1266,40 @@
       "path": "mono.texttemplating/2.2.1",
       "hashPath": "mono.texttemplating.2.2.1.nupkg.sha512"
     },
-    "Newtonsoft.Json/12.0.3": {
+    "Moq/4.20.70": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-6mgjfnRB4jKMlzHSl+VD+oUc1IebOZabkbyWj2RiTgWwYPPuaK1H97G1sHqGwPlS5npiF5Q0OrxN1wni2n5QWg==",
-      "path": "newtonsoft.json/12.0.3",
-      "hashPath": "newtonsoft.json.12.0.3.nupkg.sha512"
+      "sha512": "sha512-4rNnAwdpXJBuxqrOCzCyICXHSImOTRktCgCWXWykuF1qwoIsVvEnR7PjbMk/eLOxWvhmj5Kwt+kDV3RGUYcNwg==",
+      "path": "moq/4.20.70",
+      "hashPath": "moq.4.20.70.nupkg.sha512"
     },
-    "React.AspNet/5.2.12": {
+    "Swashbuckle.AspNetCore/6.5.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-98zc2aIyA4gef24O+NbdODnpXTSq9VPYgT53JxFC0U5iptW5tmct2OghbXyJyMZrh7J68V9pxhdo1y7lWmMGsQ==",
-      "path": "react.aspnet/5.2.12",
-      "hashPath": "react.aspnet.5.2.12.nupkg.sha512"
+      "sha512": "sha512-FK05XokgjgwlCI6wCT+D4/abtQkL1X1/B9Oas6uIwHFmYrIO9WUD5aLC9IzMs9GnHfUXOtXZ2S43gN1mhs5+aA==",
+      "path": "swashbuckle.aspnetcore/6.5.0",
+      "hashPath": "swashbuckle.aspnetcore.6.5.0.nupkg.sha512"
     },
-    "React.AspNet.Middleware/5.2.12": {
+    "Swashbuckle.AspNetCore.Swagger/6.5.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-pY6Ux6Xy8/y5kP4apskU7sMf4ZjBoMipSsIwH/k0XYleBjCPGi+MjSMrE2T1CGHr2eKqRG5ahWPmC6VPKzwKJQ==",
-      "path": "react.aspnet.middleware/5.2.12",
-      "hashPath": "react.aspnet.middleware.5.2.12.nupkg.sha512"
+      "sha512": "sha512-XWmCmqyFmoItXKFsQSwQbEAsjDKcxlNf1l+/Ki42hcb6LjKL8m5Db69OTvz5vLonMSRntYO1XLqz0OP+n3vKnA==",
+      "path": "swashbuckle.aspnetcore.swagger/6.5.0",
+      "hashPath": "swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512"
     },
-    "React.Core/5.2.12": {
+    "Swashbuckle.AspNetCore.SwaggerGen/6.5.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-UqaxnMqVhQDLLNkIR4cNwJAR0lxdT8IwYl6iqXvw9+60uEcOXtbZIlD5TIHVsrenBaovNNsqJwE1ZqB/vEo+lg==",
-      "path": "react.core/5.2.12",
-      "hashPath": "react.core.5.2.12.nupkg.sha512"
+      "sha512": "sha512-Y/qW8Qdg9OEs7V013tt+94OdPxbRdbhcEbw4NiwGvf4YBcfhL/y7qp/Mjv/cENsQ2L3NqJ2AOu94weBy/h4KvA==",
+      "path": "swashbuckle.aspnetcore.swaggergen/6.5.0",
+      "hashPath": "swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512"
     },
-    "Swashbuckle.AspNetCore/6.4.0": {
+    "Swashbuckle.AspNetCore.SwaggerUI/6.5.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-eUBr4TW0up6oKDA5Xwkul289uqSMgY0xGN4pnbOIBqCcN9VKGGaPvHX3vWaG/hvocfGDP+MGzMA0bBBKz2fkmQ==",
-      "path": "swashbuckle.aspnetcore/6.4.0",
-      "hashPath": "swashbuckle.aspnetcore.6.4.0.nupkg.sha512"
-    },
-    "Swashbuckle.AspNetCore.Swagger/6.4.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-nl4SBgGM+cmthUcpwO/w1lUjevdDHAqRvfUoe4Xp/Uvuzt9mzGUwyFCqa3ODBAcZYBiFoKvrYwz0rabslJvSmQ==",
-      "path": "swashbuckle.aspnetcore.swagger/6.4.0",
-      "hashPath": "swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512"
-    },
-    "Swashbuckle.AspNetCore.SwaggerGen/6.4.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-lXhcUBVqKrPFAQF7e/ZeDfb5PMgE8n5t6L5B6/BQSpiwxgHzmBcx8Msu42zLYFTvR5PIqE9Q9lZvSQAcwCxJjw==",
-      "path": "swashbuckle.aspnetcore.swaggergen/6.4.0",
-      "hashPath": "swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512"
-    },
-    "Swashbuckle.AspNetCore.SwaggerUI/6.4.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-1Hh3atb3pi8c+v7n4/3N80Jj8RvLOXgWxzix6w3OZhB7zBGRwsy7FWr4e3hwgPweSBpwfElqj4V4nkjYabH9nQ==",
-      "path": "swashbuckle.aspnetcore.swaggerui/6.4.0",
-      "hashPath": "swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512"
+      "sha512": "sha512-OvbvxX+wL8skxTBttcBsVxdh73Fag4xwqEU2edh4JMn7Ws/xJHnY/JB1e9RoCb6XpDxUF3hD9A0Z1lEUx40Pfw==",
+      "path": "swashbuckle.aspnetcore.swaggerui/6.5.0",
+      "hashPath": "swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
     },
     "System.CodeDom/4.4.0": {
       "type": "package",
@@ -1507,6 +1370,13 @@
       "sha512": "sha512-frQDfv0rl209cKm1lnwTgFPzNigy2EKk1BS3uAvHvlBVKe5cymGyHO+Sj+NLv5VF/AhHsqPIUUwya5oV4CHMUw==",
       "path": "system.diagnostics.diagnosticsource/6.0.0",
       "hashPath": "system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512"
+    },
+    "System.Diagnostics.EventLog/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-lcyUiXTsETK2ALsZrX+nWuHSIQeazhqPphLfaRxzdGaG93+0kELqpgEHtwWOlQe7+jSFnKwaCAgL4kjeZCQJnw==",
+      "path": "system.diagnostics.eventlog/6.0.0",
+      "hashPath": "system.diagnostics.eventlog.6.0.0.nupkg.sha512"
     },
     "System.Drawing.Common/6.0.0": {
       "type": "package",

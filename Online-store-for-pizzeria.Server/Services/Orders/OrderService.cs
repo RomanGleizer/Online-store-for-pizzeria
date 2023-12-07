@@ -20,10 +20,10 @@ public class OrderService : IOrderService
 
     public async Task<Order> CreateOrderAsync(Order order)
     {
-        var existingCustomer = await _context.Customers.FindAsync(order.CustomerId);
+        var customer = await _context.Customers.FindAsync(order.CustomerId);
 
-        if (existingCustomer is null) throw new Exception("Customer was not found");
-        order.Customer = existingCustomer;
+        if (customer is null) throw new Exception("Customer was not found");
+        order.Customer = customer;
 
         _context.Orders.Add(order);
         await _context.SaveChangesAsync();
@@ -34,45 +34,41 @@ public class OrderService : IOrderService
     public async Task<Order> DeleteOrderByIdAsync(int orderId)
     {
         var order = await _context.Orders.FindAsync(orderId);
-        if (order is not null)
-        {
-            _context.Orders.Remove(order);
-            await _context.SaveChangesAsync();
-        }
+        if (order is null) throw new Exception("Order was not found");
+
+        _context.Orders.Remove(order);
+        await _context.SaveChangesAsync();
         return order;
     }
 
     public async Task<Order> UpdateOrderAsync(Order order)
     {
-        var existingOrder = await _context.Orders
-            .Include(o => o.Customer)
+        var targetOrder = await _context.Orders
             .Include(o => o.PizzaOrders)
-            .ThenInclude(pO => pO.Pizza)
             .FirstOrDefaultAsync(o => o.Id == order.Id);
 
-        if (existingOrder is not null)
-        {
-            existingOrder.Date = order.Date;
-            existingOrder.TotalPrice = order.TotalPrice;
-            existingOrder.PaymentType = order.PaymentType;
-            existingOrder.DeliveryType = order.DeliveryType;
-            existingOrder.Address = order.Address;
-            existingOrder.Comments = order.Comments;
-            existingOrder.CustomerId = order.CustomerId;
-            existingOrder.Customer = await _context.Customers.FindAsync(order.CustomerId);
+        if (targetOrder is null) throw new Exception("Order was not found");
 
-            existingOrder.PizzaOrders.Clear();
-            foreach (var pizzaOrder in order.PizzaOrders)
+        targetOrder.Date = order.Date;
+        targetOrder.TotalPrice = order.TotalPrice;
+        targetOrder.PaymentType = order.PaymentType;
+        targetOrder.DeliveryType = order.DeliveryType;
+        targetOrder.Address = order.Address;
+        targetOrder.Comments = order.Comments;
+        targetOrder.CustomerId = order.CustomerId;
+        targetOrder.Customer = await _context.Customers.FindAsync(order.CustomerId);
+
+        targetOrder.PizzaOrders.Clear();
+        foreach (var pizzaOrder in order.PizzaOrders)
+            targetOrder.PizzaOrders.Add(new PizzaOrder
             {
-                existingOrder.PizzaOrders.Add(new PizzaOrder
-                {
-                    Pizza = await _context.Pizzas.FindAsync(pizzaOrder.PizzaId),
-                    Quantity = pizzaOrder.Quantity
-                });
-            }
+                Quantity = pizzaOrder.Quantity,
+                PizzaId = pizzaOrder.PizzaId,
+                OrderId = pizzaOrder.OrderId,
+                Pizza = await _context.Pizzas.FindAsync(pizzaOrder.PizzaId),
+            });
 
-            await _context.SaveChangesAsync();
-        }
-        return existingOrder;
+        await _context.SaveChangesAsync();
+        return targetOrder;
     }
 }
