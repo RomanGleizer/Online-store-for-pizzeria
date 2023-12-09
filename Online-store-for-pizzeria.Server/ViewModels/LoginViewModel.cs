@@ -1,7 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Online_store_for_pizzeria.Server.ViewModels;
-
 public class LoginModel
 {
     [EmailAddress(ErrorMessage = "Не указан Email")]

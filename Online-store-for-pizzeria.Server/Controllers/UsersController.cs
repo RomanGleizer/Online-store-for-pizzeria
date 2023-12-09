@@ -22,27 +22,58 @@ public class UsersController : ControllerBase
         var user = await _userService.GetUserByIdAsync(id);
         if (user is null) return NotFound();
 
-        var userViewModel = _mapper.Map<UserViewModel>(user);
-        var customerViewModel = _mapper.Map<CustomerViewModel>(user.Customer);
+        var customer = _mapper.Map<Customer>(user.Customer);
 
-        return Ok(new { User = userViewModel, Customer = customerViewModel });
+        return Ok(new { User = user, Customer = customer });
     }
 
     [HttpPost("register")]
-    public async Task<IActionResult> RegisterUser([FromBody] RegisterViewModel registerViewModel)
+    public async Task<IActionResult> Register([FromBody] RegisterViewModel registerViewModel)
     {
         if (!ModelState.IsValid) return BadRequest(ModelState);
+
         var user = _mapper.Map<User>(registerViewModel);
-
         var customer = new Customer { User = user };
-
-        var createdUser = await _userService.CreateUserAsync(user);
+        var createdUser = await _userService.CreateUserAsync(user, registerViewModel.Password);
         var createdCustomer = await _customerService.CreateCustomerAsync(customer);
 
-        var userViewModel = _mapper.Map<UserViewModel>(createdUser);
-        var customerViewModel = _mapper.Map<CustomerViewModel>(createdCustomer);
+        var responseData = new
+        {
+            User = new
+            {
+                user.Id,
+                user.FirstName,
+                user.LastName,
+                user.Phone,
+                user.Email,
+                user.Password
+            },
+            Customer = new
+            {
+                createdCustomer.Id,
+                createdCustomer.UserId,
+                User = new
+                {
+                    user.Id,
+                    user.FirstName,
+                    user.Phone,
+                }
+            }
+        };
 
-        return CreatedAtAction(nameof(GetUserById), new { id = createdUser.Id }, new { User = userViewModel, Customer = customerViewModel });
+        return CreatedAtAction(nameof(GetUserById), new { id = user.Id }, responseData);
+    }
+
+    [HttpPost("login")]
+    public async Task<IActionResult> Login([FromBody] LoginModel loginViewModel)
+    {
+        if (!ModelState.IsValid) return BadRequest(ModelState);
+
+        var user = await _userService.LoginAsync(loginViewModel.Email, loginViewModel.Password);
+        if (user is null) return Unauthorized();
+
+        var token = _userService.GenerateJwtToken(user);
+        return Ok(new { Token = token });
     }
 
     [HttpPut("{id}")]
