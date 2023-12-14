@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import CartBtn from "./buttons/CartBtn";
 import Login from "./buttons/LoginBtn";
+import LoginBtn from "./buttons/LoginBtn";
 
 function Header() {
 
@@ -25,7 +26,7 @@ function Header() {
         <CartBtn />
       </div>
       <div className="profile-header">
-      <Login />
+      <LoginBtn />
       </div>
     </header>
   );

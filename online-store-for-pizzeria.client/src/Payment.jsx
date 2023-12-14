@@ -1,20 +1,46 @@
-/* eslint-disable no-unused-vars */
 import "./styles/Payment.css";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getTotals } from "./slices/cartSlice";
+import { setUsername, setPhone } from "./slices/userSlice";
 
 function Payment() {
     const { cartTotalQuantity } = useSelector((state) => state.cart);
     const { cartTotalAmount } = useSelector((state) => state.cart);
     const cart = useSelector((state) => state.cart);
+    const user = useSelector((state) => state.user);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getTotals());
     }, [cart, dispatch]);
+
+    useEffect(() => {
+        const savedUsername = JSON.parse(localStorage.getItem('username'));
+        const savedPhone = JSON.parse(localStorage.getItem('phone'));
+        const savedLogined = JSON.parse(localStorage.getItem('isLogined'));
+
+        if (savedUsername && savedLogined) {
+            dispatch(setUsername(savedUsername));
+          }
+      
+          if (savedPhone && savedLogined) {
+            dispatch(setPhone(savedPhone));
+          }
+        }, [dispatch]);
+
+    const handleUsernameChange = (e) => {
+        dispatch(setUsername(e.target.value));
+    };
+
+    const handlePhoneChange = (e) => {
+        dispatch(setPhone(e.target.value));
+    };
+
+    const {username} = useSelector((state) => state.user);
+    const {phone} = useSelector((state) => state.user);
 
     const [isCard, setIsCardSelected] = useState("cash");
 
@@ -28,46 +54,54 @@ function Payment() {
         setIsDeliverySelected(event.target.value);
     };
 
-    const handleOrderSend = async () => {
-        const orderData = {
-            totalPrice: 25.99,
-            paymentType: 'Credit Card',
-            deliveryType: 'Home Delivery',
-            address: '123 Main St',
-            customerId: 1,
-            pizzas: [
-                {
-                    id: 101,
-                    title: 'Margherita',
-                    description: 'Classic margherita pizza',
-                    ingredients: 'Tomato, mozzarella, basil',
-                    price: 12.99,
-                    cartQuantity: 2,
-                    categories: 'Vegetarian'
-                },
-            ]
-        };
 
-        const requestOptions = {
-            method: 'POST',
-            headers: { Accept: "application/json", "Content-Type": "application/json" },
-            body: JSON.stringify(orderData)
-        };
+    const handleOrderSend = (event) => {
+        console.log(username);
+        console.log(isCard);
+        console.log(isDelivery);
 
-        const response = await fetch("https://localhost:7106/api/orders", requestOptions)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('Order created successfully:', data);
-            })
-            .catch(error => {
-                console.error('Error creating order:', error);
-            });
     };
+
+    // const handleOrderSend = async () => {
+    //     const orderData = {
+    //         totalPrice: 25.99,
+    //         paymentType: "Credit Card",
+    //         deliveryType: "Home Delivery",
+    //         address: "123 Main St",
+    //         customerId: 1,
+    //         pizzas: [
+    //             {
+    //                 id: 101,
+    //                 title: "Margherita",
+    //                 description: "Classic margherita pizza",
+    //                 ingredients: "Tomato, mozzarella, basil",
+    //                 price: 12.99,
+    //                 cartQuantity: 2,
+    //                 categories: "Vegetarian",
+    //             },
+    //         ],
+    //     };
+
+    //     const requestOptions = {
+    //         method: "POST",
+    //         headers: { Accept: "application/json", "Content-Type": "application/json" },
+    //         body: JSON.stringify(orderData),
+    //     };
+
+    //     const response = await fetch("https://localhost:7106/api/orders", requestOptions)
+    //         .then((response) => {
+    //             if (!response.ok) {
+    //                 throw new Error(`HTTP error! Status: ${response.status}`);
+    //             }
+    //             return response.json();
+    //         })
+    //         .then((data) => {
+    //             console.log("Order created successfully:", data);
+    //         })
+    //         .catch((error) => {
+    //             console.error("Error creating order:", error);
+    //         });
+    // };
 
     return (
         <div className="payment-cont">
@@ -76,15 +110,24 @@ function Payment() {
                 <div className="div-cust">
                     <div className="name option between">
                         <span className="main-span">Имя</span>
-                        <input className="no-radio" type="text" placeholder="Ваше имя" required />
+                        <input
+                            className="no-radio"
+                            value={username}
+                            type="text"
+                            placeholder="Ваше имя"
+                            onChange={handleUsernameChange}
+                            required
+                        />
                     </div>
 
                     <div className="phone option between">
                         <span className="main-span">Номер телефона</span>
                         <input
                             className="no-radio"
+                            value={phone}
                             type="phone"
                             placeholder="+79000000000"
+                            onChange={handlePhoneChange}
                             required
                         />
                     </div>
@@ -112,6 +155,7 @@ function Payment() {
                                         name="deliveryGroup"
                                         value="pickUp"
                                         onChange={handleDeliveryChange}
+                                        checked
                                     />{" "}
                                     <span className="radio-span">Самовывоз</span>
                                 </li>
@@ -154,6 +198,7 @@ function Payment() {
                                 name="radioGroup"
                                 value="cash"
                                 onChange={handleCardChange}
+                                checked
                             />{" "}
                             <span className="radio-span">Наличные</span>
                         </li>

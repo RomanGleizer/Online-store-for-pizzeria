@@ -8,7 +8,6 @@ import karbo from "./image/karbo.jpg";
 import sez from "./image/sez.jpg";
 import vetch from "./image/vetch.jpg";
 import { NavLink } from "react-router-dom";
-import Test from "./Test";
 
 function Home() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -26,12 +25,7 @@ function Home() {
   let images = [sez, vetch, karbo, pizFoCh, pep];  
 
   return (
-    <div className="home-div">
-      <div className="autentification">
-        <input className="login" type="text" placeholder="Это текст"></input>
-        <button className="btn-log">Отправить</button>
-      </div>
-      <Test />
+    <div className="home-div">      
       <div className="container">
         <div className="search-container">
           <input
