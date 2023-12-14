@@ -13,7 +13,17 @@ import Test from "./Test";
 function Home() {
   const [searchTerm, setSearchTerm] = useState("");
 
-  let images = [sez, vetch, karbo, pizFoCh, pep];
+  const [selectedCategory, setSelectedCategory] = useState('All'); 
+
+  const handleCategoryChange = (category) => {
+    setSelectedCategory(category);
+  };
+
+  const filteredItems = selectedCategory === 'All'
+    ? data
+    : data.filter(item => item.сategories.includes(selectedCategory));
+
+  let images = [sez, vetch, karbo, pizFoCh, pep];  
 
   return (
     <div className="home-div">
@@ -39,22 +49,22 @@ function Home() {
         <div className="slidebar">
           <ul className="categories">
             <li className="categories-item">
-              <button>Общее меню</button>
+              <button className={selectedCategory === 'All' ? 'active' : ''} onClick={() => handleCategoryChange('All')}>Общее меню</button>
             </li>
             <li className="categories-item">
-              <button>Популярные</button>
+              <button className={selectedCategory === 'Популярные' ? 'active' : ''} onClick={() => handleCategoryChange('Популярные')}>Популярные</button>
             </li>
             <li className="categories-item">
-              <button>Мясные</button>
+              <button className={selectedCategory === 'Мясные' ? 'active' : ''} onClick={() => handleCategoryChange('Мясные')}>Мясные</button>
             </li>
             <li className="categories-item">
-              <button>Вегетарианские</button>
+              <button className={selectedCategory === 'Вегетарианские' ? 'active' : ''} onClick={() => handleCategoryChange('Вегетарианские')}>Вегетарианские</button>
             </li>
             <li className="categories-item">
-              <button>Малокалорийные</button>
+              <button className={selectedCategory === 'Малокалорийные' ? 'active' : ''} onClick={() => handleCategoryChange('Малокалорийные')}>Малокалорийные</button>
             </li>
             <li className="categories-item">
-              <button>Сытные</button>
+              <button className={selectedCategory === 'Сытные' ? 'active' : ''} onClick={() => handleCategoryChange('Сытные')}>Сытные</button>
             </li>
           </ul>
         </div>
@@ -76,16 +86,13 @@ function Home() {
           </ul>
         </div>
         <div className="template_Container">
-          {data
+          {filteredItems
             .filter((val) => {
               if (searchTerm == "") {
                 return val;
               } else if (
                 val.title.toLowerCase().includes(searchTerm.toLowerCase())
               ) {
-                return val;
-              }
-              else if (val.сategories.includes(searchTerm)) {
                 return val;
               }
             })

@@ -28,6 +28,11 @@ body {
     margin-right: auto;
 }
 
+li > button.active {
+    color: white;
+    background-color: #CA792D;
+}
+
 #root {
     margin-left: auto;
     margin-right: auto;
