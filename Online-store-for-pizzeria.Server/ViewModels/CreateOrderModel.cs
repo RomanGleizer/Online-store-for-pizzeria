@@ -1,8 +1,6 @@
-﻿public class CreateOrderViewModel
+﻿public class CreateOrderModel
 {
     public int Id { get; set; }
-
-    public string Date { get; set; }
 
     public decimal TotalPrice { get; set; }
 
@@ -12,9 +10,7 @@
 
     public string Address { get; set; }
 
-    public string Comments { get; set; }
-
     public int CustomerId { get; set; }
 
-    public List<PizzaViewModel> Pizzas { get; set; }
+    public List<PizzaOrder> Pizzas { get; set; }
 }

@@ -20,8 +20,7 @@ public class OrdersController : ControllerBase
         var order = await _orderService.GetOrderByIdAsync(id);
         if (order is null) return NotFound();
 
-        var orderViewModel = _mapper.Map<UserViewModel>(order);
-        return Ok(orderViewModel);
+        return Ok(order);
     }
 
     [HttpPost]
@@ -31,9 +30,8 @@ public class OrdersController : ControllerBase
 
         var order = _mapper.Map<Order>(orderViewModel);
         var createdOrder = await _orderService.CreateOrderAsync(order);
-        var createdOrderViewModel = _mapper.Map<UserViewModel>(createdOrder);
 
-        return CreatedAtAction(nameof(GetOrderById), new { id = createdOrder.Id }, createdOrderViewModel);
+        return CreatedAtAction(nameof(GetOrderById), new { id = createdOrder.Id }, createdOrder);
     }
 
     [HttpPut("{id}")]

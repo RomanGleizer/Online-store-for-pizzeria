@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Online_store_for_pizzeria.Server.Models;
 
 public class PizzaShopContext : IdentityDbContext<User, IdentityRole<int>, int>
 {
