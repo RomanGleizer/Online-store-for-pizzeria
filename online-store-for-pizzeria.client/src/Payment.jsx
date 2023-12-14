@@ -15,32 +15,46 @@ function Payment() {
         dispatch(getTotals());
     }, [cart, dispatch]);
 
-    const [isCard, setIsCardSelected] = useState(false);
+    const [isCard, setIsCardSelected] = useState("cash");
 
     const handleCardChange = (event) => {
-        setIsCardSelected(event.target.value === "card");
+        setIsCardSelected(event.target.value);
     };
 
-    const [isDelivery, setIsDeliverySelected] = useState(false);
+    const [isDelivery, setIsDeliverySelected] = useState("pickUp");
 
     const handleDeliveryChange = (event) => {
-        setIsDeliverySelected(event.target.value === "delivery");
+        setIsDeliverySelected(event.target.value);
     };
 
-
     const handleOrderSend = async () => {
-      try {
-        const response = await fetch('https://localhost:7106');
-        
-        if (!response.ok) {
-          throw new Error('Ошибка при запросе на сервер');
+        const order = {
+            id: Date.now(),
+            totalPrice: cartTotalAmount,
+            deliveryType: isDelivery,
+            adress: "",
+            paymentType: isCard,
+            customerId: 0,
+            pizzas: cart.cartItems,
+        };
+
+        try {
+            const response = await fetch("https://localhost:7106/api/orders", {
+                method: "POST",
+                headers: { Accept: "application/json", "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    id: Date.now(),
+                    totalPrice: cartTotalAmount,
+                    deliveryType: isDelivery,
+                    adress: "",
+                    paymentType: isCard,
+                    customerId: 0,
+                    pizzas: cart.cartItems,
+                }),
+            });
+        } catch (error) {
+            console.error("Произошла ошибка:", error.message);
         }
-  
-        console.log(await response.json());
-  
-      } catch (error) {
-        console.error('Произошла ошибка:', error.message);
-      }
     };
 
     return (
