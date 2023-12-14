@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Online_store_for_pizzeria.Server.Models;
 using Online_store_for_pizzeria.Server.Services.Users;
 
 var builder = WebApplication.CreateBuilder(args);

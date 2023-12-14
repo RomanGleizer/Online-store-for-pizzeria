@@ -1,4 +1,6 @@
-﻿public class Customer
+﻿using Online_store_for_pizzeria.Server.Models;
+
+public class Customer
 {
     public int Id { get; set; }
 

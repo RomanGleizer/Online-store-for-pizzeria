@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Online_store_for_pizzeria.Server.Models;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -16,7 +16,6 @@ namespace Online_store_for_pizzeria.Server.Services.Users
     {
         private readonly PizzaShopContext _context = context;
         private readonly UserManager<User> _userManager = userManager;
-        private readonly SignInManager<User> _signInManager = signInManager;
         private readonly IConfiguration _configuration = configuration;
 
         public async Task<User> GetUserByIdAsync(int userId)
@@ -74,11 +73,11 @@ namespace Online_store_for_pizzeria.Server.Services.Users
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Email, user.Email),
-                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                    new Claim(ClaimTypes.Name, $"{user.FirstName} {user.LastName}"),
-                    new Claim(ClaimTypes.MobilePhone, user.Phone),
-                    new Claim(ClaimTypes.Role, "User")
+                    new(ClaimTypes.Email, user.Email),
+                    new(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                    new(ClaimTypes.Name, $"{user.FirstName} {user.LastName}"),
+                    new(ClaimTypes.MobilePhone, user.Phone),
+                    new(ClaimTypes.Role, "User")
                 }),
                 Expires = DateTime.UtcNow.AddHours(Convert.ToDouble(_configuration["JwtSettings:ExpirationHours"])),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)

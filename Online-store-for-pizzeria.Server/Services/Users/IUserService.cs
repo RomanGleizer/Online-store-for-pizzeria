@@ -1,4 +1,6 @@
-﻿public interface IUserService
+﻿using Online_store_for_pizzeria.Server.Models;
+
+public interface IUserService
 {
     Task<User> GetUserByIdAsync(int userId);
     Task<User> CreateUserAsync(User user,string password);

@@ -1,91 +1,87 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Online_store_for_pizzeria.Server.Models;
 
-[ApiController]
-[Route("api/users")]
-public class UsersController : ControllerBase
+namespace Online_store_for_pizzeria.Server.Controllers
 {
-    private readonly IUserService _userService;
-    private readonly ICustomerService _customerService;
-    private readonly IMapper _mapper;
-
-    public UsersController(IUserService userService, ICustomerService customerService, IMapper mapper)
+    [ApiController]
+    [Route("api/users")]
+    public class UsersController(IUserService userService, ICustomerService customerService, IMapper mapper) : ControllerBase
     {
-        _userService = userService;
-        _customerService = customerService;
-        _mapper = mapper;
-    }
+        private readonly IUserService _userService = userService;
+        private readonly ICustomerService _customerService = customerService;
+        private readonly IMapper _mapper = mapper;
 
-    [HttpGet("{id}")]
-    public async Task<IActionResult> GetUserById(int id)
-    {
-        var user = await _userService.GetUserByIdAsync(id);
-        if (user is null) return NotFound();
-
-        var customer = _mapper.Map<Customer>(user.Customer);
-
-        return Ok(new { User = user, Customer = customer });
-    }
-
-    [HttpPost("register")]
-    public async Task<IActionResult> Register([FromBody] RegisterViewModel registerViewModel)
-    {
-        if (!ModelState.IsValid) return BadRequest(ModelState);
-
-        var user = _mapper.Map<User>(registerViewModel);
-        var customer = new Customer { User = user };
-        var createdUser = await _userService.CreateUserAsync(user, registerViewModel.Password);
-        var createdCustomer = await _customerService.CreateCustomerAsync(customer);
-
-        var responseData = new
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetUserById(int id)
         {
-            User = new
+            var user = await _userService.GetUserByIdAsync(id);
+            if (user is null) return NotFound();
+
+            var customer = _mapper.Map<Customer>(user.Customer);
+
+            return new JsonResult(new { User = user, Customer = customer });
+        }
+
+        [HttpPost("register")]
+        public async Task<IActionResult> Register([FromBody] RegisterViewModel registerViewModel)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            var user = _mapper.Map<User>(registerViewModel);
+            var customer = new Customer { User = user };
+            var createdUser = await _userService.CreateUserAsync(user, registerViewModel.Password);
+            var createdCustomer = await _customerService.CreateCustomerAsync(customer);
+
+            var responseData = new
             {
-                user.Id,
-                user.FirstName,
-                user.LastName,
-                user.Phone,
-                user.Email,
-                user.Password
-            },
-            Customer = new
-            {
-                createdCustomer.Id,
-                createdCustomer.UserId,
                 User = new
                 {
                     user.Id,
                     user.FirstName,
                     user.Phone,
+                    user.Email,
+                    user.Password
+                },
+                Customer = new
+                {
+                    createdCustomer.Id,
+                    createdCustomer.UserId,
+                    User = new
+                    {
+                        user.Id,
+                        user.FirstName,
+                        user.Phone,
+                    }
                 }
-            }
-        };
+            };
 
-        return CreatedAtAction(nameof(GetUserById), new { id = user.Id }, responseData);
-    }
+            return new JsonResult(responseData);
+        }
 
-    [HttpPost("login")]
-    public async Task<IActionResult> Login([FromBody] LoginModel loginViewModel)
-    {
-        if (!ModelState.IsValid) return BadRequest(ModelState);
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] LoginModel loginViewModel)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
-        var user = await _userService.LoginAsync(loginViewModel.Email, loginViewModel.Password);
-        if (user is null) return Unauthorized();
+            var user = await _userService.LoginAsync(loginViewModel.Email, loginViewModel.Password);
+            if (user is null) return Unauthorized();
 
-        var token = _userService.GenerateJwtToken(user);
-        return Ok(new { Token = token });
-    }
+            var token = _userService.GenerateJwtToken(user);
+            return Ok(new { Token = token, User = user });
+        }
 
-    [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateUser(int id, [FromBody] UserViewModel userViewModel)
-    {
-        if (!ModelState.IsValid) return BadRequest(ModelState);
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateUser(int id, [FromBody] UserViewModel userViewModel)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
-        var user = await _userService.GetUserByIdAsync(id);
-        if (user is null) return NotFound();
+            var user = await _userService.GetUserByIdAsync(id);
+            if (user is null) return NotFound();
 
-        _mapper.Map(userViewModel, user);
-        await _userService.UpdateUserAsync(user);
-        return NoContent();
+            _mapper.Map(userViewModel, user);
+            await _userService.UpdateUserAsync(user);
+            return NoContent();
+        }
     }
 }
