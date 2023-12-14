@@ -22,53 +22,25 @@ public class PizzaShopContext : IdentityDbContext<User, IdentityRole<int>, int>
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        //modelBuilder.Entity<User>().HasData(
-        //    new User
-        //    {
-        //        Id = 1,
-        //        FirstName = "John",
-        //        LastName = "Doe",
-        //        Email = "john.doe@example.com",
-        //        Phone = "1234567890",
-        //        Password = "password"
-        //    },
-        //    new User
-        //    {
-        //        Id = 2,
-        //        FirstName = "Alice",
-        //        LastName = "Smith",
-        //        Email = "alice.smith@example.com",
-        //        Phone = "9876543210",
-        //        Password = "password"
-        //    },
-        //    new User
-        //    {
-        //        Id = 3,
-        //        FirstName = "Bob",
-        //        LastName = "Johnson",
-        //        Email = "bob.johnson@example.com",
-        //        Phone = "5555555555",
-        //        Password = "password"
-        //    }
-        //);
+        modelBuilder.Entity<User>().HasData(
+            new User
+            {
+                Id = 1,
+                FirstName = "John",
+                LastName = "Doe",
+                Email = "john.doe@example.com",
+                Phone = "1234567890",
+                Password = "password"
+            }
+        );
 
-        //modelBuilder.Entity<Customer>().HasData(
-        //    new Customer
-        //    {
-        //        Id = 1,
-        //        UserId = 1
-        //    },
-        //    new Customer
-        //    {
-        //        Id = 2,
-        //        UserId = 2
-        //    },
-        //    new Customer
-        //    {
-        //        Id = 3,
-        //        UserId = 3
-        //    }
-        //);
+        modelBuilder.Entity<Customer>().HasData(
+            new Customer
+            {
+                Id = 1,
+                UserId = 1
+            }
+        );
 
         //modelBuilder.Entity<Order>().HasData(
         //    new Order
@@ -142,6 +114,6 @@ public class PizzaShopContext : IdentityDbContext<User, IdentityRole<int>, int>
 
         base.OnModelCreating(modelBuilder);
 
-        modelBuilder.Entity<PizzaOrder>().HasKey(po => new { po.PizzaId, po.OrderId });
+        modelBuilder.Entity<PizzaOrder>().HasKey(po => new { po.PizzaId });
     }
 }

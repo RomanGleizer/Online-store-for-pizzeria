@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import "./styles/Payment.css";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -28,33 +29,44 @@ function Payment() {
     };
 
     const handleOrderSend = async () => {
-        const order = {
-            id: Date.now(),
-            totalPrice: cartTotalAmount,
-            deliveryType: isDelivery,
-            adress: "",
-            paymentType: isCard,
-            customerId: 0,
-            pizzas: cart.cartItems,
+        const orderData = {
+            totalPrice: 25.99,
+            paymentType: 'Credit Card',
+            deliveryType: 'Home Delivery',
+            address: '123 Main St',
+            customerId: 1,
+            pizzas: [
+                {
+                    id: 101,
+                    title: 'Margherita',
+                    description: 'Classic margherita pizza',
+                    ingredients: 'Tomato, mozzarella, basil',
+                    price: 12.99,
+                    cartQuantity: 2,
+                    categories: 'Vegetarian'
+                },
+            ]
         };
 
-        try {
-            const response = await fetch("https://localhost:7106/api/orders", {
-                method: "POST",
-                headers: { Accept: "application/json", "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    id: Date.now(),
-                    totalPrice: cartTotalAmount,
-                    deliveryType: isDelivery,
-                    adress: "",
-                    paymentType: isCard,
-                    customerId: 0,
-                    pizzas: cart.cartItems,
-                }),
+        const requestOptions = {
+            method: 'POST',
+            headers: { Accept: "application/json", "Content-Type": "application/json" },
+            body: JSON.stringify(orderData)
+        };
+
+        const response = await fetch("https://localhost:7106/api/orders", requestOptions)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Order created successfully:', data);
+            })
+            .catch(error => {
+                console.error('Error creating order:', error);
             });
-        } catch (error) {
-            console.error("Произошла ошибка:", error.message);
-        }
     };
 
     return (

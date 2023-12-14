@@ -12,5 +12,5 @@
 
     public int CustomerId { get; set; }
 
-    public List<PizzaOrder> Pizzas { get; set; }
+    public List<Pizza> Pizzas { get; set; }
 }
