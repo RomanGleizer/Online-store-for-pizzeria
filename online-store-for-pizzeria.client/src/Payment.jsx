@@ -57,6 +57,8 @@ function Payment() {
 
     const handleOrderSend = (event) => {
         console.log(username);
+        console.log(isCard);
+        console.log(isDelivery);
 
     };
 
