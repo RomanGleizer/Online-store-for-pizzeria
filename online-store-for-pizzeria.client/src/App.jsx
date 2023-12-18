@@ -9,6 +9,7 @@ import PizzaDetails from './components/PizzaDetails';
 import Cart from './components/Cart1.jsx';
 import Login from './components/Login';
 import Register from './components/Register.jsx';
+import Success from './components/Success.jsx';
 import {
     createBrowserRouter,
     RouterProvider,
@@ -54,6 +55,10 @@ import {
         {
           path: "/register",
           element: <Register />,
+        }, 
+        {
+          path: "/success",
+          element: <Success />,
         },       
       ],
     }

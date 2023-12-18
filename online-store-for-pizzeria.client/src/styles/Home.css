@@ -285,13 +285,13 @@ li > button.active {
     font-size: 22px;
     font-style: normal;
     font-weight: 500;
-    line-height: normal;
+    line-height: 39px;
     margin: 0;
     padding: 0;
 
     position: absolute;
-    top: 10px;
-    left: -10px;
+    top: 5px;
+    left: -25px;
 }
 
 .pizza-price {
@@ -305,7 +305,7 @@ li > button.active {
     font-size: 22px;
     font-style: normal;
     font-weight: 500;
-    line-height: normal;
+    line-height: 39px;
     margin: 0;
     padding: 0;
 

@@ -1,0 +1,31 @@
+.success {
+    width: 979px;
+    height: 670px;
+    background-image: url("../image/success.png");
+}
+
+.suc-inf {
+    color: #000;
+font-size: 30px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+letter-spacing: -1.95px;
+
+position: relative;
+top: 155px;
+left: 460px;
+}
+    
+.duck {
+    color: #000;
+font-size: 20px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+letter-spacing: -1.3px;
+
+position: relative;
+top: 505px;
+left: 250px;
+}
