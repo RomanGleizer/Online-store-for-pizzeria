@@ -10,5 +10,9 @@
 
     public string Address { get; set; }
 
-    public int CustomerId { get; set; }
+    public int UserId { get; set; }
+
+    public User User { get; set; }
+
+    public List<Pizza> Pizzas { get; set; }
 }

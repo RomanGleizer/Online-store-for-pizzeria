@@ -10,7 +10,7 @@
 
     public string Address { get; set; }
 
-    public int CustomerId { get; set; }
+    public int UserId { get; set; }
 
     public List<Pizza> Pizzas { get; set; }
 }

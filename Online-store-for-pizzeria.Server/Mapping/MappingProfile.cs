@@ -1,20 +1,15 @@
 ﻿using AutoMapper;
-using Online_store_for_pizzeria.Server.Models;
 
 public class MappingProfile : Profile
 {
     public MappingProfile()
     {
-        CreateMap<CreateOrderModel, Order>()
-            .ForMember(dest => dest.CustomerId, opt => opt.MapFrom(src => src.CustomerId))
-            .ReverseMap();
+        CreateMap<RegisterModel, User>()
+            .ForMember(x => x.Email, opt => opt.MapFrom(c => c.Email))
+            .ForMember(x => x.UserName, opt => opt.MapFrom(c => c.FirstName));
 
-        CreateMap<UserViewModel, User>()
-            .ReverseMap();
+        CreateMap<LoginModel, User>();
 
-        CreateMap<PizzaViewModel, Pizza>()
-            .ReverseMap();
-
-        CreateMap<RegisterViewModel, User>();
+        CreateMap<CreateOrderModel, Order>();
     }
 }
