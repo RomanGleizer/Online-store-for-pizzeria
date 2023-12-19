@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using System.Text.Json.Serialization;
-using System.Text.Json;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -25,17 +23,10 @@ public class OrdersController : ControllerBase
         return Ok(order);
     }
 
+    [HttpPost("create")]
     public async Task<IActionResult> CreateOrder(CreateOrderModel createOrderModel)
     {
         if (!ModelState.IsValid) return BadRequest(ModelState);
-        var jsonSerializerOptions = new JsonSerializerOptions
-        {
-            ReferenceHandler = ReferenceHandler.Preserve,
-
-        };
-        var jsonString = JsonSerializer.Serialize(createOrderModel, jsonSerializerOptions);
-
-        var deserializedOrder = JsonSerializer.Deserialize<CreateOrderModel>(jsonString, jsonSerializerOptions);
 
         var order = _mapper.Map<Order>(createOrderModel);
         var createdOrder = await _orderService.CreateOrderAsync(order);

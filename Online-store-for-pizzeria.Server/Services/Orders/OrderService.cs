@@ -17,7 +17,7 @@ public class OrderService : IOrderService
 
     public async Task<Order> CreateOrderAsync(Order order)
     {
-        var customer = await _context.Customers.FindAsync(order.CustomerId);
+        var customer = await _context.Users.FindAsync(order.User);
 
         if (customer is null) throw new Exception("Customer was not found");
 
@@ -48,18 +48,7 @@ public class OrderService : IOrderService
         targetOrder.PaymentType = order.PaymentType;
         targetOrder.DeliveryType = order.DeliveryType;
         targetOrder.Address = order.Address;
-        targetOrder.CustomerId = order.CustomerId;
-        // targetOrder.Customer = await _context.Customers.FindAsync(order.CustomerId);
-
-        //targetOrder.PizzaOrders.Clear();
-        //foreach (var pizzaOrder in order.PizzaOrders)
-        //    targetOrder.PizzaOrders.Add(new PizzaOrder
-        //    {
-        //        Quantity = pizzaOrder.Quantity,
-        //        PizzaId = pizzaOrder.PizzaId,
-        //        OrderId = pizzaOrder.OrderId,
-        //        Pizza = await _context.Pizzas.FindAsync(pizzaOrder.PizzaId),
-        //    });
+        targetOrder.UserId = order.UserId;
 
         await _context.SaveChangesAsync();
         return targetOrder;
