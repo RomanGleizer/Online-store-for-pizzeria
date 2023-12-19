@@ -32,7 +32,13 @@ const PizzaDetails = () => {
                 <h3 className="title">{product.title}</h3>
                 <div className="details">
                     <div className="ingredients">{product.ingredients}</div>
-                    <div className="price">${product.price}</div>
+                    <div className="price">{product.price}р.</div>
+                    <div className="about">
+                        <p>Пищевая ценность продукта на 100 г</p>
+                        <p>Белки - 11</p>
+                        <p>Жиры - 13</p>
+                        <p>Углеводы - 18</p>
+                    </div>
                 </div>
 
                 <button className="btn" onClick={() => handleAddToCart(product)}>

@@ -73,7 +73,7 @@ function Home() {
                 width={64}
                 height={64}
               />
-              <p className="present-description">Две пиццы по цене одной!</p>
+              <p className="present-description">Скидка 50% на любой заказ</p>
               <p className="present-promo">Промокод:</p>
               <p className="present-code">DUCK21</p>
             </li>

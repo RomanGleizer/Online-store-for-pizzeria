@@ -146,7 +146,7 @@ a:focus:after {
   grid-area: btn;
   width: 140px;
   height: 40px;
-  color: #F08F34;
+  color: #fff;
 }
 
 .title-item {
@@ -214,6 +214,7 @@ a:focus:after {
   padding-bottom: 5px;
   text-align: center;
   background-color: #FFF9EA;
+  color: #f08f34;
   border-radius: 10px;
 
   margin-bottom: 25px;

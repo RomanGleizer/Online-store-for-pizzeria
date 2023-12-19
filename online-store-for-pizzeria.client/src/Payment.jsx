@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getTotals } from "./slices/cartSlice";
 import { setUsername, setPhone } from "./slices/userSlice";
+import { useNavigate } from "react-router-dom";
 
 function Payment() {
     const { cartTotalQuantity } = useSelector((state) => state.cart);
@@ -11,6 +12,7 @@ function Payment() {
     const cart = useSelector((state) => state.cart);
     const user = useSelector((state) => state.user);
 
+    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -18,18 +20,18 @@ function Payment() {
     }, [cart, dispatch]);
 
     useEffect(() => {
-        const savedUsername = JSON.parse(localStorage.getItem('username'));
-        const savedPhone = JSON.parse(localStorage.getItem('phone'));
-        const savedLogined = JSON.parse(localStorage.getItem('isLogined'));
+        const savedUsername = JSON.parse(localStorage.getItem("username"));
+        const savedPhone = JSON.parse(localStorage.getItem("phone"));
+        const savedLogined = JSON.parse(localStorage.getItem("isLogined"));
 
         if (savedUsername && savedLogined) {
             dispatch(setUsername(savedUsername));
-          }
-      
-          if (savedPhone && savedLogined) {
+        }
+
+        if (savedPhone && savedLogined) {
             dispatch(setPhone(savedPhone));
-          }
-        }, [dispatch]);
+        }
+    }, [dispatch]);
 
     const handleUsernameChange = (e) => {
         dispatch(setUsername(e.target.value));
@@ -39,8 +41,8 @@ function Payment() {
         dispatch(setPhone(e.target.value));
     };
 
-    const {username} = useSelector((state) => state.user);
-    const {phone} = useSelector((state) => state.user);
+    const { username } = useSelector((state) => state.user);
+    const { phone } = useSelector((state) => state.user);
 
     const [isCard, setIsCardSelected] = useState("cash");
 
@@ -54,54 +56,57 @@ function Payment() {
         setIsDeliverySelected(event.target.value);
     };
 
+    const [address, setAddressSelected] = useState("");
 
-    const handleOrderSend = (event) => {
-        console.log(username);
-        console.log(isCard);
-        console.log(isDelivery);
-
+    const handleAddressChange = (event) => {
+        setAddressSelected(event.target.value);
     };
 
-    // const handleOrderSend = async () => {
-    //     const orderData = {
-    //         totalPrice: 25.99,
-    //         paymentType: "Credit Card",
-    //         deliveryType: "Home Delivery",
-    //         address: "123 Main St",
-    //         customerId: 1,
-    //         pizzas: [
-    //             {
-    //                 id: 101,
-    //                 title: "Margherita",
-    //                 description: "Classic margherita pizza",
-    //                 ingredients: "Tomato, mozzarella, basil",
-    //                 price: 12.99,
-    //                 cartQuantity: 2,
-    //                 categories: "Vegetarian",
-    //             },
-    //         ],
-    //     };
+    const [promocode, setPromocodeSelected] = useState("");
 
-    //     const requestOptions = {
-    //         method: "POST",
-    //         headers: { Accept: "application/json", "Content-Type": "application/json" },
-    //         body: JSON.stringify(orderData),
-    //     };
+    const handlePromocodeChange = (event) => {
+        setPromocodeSelected(event.target.value);
+    };
 
-    //     const response = await fetch("https://localhost:7106/api/orders", requestOptions)
-    //         .then((response) => {
-    //             if (!response.ok) {
-    //                 throw new Error(`HTTP error! Status: ${response.status}`);
-    //             }
-    //             return response.json();
-    //         })
-    //         .then((data) => {
-    //             console.log("Order created successfully:", data);
-    //         })
-    //         .catch((error) => {
-    //             console.error("Error creating order:", error);
-    //         });
-    // };
+    const [discount, setDiscountSelected] = useState(0);
+
+    const handlePromoSend = (event) => {
+        if (promocode == "DUCK21") {
+            setDiscountSelected(cartTotalAmount * 0.5);
+        } else {
+            alert("Данный промокод не активен");
+        }
+    };
+
+    const handleOrderSend = async () => {
+        pizzas = [...cart.cartItems];
+
+        const orderData = {
+            totalPrice: cartTotalAmount - discount,
+            paymentType: isCard,
+            deliveryType: isDelivery,
+            address: address,
+            customerId: user.id,
+            pizzas: pizzas,
+        };
+
+        const requestOptions = {
+            method: "POST",
+            headers: { Accept: "application/json", "Content-Type": "application/json" },
+            body: JSON.stringify(orderData),
+        };
+
+        const response = await fetch("https://localhost:7106/api/orders", requestOptions).then(
+            (response) => {
+                if (response.ok) {
+                    navigate("/success");
+                } else {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            }
+        );
+    };
 
     return (
         <div className="payment-cont">
@@ -162,11 +167,13 @@ function Payment() {
                             </ul>
                         </div>
 
-                        <div className="adress-div option between">
+                        <div className="address-div option between">
                             <span className="p-card">Адрес доставки</span>
                             <input
                                 className="no-radio"
+                                value={address}
                                 type="text"
+                                onChange={handleAddressChange}
                                 placeholder="Малышева 32"
                                 required={isDelivery}
                             />
@@ -222,8 +229,14 @@ function Payment() {
                 </div>
                 <div className="input-promo option">
                     <p className="main-span">Промокод</p>
-                    <input type="text" className="no-radio" placeholder="Введите промокод" />
-                    <button type="submit" className="btn-promo">
+                    <input
+                        type="text"
+                        value={promocode}
+                        onChange={handlePromocodeChange}
+                        className="no-radio"
+                        placeholder="Введите промокод"
+                    />
+                    <button onClick={handlePromoSend} className="btn-promo">
                         Применить
                     </button>
                 </div>
@@ -270,8 +283,13 @@ function Payment() {
                     </li>
 
                     <li className="p-total-amount between">
+                        <span className="p-total-span">Скидка</span>
+                        <strong className="p-total-price">{discount}р.</strong>
+                    </li>
+
+                    <li className="p-total-amount between">
                         <span className="p-total-span">Сумма заказа</span>
-                        <strong className="p-total-price">{cartTotalAmount}р.</strong>
+                        <strong className="p-total-price">{cartTotalAmount - discount}р.</strong>
                     </li>
                 </ul>
                 <button className="p-order" onClick={handleOrderSend}>
