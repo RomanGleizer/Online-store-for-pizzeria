@@ -2,7 +2,7 @@ import "./styles/Payment.css";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { getTotals } from "./slices/cartSlice";
+import { getTotals, clearCart } from "./slices/cartSlice";
 import { setUsername, setPhone } from "./slices/userSlice";
 import { useNavigate } from "react-router-dom";
 
@@ -117,7 +117,7 @@ function Payment() {
             (response) => {
                 if (response.ok) {
                     navigate("/success");
-
+                    dispatch(clearCart());
                 } else {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
