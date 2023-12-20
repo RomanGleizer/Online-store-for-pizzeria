@@ -2,7 +2,7 @@ import "./styles/Payment.css";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { getTotals } from "./slices/cartSlice";
+import { getTotals, clearCart } from "./slices/cartSlice";
 import { setUsername, setPhone } from "./slices/userSlice";
 import { useNavigate } from "react-router-dom";
 
@@ -78,8 +78,25 @@ function Payment() {
         }
     };
 
-    const handleOrderSend = async () => {
-        pizzas = [...cart.cartItems];
+    const handleOrderSend = async () => {        
+        
+        let pizzas = await JSON.parse(JSON.stringify(cart.cartItems));
+        
+        let pizzasJson = []
+
+        for (let i = 0; i < pizzas.length; i++) { 
+            pizzasJson[i] = {                
+
+                price: pizzas[i].price,
+                cartQuantity : pizzas[i].cartQuantity,
+                title: pizzas[i].title,
+                description: pizzas[i].description,
+                ingredients: pizzas[i].ingredients,
+                categories: pizzas[i].сategories
+            }
+          }
+
+        //console.log("pizzajson", pizzasJson)
 
         const orderData = {
             totalPrice: cartTotalAmount - discount,
@@ -87,19 +104,20 @@ function Payment() {
             deliveryType: isDelivery,
             address: address,
             customerId: user.id,
-            pizzas: pizzas,
+            pizzas: pizzasJson,
         };
 
-        const requestOptions = {
+        const requestOptions = await ({
             method: "POST",
             headers: { Accept: "application/json", "Content-Type": "application/json" },
             body: JSON.stringify(orderData),
-        };
+        });
 
-        const response = await fetch("https://localhost:7106/api/orders", requestOptions).then(
+        const response = await fetch("https://localhost:7106/api/orders/create", requestOptions).then(
             (response) => {
                 if (response.ok) {
                     navigate("/success");
+                    dispatch(clearCart());
                 } else {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
