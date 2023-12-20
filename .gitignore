@@ -41,3 +41,8 @@ bld/
 msbuild.log
 msbuild.err
 msbuild.wrn
+.vs/Online-store-for-pizzeria/v17/.suo
+Online-store-for-pizzeria.Server/bin/Debug/net8.0/Online-store-for-pizzeria.Server.dll
+Online-store-for-pizzeria.Server/bin/Debug/net8.0/Online-store-for-pizzeria.Server.exe
+Online-store-for-pizzeria.Server/bin/Debug/net8.0/Online-store-for-pizzeria.Server.pdb
+Online-store-for-pizzeria.Server/bin/Debug/net8.0/spa.proxy.json
