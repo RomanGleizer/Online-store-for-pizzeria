@@ -4,12 +4,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Online-store-for-pizzeria.Server", "Online-store-for-pizzeria.Server\Online-store-for-pizzeria.Server.csproj", "{480B1DD4-54CF-4AAB-A96E-C3C2DA0A2E56}"
+	ProjectSection(ProjectDependencies) = postProject
+		{00CE40BF-3EE5-4987-87FB-4998DCC4010E} = {00CE40BF-3EE5-4987-87FB-4998DCC4010E}
+	EndProjectSection
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "online-store-for-pizzeria.client", "online-store-for-pizzeria.client\online-store-for-pizzeria.client.esproj", "{C75E4539-C56D-4540-9308-8D9CDFD102D3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PizzaShopTests", "PizzaShopTests\PizzaShopTests.csproj", "{71DB8167-E374-4F6A-ABC4-3E6EB675AF21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelegramBot", "TelegramBot\TelegramBot.csproj", "{00CE40BF-3EE5-4987-87FB-4998DCC4010E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TelegramBot", "TelegramBot\TelegramBot.csproj", "{00CE40BF-3EE5-4987-87FB-4998DCC4010E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

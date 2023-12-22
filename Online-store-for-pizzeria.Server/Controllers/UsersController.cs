@@ -23,20 +23,13 @@ public class UsersController : ControllerBase
     {
         if (ModelState.IsValid)
         {
-            var user = new User 
-            {
-                FirstName = model.FirstName,
-                Phone = model.Phone,
-                Email = model.Email,
-                UserName = model.UserName
-            };
-
+            var user = new User { FirstName = model.FirstName, Phone = model.Phone, UserName = model.UserName, Email = $"{model.UserName}@gmail.com" };
             var result = await _userManager.CreateAsync(user, model.Password);
 
             if (result.Succeeded)
             {
                 await _signInManager.SignInAsync(user, isPersistent: false);
-                return Ok(new { user });
+                return Ok(user);
             }
 
             foreach (var error in result.Errors)
@@ -51,10 +44,14 @@ public class UsersController : ControllerBase
     {
         if (ModelState.IsValid)
         {
-            var signedUser = _pizzaShopContext.Users.FirstOrDefault(u => u.Email == model.Email);
-            var result = await _signInManager.PasswordSignInAsync(signedUser.UserName, model.Password, model.RememberMe, false);
-            if (result.Succeeded) return Ok(result);
-            ModelState.AddModelError(string.Empty, "Неверные учетные данные");
+            var signedUser = _pizzaShopContext.Users.FirstOrDefault(u => u.UserName == model.UserName);
+
+            if (signedUser is not null)
+            {
+                var result = await _signInManager.PasswordSignInAsync(signedUser.UserName, model.Password, false, false);
+                if (result.Succeeded) return Ok(signedUser);
+                ModelState.AddModelError(string.Empty, "Неверные учетные данные");
+            }
         }
 
         return BadRequest(model);

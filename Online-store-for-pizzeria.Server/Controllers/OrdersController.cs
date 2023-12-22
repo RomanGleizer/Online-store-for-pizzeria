@@ -1,25 +1,28 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Telegram.Bot;
+using Telegram.Bot.Types;
+using TelegramBot;
 
 [ApiController]
 [Route("api/[controller]")]
 public class OrdersController : ControllerBase
 {
-    private readonly IOrderService _orderService;
+    private readonly PizzaShopContext _pizzaShopContext;
     private readonly IMapper _mapper;
 
-    public OrdersController(IOrderService orderService, IMapper mapper)
+    public OrdersController(IMapper mapper, PizzaShopContext pizzaShopContext)
     {
-        _orderService = orderService;
         _mapper = mapper;
+        _pizzaShopContext = pizzaShopContext;
     }
 
     [HttpGet("{id}")]
     public async Task<IActionResult> GetOrderById(int id)
     {
-        var order = await _orderService.GetOrderByIdAsync(id);
+        var order = await _pizzaShopContext.Orders.FirstOrDefaultAsync(o => o.Id == id);
         if (order is null) return NotFound();
-
         return Ok(order);
     }
 
@@ -29,32 +32,22 @@ public class OrdersController : ControllerBase
         if (!ModelState.IsValid) return BadRequest(ModelState);
 
         var order = _mapper.Map<Order>(createOrderModel);
-        var createdOrder = await _orderService.CreateOrderAsync(order);
+        _pizzaShopContext.Orders.Add(order);
+        await _pizzaShopContext.SaveChangesAsync();
+        await Bot.BotClient.SendTextMessageAsync(0 /* Id */, order.ToString());
 
-        return CreatedAtAction(nameof(GetOrderById), new { id = createdOrder.Id }, createdOrder);
-    }
-
-
-    [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateOrder(int id, [FromBody] OrderViewModel orderViewModel)
-    {
-        if (!ModelState.IsValid) return BadRequest(ModelState);
-
-        var order = await _orderService.GetOrderByIdAsync(id);
-        if (order is null) return NotFound();
-
-        _mapper.Map(orderViewModel, order);
-        await _orderService.UpdateOrderAsync(order);
-        return NoContent();
+        return CreatedAtAction(nameof(GetOrderById), new { id = order.Id }, order);
     }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteOrder(int id)
     {
-        var order = await _orderService.GetOrderByIdAsync(id);
+        var order = await _pizzaShopContext.Orders.FirstOrDefaultAsync(o => o.Id == id);
         if (order is null) return NotFound();
 
-        await _orderService.DeleteOrderByIdAsync(id);
+        _pizzaShopContext.Orders.Remove(order);
+        await _pizzaShopContext.SaveChangesAsync();
+
         return NoContent();
     }
 }
