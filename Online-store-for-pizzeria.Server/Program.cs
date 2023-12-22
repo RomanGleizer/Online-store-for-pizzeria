@@ -3,13 +3,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-
 var dbConnection = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<PizzaShopContext>(options => options.UseSqlServer(dbConnection));
 var mapperConfig = new MapperConfiguration(config => config.AddProfile(new MappingProfile()));
 
+builder.Services.AddDbContext<PizzaShopContext>(options => options.UseSqlServer(dbConnection));
 builder.Services.AddSingleton(mapperConfig.CreateMapper());
-
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
@@ -23,12 +21,14 @@ builder.Services.AddCors(options =>
                .AllowAnyHeader();
     });
 });
-builder.Services.AddIdentity<User, IdentityRole>(opts => {
-    opts.Password.RequiredLength = 5;
-    opts.Password.RequireNonAlphanumeric = false;
-    opts.Password.RequireLowercase = false;
-    opts.Password.RequireUppercase = false;
-    opts.Password.RequireDigit = false;
+builder.Services.AddIdentity<User, IdentityRole>(options => {
+    options.Password.RequiredLength = 5;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequireDigit = false;
+    options.User.RequireUniqueEmail = false;
+    options.SignIn.RequireConfirmedAccount = true;
 })
 .AddEntityFrameworkStores<PizzaShopContext>();
 
@@ -48,7 +48,6 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseCors("ReactPolicy");
-
 app.MapControllers();
 app.MapFallbackToFile("/index.html");
 

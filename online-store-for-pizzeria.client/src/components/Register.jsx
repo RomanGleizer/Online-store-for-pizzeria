@@ -48,7 +48,7 @@ function Register() {
             body: JSON.stringify(registerData),
         };
 
-        const response = await fetch("https://localhost:7106/api/register", requestOptions)
+        const response = await fetch("https://localhost:7106/api/users/register", requestOptions)
             .then((response) => {
                 if (response.ok) {
                     navigate("/");
