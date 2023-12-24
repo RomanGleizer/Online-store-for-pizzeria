@@ -1,87 +1,57 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.SqlClient;
 
-namespace PizzaShopTests
+namespace PizzaShopTests;
+
+public class UsersServiceTests : IClassFixture<PizzaShopTestFixture>
 {
-    public class UsersServiceTests
+    private readonly PizzaShopTestFixture _fixture;
+
+    public UsersServiceTests(PizzaShopTestFixture fixture)
     {
-        private readonly DbContextOptions<PizzaShopContext> _options;
+        _fixture = fixture;
+    }
 
-        public UsersServiceTests()
+    private async Task UpdateUserAsync(string firstName, string updatedFirstName)
+    {
+        using (var updateCommand = new SqlCommand("UPDATE AspNetUsers SET FirstName = @UpdatedFirstName WHERE FirstName = @FirstName", _fixture.Connection))
         {
-            _options = new DbContextOptionsBuilder<PizzaShopContext>()
-                .UseInMemoryDatabase(databaseName: "PizzaShop")
-                .Options;
+            updateCommand.Parameters.AddWithValue("@UpdatedFirstName", updatedFirstName);
+            updateCommand.Parameters.AddWithValue("@FirstName", firstName);
+
+            await updateCommand.ExecuteNonQueryAsync();
+        }
+    }
+
+    private async Task<User?> GetUserByFirstNameAsync(string firstName)
+    {
+        using (var command = new SqlCommand("SELECT * FROM AspNetUsers WHERE FirstName = @FirstName", _fixture.Connection))
+        {
+            command.Parameters.AddWithValue("@FirstName", firstName);
+
+            using (var reader = await command.ExecuteReaderAsync())
+            {
+                if (await reader.ReadAsync())
+                {
+                    return new User
+                    {
+                        FirstName = reader.GetString(reader.GetOrdinal("FirstName")),
+                        Phone = reader.GetString(reader.GetOrdinal("Phone")),
+                        Email = reader.GetString(reader.GetOrdinal("Email")),
+                    };
+                }
+            }
         }
 
-        [Fact]
-        public async Task GetExistingUserTest()
-        {
-            //using (var context = new PizzaShopContext(_options))
-            //{
-            //    var orderService = new UserService(context);
-            //    var result = await orderService.GetUserByIdAsync(1);
-            //    Assert.NotNull(result);
-            //}
-        }
+        return null;
+    }
 
-        [Fact]
-        public async Task TryGetNonExistentUserTest()
-        {
-            using var context = new PizzaShopContext(_options);
-            //var userService = new UserService(context);
-            //var result = await userService.GetUserByIdAsync(10);
-            //Assert.Null(result);
-        }
 
-        [Fact]
-        public async Task AddNewUserTest()
-        {
-            //using (var context = new PizzaShopContext(_options))
-            //{
-            //    var userService = new UserService(context);
-            //    var testUser = new User
-            //    {
-            //        Id = 4,
-            //        FirstName = "John",
-            //        LastName = "Doe",
-            //        Phone = "1234567890",
-            //        Email = "john.doe@example.com",
-            //        Password = "password123",
-            //        Customer = new Customer { Id = 4, UserId = 4 },
-            //    };
-
-            //    var newUser = await userService.CreateUserAsync(testUser);
-            //    var fetchedUser = await context.Users.FindAsync(newUser.Id);
-            //    Assert.NotNull(fetchedUser);
-            //}
-        }
-
-        [Fact]
-        public async Task UpdateUserTest()
-        {
-            //using (var context = new PizzaShopContext(_options))
-            //{
-            //    var userService = new UserService(context);
-            //    var updatedUser = new User
-            //    {
-            //        Id = 1,
-            //        FirstName = "UpdatedFirstName",
-            //        LastName = "UpdatedLastName",
-            //        Phone = "9876543210",
-            //        Email = "updated.email@example.com",
-            //        Password = "updatedpassword"
-            //    };
-
-            //    await userService.UpdateUserAsync(updatedUser);
-            //    var fetchedUser = await context.Users.FindAsync(updatedUser.Id);
-            //    Assert.True(updatedUser.FirstName == fetchedUser.FirstName);
-            //}
-        }
-
-        public void Dispose()
-        {
-            using var context = new PizzaShopContext(_options);
-            context.Database.EnsureDeleted();
-        }
+    [Fact]
+    public async Task UpdateUserTest()
+    {
+        var user = await GetUserByFirstNameAsync("Eva");
+        await UpdateUserAsync(user.FirstName, "Roman");
+        var updatedUser = await GetUserByFirstNameAsync("Roman");
+        Assert.Equal("Roman", updatedUser.FirstName);
     }
 }
