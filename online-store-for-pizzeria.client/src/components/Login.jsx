@@ -2,7 +2,7 @@ import RegisterBtn from "./buttons/RegisterBtn";
 import "../styles/Login.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setLogined, setUsername, setPhone } from "../slices/userSlice";
+import { setLogined, setFirstName, setPhone, setUsername } from "../slices/userSlice";
 import { useState } from "react";
 
 function Login() {
@@ -10,10 +10,10 @@ function Login() {
 
     const navigate = useNavigate();
 
-    const [login, setLoginSelected] = useState("");
+    const [username, setUsernameSelected] = useState("");
 
-    const handleLoginChange = (event) => {
-        setLoginSelected(event.target.value);
+    const handleUsernameChange = (event) => {
+        setUsernameSelected(event.target.value);
     };
 
     const [password, setPasswordSelected] = useState("");
@@ -24,7 +24,7 @@ function Login() {
 
     const handleLoginedChange = async () => {
         const userData = {          
-            userName: login,
+            userName: username,
             password: password,
         };
 
@@ -44,8 +44,9 @@ function Login() {
                 return response.json();
             })
             .then((data) => {
+                dispatch(setUsername(username));
                 dispatch(setLogined(true));
-                dispatch(setUsername(data.firstName));
+                dispatch(setFirstName(data.firstName));
                 dispatch(setPhone(data.phone));
                 navigate("/");
             });
@@ -54,11 +55,11 @@ function Login() {
     return (
         <div className="cont">
             <div className="email">
-                <p className="email-name l-p">Почта</p>
+                <p className="email-name l-p">Логин</p>
                 <input
                     placeholder="Ваш логин"
-                    value={login}
-                    onChange={handleLoginChange}
+                    value={username}
+                    onChange={handleUsernameChange}
                     className="email-input l-input no-radio"
                     required
                 />

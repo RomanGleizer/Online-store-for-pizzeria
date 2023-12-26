@@ -1,7 +1,7 @@
 import "./styles/Profile.css";
 import logo from "./image/logo.svg";
 import visa from "./image/visa.svg";
-import { setUsername, setPhone } from "./slices/userSlice";
+import { setFirstName, setPhone } from "./slices/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -11,11 +11,11 @@ function Profile() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        const savedUsername = JSON.parse(localStorage.getItem("firstName"));
+        const savedFirstName = JSON.parse(localStorage.getItem("firstName"));
         const savedPhone = JSON.parse(localStorage.getItem("phone"));
 
-        if (savedUsername) {
-            dispatch(setUsername(savedUsername));
+        if (savedFirstName) {
+            dispatch(setFirstName(savedFirstName));
         }
 
         if (savedPhone) {
@@ -23,8 +23,8 @@ function Profile() {
         }
     }, [dispatch]);
 
-    const handleUsernameChange = (e) => {
-        dispatch(setUsername(e.target.value));
+    const handleFirstNameChange = (e) => {
+        dispatch(setFirstName(e.target.value));
     };
 
     const handlePhoneChange = (e) => {
@@ -72,7 +72,7 @@ function Profile() {
                         value={firstName}
                         type="text"
                         placeholder="Ваше имя"
-                        onChange={handleUsernameChange}
+                        onChange={handleFirstNameChange}
                         required
                     />
                 </div>

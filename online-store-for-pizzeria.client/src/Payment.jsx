@@ -3,7 +3,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getTotals, clearCart } from "./slices/cartSlice";
-import { setUsername, setPhone } from "./slices/userSlice";
+import { setFirstName, setPhone } from "./slices/userSlice";
 import { useNavigate } from "react-router-dom";
 
 function Payment() {
@@ -20,12 +20,14 @@ function Payment() {
     }, [cart, dispatch]);
 
     useEffect(() => {
-        const savedUsername = JSON.parse(localStorage.getItem("username"));
+        const savedFirstName = JSON.parse(localStorage.getItem("firstName"));
         const savedPhone = JSON.parse(localStorage.getItem("phone"));
         const savedLogined = JSON.parse(localStorage.getItem("isLogined"));
 
-        if (savedUsername && savedLogined) {
-            dispatch(setUsername(savedUsername));
+        if (savedFirstName
+ && savedLogined) {
+            dispatch(setFirstName(savedFirstName
+    ));
         }
 
         if (savedPhone && savedLogined) {
@@ -33,8 +35,8 @@ function Payment() {
         }
     }, [dispatch]);
 
-    const handleUsernameChange = (e) => {
-        dispatch(setUsername(e.target.value));
+    const handleFirstNameChange = (e) => {
+        dispatch(setFirstName(e.target.value));
     };
 
     const handlePhoneChange = (e) => {
@@ -103,7 +105,7 @@ function Payment() {
             paymentType: isCard,
             deliveryType: isDelivery,
             address: address,
-            customerId: user.id,
+            userName: user.username,
             pizzas: pizzasJson,
         };
 
@@ -138,7 +140,7 @@ function Payment() {
                             value={firstName}
                             type="text"
                             placeholder="Ваше имя"
-                            onChange={handleUsernameChange}
+                            onChange={handleFirstNameChange}
                             required
                         />
                     </div>

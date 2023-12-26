@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     id: 0,
+    username: 'default',
     firstName: "",
     phone: "",
     isLogined: false,
@@ -12,9 +13,13 @@ const userSlice = createSlice({
     name: "user",
     initialState,
     reducers: {
-        setUsername: (state, action) => {
+        setUserame: (state, action) => {
+            state.username = action.payload;
+            localStorage.setItem("username", JSON.stringify(state.username));
+        },
+        setFirstName: (state, action) => {
             state.firstName = action.payload;
-            localStorage.setItem("firstname", JSON.stringify(state.username));
+            localStorage.setItem("firstName", JSON.stringify(state.firstName));
         },
         setPhone: (state, action) => {
             state.phone = action.payload;
@@ -25,7 +30,8 @@ const userSlice = createSlice({
           localStorage.setItem("isLogined", JSON.stringify(state.isLogined));
         },
         clearUser: (state) => {
-          localStorage.setItem("firstname", JSON.stringify(''));
+            localStorage.setItem("username", JSON.stringify('default'));
+          localStorage.setItem("firstName", JSON.stringify(''));
           localStorage.setItem("phone", JSON.stringify(''));
           localStorage.setItem("isLogined", JSON.stringify(false));
             return initialState;
@@ -34,6 +40,6 @@ const userSlice = createSlice({
     },
 });
 
-export const { setUsername, setPhone, setLogined, clearUser } = userSlice.actions;
+export const { setFirstName, setUsername, setPhone, setLogined, clearUser } = userSlice.actions;
 
 export default userSlice.reducer;

@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import "../styles/Register.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setLogined, setUsername, setPhone } from "../slices/userSlice";
+import { setLogined, setFirstName, setPhone, setUsername } from "../slices/userSlice";
 import { useState } from "react";
 
 function Register() {
@@ -10,10 +10,10 @@ function Register() {
 
     const navigate = useNavigate();
 
-    const [login, setLoginSelected] = useState("");
+    const [username, setUsernameSelected] = useState("");
 
-    const handleLoginChange = (event) => {
-        setLoginSelected(event.target.value);
+    const handleUsernameChange = (event) => {
+        setUsernameSelected(event.target.value);
     };
 
     const [password, setPasswordSelected] = useState("");
@@ -36,7 +36,7 @@ function Register() {
 
     const handleRegisteredChange = async () => {
         const registerData = {
-            userName: login,
+            userName: username,
             password: password,
             firstName: name,
             phone: phone,
@@ -59,7 +59,8 @@ function Register() {
             })
             .then((data) => {
                 dispatch(setLogined(true));
-                dispatch(setUsername(data.firstName));
+                dispatch(setUsername(username));
+                dispatch(setFirstName(data.firstName));
                 dispatch(setPhone(data.phone));
                 navigate("/");
             });
@@ -83,8 +84,8 @@ function Register() {
                 <div className="user-cont">
                     <p className="email-name r-p">Придумайте логин</p>
                     <input
-                        value={login}
-                        onChange={handleLoginChange}
+                        value={username}
+                        onChange={handleUsernameChange}
                         placeholder="Ваш логин"
                         className="email-input l-input no-radio"
                         required
