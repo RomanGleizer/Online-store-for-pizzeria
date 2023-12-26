@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations.Schema;
 
 public class User : IdentityUser
 {
@@ -9,4 +10,7 @@ public class User : IdentityUser
     public string Phone { get; set; }
 
     public string Email { get; set; }
+
+    [NotMapped]
+    public Order LastOrder { get; set; }
 }

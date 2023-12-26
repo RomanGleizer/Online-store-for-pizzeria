@@ -32,16 +32,23 @@ public class OrdersController : ControllerBase
 
         var order = _mapper.Map<Order>(createOrderModel);
         _pizzaShopContext.Orders.Add(order);
-        try
+        var user = await _pizzaShopContext.Users.FirstOrDefaultAsync(u => u.UserName == createOrderModel.UserName);
+
+        if (createOrderModel.UserName is "default" | user is not null)
         {
-            await _pizzaShopContext.SaveChangesAsync();
+            if (user is not null) user.LastOrder = order;
+            try
+            {
+                await _pizzaShopContext.SaveChangesAsync();
+            }
+            catch (Exception ex) { return BadRequest(ex); }
+
+            var chatId = ChatIdManager.GetChatId();
+            await SendOrderInfoToBot(order, chatId);
+
+            return CreatedAtAction(nameof(GetOrderById), new { id = order.Id }, order);
         }
-        catch (Exception ex) { return BadRequest(ex); }
-
-        var chatId = ChatIdManager.GetChatId();
-        await SendOrderInfoToBot(order, chatId);
-
-        return CreatedAtAction(nameof(GetOrderById), new { id = order.Id }, order);
+        else return BadRequest(ModelState);
     }
 
     [HttpDelete("{id}")]
