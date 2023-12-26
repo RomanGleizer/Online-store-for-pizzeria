@@ -113,7 +113,7 @@ function Register() {
                     />
                 </div>
 
-                <button onChange={handleRegisteredChange} className="sub-btn">
+                <button onClick={handleRegisteredChange} className="sub-btn">
                     Создать профиль
                 </button>
             </div>

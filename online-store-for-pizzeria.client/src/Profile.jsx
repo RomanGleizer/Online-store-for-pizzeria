@@ -11,7 +11,7 @@ function Profile() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        const savedUsername = JSON.parse(localStorage.getItem("username"));
+        const savedUsername = JSON.parse(localStorage.getItem("firstName"));
         const savedPhone = JSON.parse(localStorage.getItem("phone"));
 
         if (savedUsername) {

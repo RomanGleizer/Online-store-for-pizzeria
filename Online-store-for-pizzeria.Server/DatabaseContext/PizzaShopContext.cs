@@ -7,6 +7,8 @@ public class PizzaShopContext : IdentityDbContext<User>
 
     public DbSet<Order> Orders { get; set; }
 
+    public DbSet<Pizza> Pizzas { get; set; }
+
     public PizzaShopContext(DbContextOptions<PizzaShopContext> options) : base(options)
     {
         Database.EnsureCreated();

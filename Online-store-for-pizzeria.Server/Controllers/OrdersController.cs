@@ -32,8 +32,11 @@ public class OrdersController : ControllerBase
 
         var order = _mapper.Map<Order>(createOrderModel);
         _pizzaShopContext.Orders.Add(order);
-
-        await _pizzaShopContext.SaveChangesAsync();
+        try
+        {
+            await _pizzaShopContext.SaveChangesAsync();
+        }
+        catch (Exception ex) { return BadRequest(ex); }
 
         var chatId = ChatIdManager.GetChatId();
         await SendOrderInfoToBot(order, chatId);
