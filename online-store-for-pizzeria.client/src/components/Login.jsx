@@ -2,7 +2,7 @@ import RegisterBtn from "./buttons/RegisterBtn";
 import "../styles/Login.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setLogined, setFirstName, setPhone, setUsername } from "../slices/userSlice";
+import { setLogined, setFirstName, setPhone, setUsername, setLastOrder } from "../slices/userSlice";
 import { useState } from "react";
 
 function Login() {
@@ -23,6 +23,8 @@ function Login() {
     const handlePasswordChange = (event) => {
         setPasswordSelected(event.target.value);
     };
+
+    const [lastOrder, setLastOrderSelected] = useState({});    
 
     const handleLoginedChange = async () => {
         const userData = {          
@@ -51,7 +53,8 @@ function Login() {
                 dispatch(setLogined(true));
                 dispatch(setFirstName(data.firstName));
                 dispatch(setPhone(data.phone));
-                // window.location.reload()
+                dispatch(setLastOrder(data.lastOrder));
+                window.location.reload()
                 navigate("/"); 
                 console.log(user);               
             });

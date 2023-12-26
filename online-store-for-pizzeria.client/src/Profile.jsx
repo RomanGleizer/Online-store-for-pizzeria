@@ -5,10 +5,12 @@ import { setFirstName, setPhone, clearUser } from "./slices/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {  clearCart} from "./slices/cartSlice";
+import { clearCart } from "./slices/cartSlice";
 
 function Profile() {
     const dispatch = useDispatch();
+
+    const lastOrder = JSON.parse(localStorage.getItem("lastOrder"));
 
     useEffect(() => {
         const savedFirstName = JSON.parse(localStorage.getItem("firstName"));
@@ -45,7 +47,7 @@ function Profile() {
                     navigate("/");
                     dispatch(clearUser());
                     dispatch(clearCart());
-                    window.location.reload()
+                    window.location.reload();
                 } else {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
@@ -98,80 +100,55 @@ function Profile() {
                     </div>
                 </div>
 
-                {/* <div className="credit-cards">
-                    <h2 className="profile-credit-cards">Привязанные карты</h2>
-
-                    <div className="credit-cards-list">
-                        <img
-                            className="credit-card-img"
-                            src={visa}
-                            alt="visa"
-                            width={57}
-                            height={31}
-                        />
-                        <p className="credit-card-number">4279 **** **** 3685</p>
-                        <button className="credit-card-delete">X</button>
-                    </div>
-                </div> */}
                 <button className="profile-exit" onClick={handleLoginedChange}>
                     Выйти
                 </button>
             </div>
             <div className="orders">
-                <ul className="p-items-cart">
-                    <li>
-                        <div className="pr-order-name">Последний заказ 13.11.2023</div>
-                        <div className="create-line"></div>
-                    </li>
-                    <div className="p-cart-item">
-                        <div className="p-cart-product">
-                            <h3 className="p-title">Четыре сезона</h3>
-                            <p className="p-price">700р.</p>
-                        </div>
+                {lastOrder ? (
+                    <ul className="p-items-cart">
+                        <li>
+                            <div className="order-name">Заказ</div>
+                            <div className="create-line"></div>
+                        </li>
+                        {lastOrder.pizzas &&
+                            lastOrder.pizzas.map((pizza) => (
+                                <div className="p-cart-item" key={pizza.id}>
+                                    <div className="p-cart-product">
+                                        <h3 className="p-title">{pizza.title}</h3>
+                                        <p className="p-price">{pizza.price}р.</p>
+                                    </div>
 
-                        <div className="p-count">х12</div>
+                                    <div className="p-count">х{pizza.cartQuantity}</div>
 
-                        <div className="p-cart-product-total-price">8400р.</div>
-                    </div>
-                    {/* {cart.cartItems &&
-              cart.cartItems.map((cartItem) => (
-                <div className="p-cart-item" key={cartItem.id}>
-                  <div className="p-cart-product">
-                    <h3 className="p-title">{cartItem.title}</h3>
-                    <p className="p-price">{cartItem.price}р.</p>
-                  </div>
+                                    <div className="p-cart-product-total-price">
+                                        {pizza.price * pizza.cartQuantity}р.
+                                    </div>
+                                </div>
+                            ))}
 
-                  <div className="p-count">х{cartItem.cartQuantity}</div>
+                        <li>
+                            <div className="create-line"></div>
+                        </li>
 
-                  <div className="p-cart-product-total-price">
-                    {cartItem.price * cartItem.cartQuantity}р.
-                  </div>
-                </div>
-              ))} */}
+                        <li className="p-delivery between">
+                            <span className="p-total-span">Доставка</span>
+                            <strong className="p-total-price">Бесплатно</strong>
+                        </li>
 
-                    <li>
-                        <div className="create-line"></div>
-                    </li>
-
-                    <li className="p-delivery between">
-                        <span className="p-total-span">Доставка</span>
-                        <strong className="p-total-price">Бесплатно</strong>
-                    </li>
-
-                    <li className="p-total-amount between">
-                        <span className="p-total-span">12 товар</span>
-                        <strong className="p-total-price">8400р.</strong>
-                    </li>
-
-                    <li>
-                        <div className="create-line"></div>
-                    </li>
-
-                    <li className="p-total-amount between">
-                        <span className="p-total-span">Сумма заказа</span>
-                        <strong className="p-total-price">8400р.</strong>
-                    </li>
-                </ul>
+                        <li className="p-total-amount between">
+                            <span className="p-total-span">{lastOrder.pizzas.length} товар</span>
+                            <strong className="p-total-price">{totalPrice}р.</strong>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="p-items-cart">
+                        <li>
+                            <div className="no-order">Заказов не было</div>
+                            <div className="create-line"></div>
+                        </li>
+                        </ul>
+                )}
             </div>
         </div>
     );

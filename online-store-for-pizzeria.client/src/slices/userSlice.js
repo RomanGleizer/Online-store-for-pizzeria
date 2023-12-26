@@ -13,6 +13,10 @@ const userSlice = createSlice({
     name: "user",
     initialState,
     reducers: {
+        setLastOrder: (state, action) => {
+            state.lastOrder = action.payload;
+            localStorage.setItem("lastOrder", JSON.stringify(state.lastOrder));
+        },
         setUsername: (state, action) => {
             state.userName = action.payload;
             localStorage.setItem("userName", JSON.stringify(state.userName));
@@ -34,6 +38,7 @@ const userSlice = createSlice({
           localStorage.setItem("firstName", JSON.stringify(''));
           localStorage.setItem("phone", JSON.stringify(''));
           localStorage.setItem("isLogined", JSON.stringify(false));
+          localStorage.setItem("lastOrder", JSON.stringify({}));
             return initialState;
             
         },
