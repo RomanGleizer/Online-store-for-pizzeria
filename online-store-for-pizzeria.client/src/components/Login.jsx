@@ -53,7 +53,7 @@ function Login() {
                 dispatch(setLogined(true));
                 dispatch(setFirstName(data.user.firstName));
                 dispatch(setPhone(data.user.phone));
-                //dispatch(setLastOrder(data.lastOrder));
+                dispatch(setLastOrder(data.lastOrder));
                 //window.location.reload()
                 navigate("/"); 
                 console.log(user);               

@@ -6,7 +6,7 @@ const initialState = {
     firstName: "",
     phone: "",
     isLogined: false,
-    lastOrder: {},
+    lastOrder: null,
 };
 
 const userSlice = createSlice({
@@ -38,7 +38,7 @@ const userSlice = createSlice({
           localStorage.setItem("firstName", JSON.stringify(''));
           localStorage.setItem("phone", JSON.stringify(''));
           localStorage.setItem("isLogined", JSON.stringify(false));
-          localStorage.setItem("lastOrder", JSON.stringify({}));
+          localStorage.setItem("lastOrder", JSON.stringify(null));
             return initialState;
             
         },

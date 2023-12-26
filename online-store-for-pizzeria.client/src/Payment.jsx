@@ -3,7 +3,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getTotals, clearCart } from "./slices/cartSlice";
-import { setFirstName, setPhone } from "./slices/userSlice";
+import { setFirstName, setPhone, setLastOrder } from "./slices/userSlice";
 import { useNavigate } from "react-router-dom";
 
 function Payment() {
@@ -96,9 +96,7 @@ function Payment() {
             };
         }
 
-        //console.log("pizzajson", pizzasJson)
-
-        console.log(user);
+        //console.log("pizzajson", pizzasJson)        
 
         const orderData = {
             totalPrice: cartTotalAmount - discount,
@@ -120,6 +118,7 @@ function Payment() {
             requestOptions
         ).then((response) => {
             if (response.ok) {
+dispatch(setLastOrder(orderData));
                 navigate("/success");
                 dispatch(clearCart());
             } else {
