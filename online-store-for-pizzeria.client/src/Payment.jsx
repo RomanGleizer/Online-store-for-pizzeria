@@ -11,6 +11,7 @@ function Payment() {
     const { cartTotalAmount } = useSelector((state) => state.cart);
     const cart = useSelector((state) => state.cart);
     const user = useSelector((state) => state.user);
+    const userName = JSON.parse(localStorage.getItem("userName"));
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -23,12 +24,10 @@ function Payment() {
         const savedFirstName = JSON.parse(localStorage.getItem("firstName"));
         const savedPhone = JSON.parse(localStorage.getItem("phone"));
         const savedLogined = JSON.parse(localStorage.getItem("isLogined"));
-        const savedUserName = JSON.parse(localStorage.getItem("userName"));
+        
 
-        if (savedFirstName
- && savedLogined) {
-            dispatch(setFirstName(savedFirstName
-    ));
+        if (savedFirstName && savedLogined) {
+            dispatch(setFirstName(savedFirstName));
         }
 
         if (savedPhone && savedLogined) {
@@ -81,23 +80,21 @@ function Payment() {
         }
     };
 
-    const handleOrderSend = async () => {        
-        
+    const handleOrderSend = async () => {
         let pizzas = await JSON.parse(JSON.stringify(cart.cartItems));
-        
-        let pizzasJson = []
 
-        for (let i = 0; i < pizzas.length; i++) { 
-            pizzasJson[i] = {                
+        let pizzasJson = [];
 
+        for (let i = 0; i < pizzas.length; i++) {
+            pizzasJson[i] = {
                 price: pizzas[i].price,
-                cartQuantity : pizzas[i].cartQuantity,
+                cartQuantity: pizzas[i].cartQuantity,
                 title: pizzas[i].title,
                 description: pizzas[i].description,
                 ingredients: pizzas[i].ingredients,
-                categories: pizzas[i].сategories
-            }
-          }
+                categories: pizzas[i].сategories,
+            };
+        }
 
         //console.log("pizzajson", pizzasJson)
 
@@ -108,27 +105,28 @@ function Payment() {
             paymentType: isCard,
             deliveryType: isDelivery,
             address: address,
-            userName: savedUserName,
+            userName: userName,
             pizzas: pizzasJson,
         };
 
-        const requestOptions = await ({
+        const requestOptions = await {
             method: "POST",
             headers: { Accept: "application/json", "Content-Type": "application/json" },
             body: JSON.stringify(orderData),
-        });
+        };
 
-        const response = await fetch("https://localhost:7106/api/orders/create", requestOptions).then(
-            (response) => {
-                if (response.ok) {
-                    navigate("/success");
-                    dispatch(clearCart());
-                } else {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                return response.json();
+        const response = await fetch(
+            "https://localhost:7106/api/orders/create",
+            requestOptions
+        ).then((response) => {
+            if (response.ok) {
+                navigate("/success");
+                dispatch(clearCart());
+            } else {
+                throw new Error(`HTTP error! Status: ${response.status}`);
             }
-        );
+            return response.json();
+        });
     };
 
     return (
