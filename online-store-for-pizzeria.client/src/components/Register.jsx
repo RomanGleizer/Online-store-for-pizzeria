@@ -36,9 +36,9 @@ function Register() {
 
     const handleRegisteredChange = async () => {
         const registerData = {
-            login: login,
+            userName: login,
             password: password,
-            name: name,
+            firstName: name,
             phone: phone,
         };
 

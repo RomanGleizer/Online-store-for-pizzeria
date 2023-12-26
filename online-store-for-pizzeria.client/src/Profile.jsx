@@ -5,7 +5,7 @@ import { setUsername, setPhone } from "./slices/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {setLogined, clearUser} from './slices/userSlice';
+import { setLogined, clearUser } from "./slices/userSlice";
 
 function Profile() {
     const dispatch = useDispatch();
@@ -33,11 +33,30 @@ function Profile() {
 
     const navigate = useNavigate();
 
-    const handleLoginedChange = (e) => {
-        // dispatch(setLogined(false));
-        navigate("/");        
-      dispatch(clearUser());
+    const handleLoginedChange = async () => {
+        const requestOptions = {
+            method: "POST",
+            headers: { Accept: "application/json", "Content-Type": "application/json" },
+        };
+
+        const response = await fetch("https://localhost:7106/api/users/logout", requestOptions).then(
+            (response) => {
+                if (response.ok) {
+                    navigate("/");
+                    dispatch(clearUser());
+                } else {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            }
+        );
     };
+
+    // = (e) => {
+    //     // dispatch(setLogined(false));
+    //     navigate("/");
+    //   dispatch(clearUser());
+    // };
 
     const { username } = useSelector((state) => state.user);
     const { phone } = useSelector((state) => state.user);

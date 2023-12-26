@@ -24,7 +24,7 @@ function Login() {
 
     const handleLoginedChange = async () => {
         const userData = {          
-            login: login,
+            userName: login,
             password: password,
         };
 
@@ -34,7 +34,7 @@ function Login() {
             body: JSON.stringify(userData),
         };
 
-        const response = await fetch("https://localhost:7106/api/login", requestOptions)
+        const response = await fetch("https://localhost:7106/api/users/login", requestOptions)
             .then((response) => {
                 if (response.ok) {
                     navigate("/");
