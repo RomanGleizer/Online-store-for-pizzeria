@@ -51,20 +51,16 @@ function Register() {
         const response = await fetch("https://localhost:7106/api/users/register", requestOptions)
             .then((response) => {
                 if (response.ok) {
+                    dispatch(setLogined(true));
+                    dispatch(setUsername(username));
+                    dispatch(setFirstName(name));
+                    dispatch(setPhone(phone));
                     navigate("/");
+                    window.location.reload()
                 } else {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
-                return response.json();
             })
-            .then((data) => {
-                dispatch(setLogined(true));
-                dispatch(setUsername(username));
-                dispatch(setFirstName(data.firstName));
-                dispatch(setPhone(data.phone));
-                navigate("/");
-                window.location.reload()
-            });
     };
 
     return (
