@@ -11,6 +11,31 @@ function Profile() {
     const dispatch = useDispatch();
 
     const lastOrder = JSON.parse(localStorage.getItem("lastOrder"));
+    // const lastOrder = {
+    //     "totalPrice": 22.75,
+    //     "paymentType": "Cash",
+    //     "deliveryType": "Pickup",
+    //     "address": "1 Infinity Loop",
+    //     "userId": 2022,
+    //     "pizzas": [
+    //       {
+    //         "title": "Spinach and Feta",
+    //         "description": "A Greek-inspired treat",
+    //         "ingredients": "Spinach, Feta Cheese, Olives",
+    //         "price": 12.75,
+    //         "cartQuantity": 1,
+    //         "categories": "Vegetarian"
+    //       },
+    //       {
+    //         "title": "Meat Feast",
+    //         "description": "For the meat lovers",
+    //         "ingredients": "Pepperoni, Sausage, Ham, Beef",
+    //         "price": 10.0,
+    //         "cartQuantity": 2,
+    //         "categories": "Meat Lovers"
+    //       }
+    //     ]
+    //   }
 
     useEffect(() => {
         const savedFirstName = JSON.parse(localStorage.getItem("firstName"));
@@ -113,7 +138,7 @@ function Profile() {
                         </li>
                         {lastOrder.pizzas &&
                             lastOrder.pizzas.map((pizza) => (
-                                <div className="p-cart-item" key={pizza.id}>
+                                <div className="p-cart-item" key={Math.random()}>
                                     <div className="p-cart-product">
                                         <h3 className="p-title">{pizza.title}</h3>
                                         <p className="p-price">{pizza.price}р.</p>
@@ -138,7 +163,7 @@ function Profile() {
 
                         <li className="p-total-amount between">
                             <span className="p-total-span">{lastOrder.pizzas.length} товар</span>
-                            <strong className="p-total-price">{totalPrice}р.</strong>
+                            <strong className="p-total-price">{lastOrder.totalPrice}р.</strong>
                         </li>
                     </ul>
                 ) : (
