@@ -42,7 +42,7 @@ public class OrdersController : ControllerBase
                 if (user is not null)
                 {
                     var userOrders = _pizzaShopContext.Orders.Where(o => o.UserName == createOrderModel.UserName);
-                    user.LastOrderId = userOrders.Count();
+                    user.LastOrderId = _pizzaShopContext.Orders.Count();
                     _pizzaShopContext.Entry(user).State = EntityState.Modified;
                     await _pizzaShopContext.SaveChangesAsync();
                 }

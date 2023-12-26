@@ -70,7 +70,7 @@ public class UsersController : ControllerBase
                             .LastOrDefaultAsync();
                     }
 
-                    return Ok(new { user, user.LastOrder });
+                    return Ok(new { user, user.LastOrder, user.LastOrder.Pizzas });
                 }
             }
         }
