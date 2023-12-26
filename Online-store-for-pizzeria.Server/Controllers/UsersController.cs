@@ -50,8 +50,7 @@ public class UsersController : ControllerBase
             {
                 var result = await _signInManager.PasswordSignInAsync(signedUser.UserName, model.Password, false, false);
                 var user = new User { FirstName = signedUser.FirstName, Phone = signedUser.Phone, UserName = signedUser.UserName, Email = $"{signedUser.UserName}@gmail.com" };
-                if (result.Succeeded && user.LastOrder is not null) return Ok(new { user, user.LastOrder } );
-                else if (result.Succeeded && user.LastOrder is null) return Ok(user);
+                if (result.Succeeded) return Ok(new { user, user.LastOrder } );
                 ModelState.AddModelError(string.Empty, "Неверные учетные данные");
             }
         }
