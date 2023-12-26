@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     id: 0,
-    username: 'default',
+    userName: 'default',
     firstName: "",
     phone: "",
     isLogined: false,
@@ -14,8 +14,8 @@ const userSlice = createSlice({
     initialState,
     reducers: {
         setUsername: (state, action) => {
-            state.username = action.payload;
-            localStorage.setItem("username", JSON.stringify(state.username));
+            state.userName = action.payload;
+            localStorage.setItem("userName", JSON.stringify(state.userName));
         },
         setFirstName: (state, action) => {
             state.firstName = action.payload;
@@ -30,7 +30,7 @@ const userSlice = createSlice({
           localStorage.setItem("isLogined", JSON.stringify(state.isLogined));
         },
         clearUser: (state) => {
-            localStorage.setItem("username", JSON.stringify('default'));
+            localStorage.setItem("userName", JSON.stringify('default'));
           localStorage.setItem("firstName", JSON.stringify(''));
           localStorage.setItem("phone", JSON.stringify(''));
           localStorage.setItem("isLogined", JSON.stringify(false));

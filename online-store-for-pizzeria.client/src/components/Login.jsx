@@ -10,7 +10,9 @@ function Login() {
 
     const navigate = useNavigate();
 
-    const [username, setUsernameSelected] = useState("");
+    const user = useSelector((state) => state.user);
+
+    const [userName, setUsernameSelected] = useState("");
 
     const handleUsernameChange = (event) => {
         setUsernameSelected(event.target.value);
@@ -24,7 +26,7 @@ function Login() {
 
     const handleLoginedChange = async () => {
         const userData = {          
-            userName: username,
+            userName: userName,
             password: password,
         };
 
@@ -45,12 +47,13 @@ function Login() {
             })
             .then((data) => {
                 console.log(data)
-                dispatch(setUsername(username));
+                dispatch(setUsername(data.userName));
                 dispatch(setLogined(true));
                 dispatch(setFirstName(data.firstName));
                 dispatch(setPhone(data.phone));
-                window.location.reload()
-                navigate("/");                
+                // window.location.reload()
+                navigate("/"); 
+                console.log(user);               
             });
     };
 
@@ -60,7 +63,7 @@ function Login() {
                 <p className="email-name l-p">Логин</p>
                 <input
                     placeholder="Ваш логин"
-                    value={username}
+                    value={userName}
                     onChange={handleUsernameChange}
                     className="email-input l-input no-radio"
                     required

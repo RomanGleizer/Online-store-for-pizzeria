@@ -10,7 +10,7 @@ function Register() {
 
     const navigate = useNavigate();
 
-    const [username, setUsernameSelected] = useState("");
+    const [userName, setUsernameSelected] = useState("");
 
     const handleUsernameChange = (event) => {
         setUsernameSelected(event.target.value);
@@ -36,7 +36,7 @@ function Register() {
 
     const handleRegisteredChange = async () => {
         const registerData = {
-            userName: username,
+            userName: userName,
             password: password,
             firstName: name,
             phone: phone,
@@ -52,7 +52,7 @@ function Register() {
             .then((response) => {
                 if (response.ok) {
                     dispatch(setLogined(true));
-                    dispatch(setUsername(username));
+                    dispatch(setUsername(userName));
                     dispatch(setFirstName(name));
                     dispatch(setPhone(phone));
                     navigate("/");
@@ -81,7 +81,7 @@ function Register() {
                 <div className="user-cont">
                     <p className="email-name r-p">Придумайте логин</p>
                     <input
-                        value={username}
+                        value={userName}
                         onChange={handleUsernameChange}
                         placeholder="Ваш логин"
                         className="email-input l-input no-radio"

@@ -23,6 +23,7 @@ function Payment() {
         const savedFirstName = JSON.parse(localStorage.getItem("firstName"));
         const savedPhone = JSON.parse(localStorage.getItem("phone"));
         const savedLogined = JSON.parse(localStorage.getItem("isLogined"));
+        const savedUserName = JSON.parse(localStorage.getItem("userName"));
 
         if (savedFirstName
  && savedLogined) {
@@ -100,12 +101,14 @@ function Payment() {
 
         //console.log("pizzajson", pizzasJson)
 
+        console.log(user);
+
         const orderData = {
             totalPrice: cartTotalAmount - discount,
             paymentType: isCard,
             deliveryType: isDelivery,
             address: address,
-            userName: user.username,
+            userName: savedUserName,
             pizzas: pizzasJson,
         };
 
