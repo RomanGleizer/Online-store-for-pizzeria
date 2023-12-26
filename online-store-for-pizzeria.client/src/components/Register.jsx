@@ -63,6 +63,7 @@ function Register() {
                 dispatch(setFirstName(data.firstName));
                 dispatch(setPhone(data.phone));
                 navigate("/");
+                window.location.reload()
             });
     };
 

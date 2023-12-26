@@ -1,11 +1,11 @@
 import "./styles/Profile.css";
 import logo from "./image/logo.svg";
 import visa from "./image/visa.svg";
-import { setFirstName, setPhone } from "./slices/userSlice";
+import { setFirstName, setPhone, clearUser } from "./slices/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { setLogined, clearUser } from "./slices/userSlice";
+import {  clearCart} from "./slices/cartSlice";
 
 function Profile() {
     const dispatch = useDispatch();
@@ -44,10 +44,11 @@ function Profile() {
                 if (response.ok) {
                     navigate("/");
                     dispatch(clearUser());
+                    dispatch(clearCart());
+                    window.location.reload()
                 } else {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
-                return response.json();
             }
         );
     };

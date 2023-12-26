@@ -44,11 +44,13 @@ function Login() {
                 return response.json();
             })
             .then((data) => {
+                console.log(data)
                 dispatch(setUsername(username));
                 dispatch(setLogined(true));
                 dispatch(setFirstName(data.firstName));
                 dispatch(setPhone(data.phone));
-                navigate("/");
+                window.location.reload()
+                navigate("/");                
             });
     };
 
