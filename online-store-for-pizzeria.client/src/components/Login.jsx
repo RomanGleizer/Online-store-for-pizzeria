@@ -49,12 +49,12 @@ function Login() {
             })
             .then((data) => {
                 console.log(data)
-                dispatch(setUsername(data.userName));
+                dispatch(setUsername(data.user.userName));
                 dispatch(setLogined(true));
-                dispatch(setFirstName(data.firstName));
-                dispatch(setPhone(data.phone));
-                dispatch(setLastOrder(data.lastOrder));
-                window.location.reload()
+                dispatch(setFirstName(data.user.firstName));
+                dispatch(setPhone(data.user.phone));
+                //dispatch(setLastOrder(data.lastOrder));
+                //window.location.reload()
                 navigate("/"); 
                 console.log(user);               
             });

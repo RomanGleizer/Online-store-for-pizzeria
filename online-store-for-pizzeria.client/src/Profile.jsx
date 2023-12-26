@@ -10,7 +10,8 @@ import { clearCart } from "./slices/cartSlice";
 function Profile() {
     const dispatch = useDispatch();
 
-    const lastOrder = JSON.parse(localStorage.getItem("lastOrder"));
+    const lastOrder = false;
+    // const lastOrder = JSON.parse(localStorage.getItem("lastOrder"));
     // const lastOrder = {
     //     "totalPrice": 22.75,
     //     "paymentType": "Cash",
