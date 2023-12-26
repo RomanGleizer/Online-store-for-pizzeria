@@ -9,9 +9,8 @@ import { clearCart } from "./slices/cartSlice";
 
 function Profile() {
     const dispatch = useDispatch();
-
-    const lastOrder = false;
-    // const lastOrder = JSON.parse(localStorage.getItem("lastOrder"));
+    
+    const lastOrder = JSON.parse(localStorage.getItem("lastOrder"));
     // const lastOrder = {
     //     "totalPrice": 22.75,
     //     "paymentType": "Cash",
@@ -163,7 +162,6 @@ function Profile() {
                         </li>
 
                         <li className="p-total-amount between">
-                            <span className="p-total-span">{lastOrder.pizzas.length} товар</span>
                             <strong className="p-total-price">{lastOrder.totalPrice}р.</strong>
                         </li>
                     </ul>

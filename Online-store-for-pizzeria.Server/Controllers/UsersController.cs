@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Online_store_for_pizzeria.Server.Controllers;
 
@@ -49,9 +50,28 @@ public class UsersController : ControllerBase
             if (signedUser is not null)
             {
                 var result = await _signInManager.PasswordSignInAsync(signedUser.UserName, model.Password, false, false);
-                var user = new User { FirstName = signedUser.FirstName, Phone = signedUser.Phone, UserName = signedUser.UserName, Email = $"{signedUser.UserName}@gmail.com" };
-                if (result.Succeeded) return Ok(new { user, user.LastOrder } );
-                ModelState.AddModelError(string.Empty, "Неверные учетные данные");
+                if (result.Succeeded)
+                {
+                    var user = new User
+                    {
+                        FirstName = signedUser.FirstName,
+                        Phone = signedUser.Phone,
+                        UserName = signedUser.UserName,
+                        Email = $"{signedUser.UserName}@gmail.com"
+                    };
+
+                    var lastOrderId = signedUser.LastOrderId;
+                    if (lastOrderId.HasValue)
+                    {
+                        user.LastOrderId = lastOrderId;
+                        user.LastOrder = await _pizzaShopContext.Orders
+                            .Where(o => o.Id == lastOrderId.Value)
+                            .OrderBy(o => o.Id)
+                            .LastOrDefaultAsync();
+                    }
+
+                    return Ok(new { user, user.LastOrder });
+                }
             }
         }
 

@@ -36,10 +36,16 @@ public class OrdersController : ControllerBase
 
         if (createOrderModel.UserName is "default" | user is not null)
         {
-            if (user is not null) user.LastOrder = order;
             try
             {
                 await _pizzaShopContext.SaveChangesAsync();
+                if (user is not null)
+                {
+                    var userOrders = _pizzaShopContext.Orders.Where(o => o.UserName == createOrderModel.UserName);
+                    user.LastOrderId = userOrders.Count();
+                    _pizzaShopContext.Entry(user).State = EntityState.Modified;
+                    await _pizzaShopContext.SaveChangesAsync();
+                }
             }
             catch (Exception ex) { return BadRequest(ex); }
 

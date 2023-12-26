@@ -13,4 +13,5 @@ public class User : IdentityUser
 
     [NotMapped]
     public Order LastOrder { get; set; }
+    public int? LastOrderId { get; set; }
 }
