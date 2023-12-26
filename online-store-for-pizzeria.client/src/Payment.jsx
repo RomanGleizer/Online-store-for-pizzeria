@@ -41,7 +41,7 @@ function Payment() {
         dispatch(setPhone(e.target.value));
     };
 
-    const { username } = useSelector((state) => state.user);
+    const { firstName } = useSelector((state) => state.user);
     const { phone } = useSelector((state) => state.user);
 
     const [isCard, setIsCardSelected] = useState("cash");
@@ -135,7 +135,7 @@ function Payment() {
                         <span className="main-span">Имя</span>
                         <input
                             className="no-radio"
-                            value={username}
+                            value={firstName}
                             type="text"
                             placeholder="Ваше имя"
                             onChange={handleUsernameChange}

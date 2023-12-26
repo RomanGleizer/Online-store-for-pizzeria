@@ -58,7 +58,7 @@ function Profile() {
     //   dispatch(clearUser());
     // };
 
-    const { username } = useSelector((state) => state.user);
+    const { firstName } = useSelector((state) => state.user);
     const { phone } = useSelector((state) => state.user);
 
     return (
@@ -69,7 +69,7 @@ function Profile() {
                     <span className="main-span">Имя</span>
                     <input
                         className="no-radio"
-                        value={username}
+                        value={firstName}
                         type="text"
                         placeholder="Ваше имя"
                         onChange={handleUsernameChange}

@@ -59,7 +59,7 @@ function Register() {
             })
             .then((data) => {
                 dispatch(setLogined(true));
-                dispatch(setUsername(data.name));
+                dispatch(setUsername(data.firstName));
                 dispatch(setPhone(data.phone));
                 navigate("/");
             });
