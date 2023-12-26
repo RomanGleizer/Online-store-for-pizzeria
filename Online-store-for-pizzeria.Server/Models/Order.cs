@@ -14,7 +14,7 @@ public class Order
 
     public List<Pizza> Pizzas { get; set; }
 
-    public int UserId { get; set; }
+    public string UserName { get; set; }
 
     public override string ToString()
     {

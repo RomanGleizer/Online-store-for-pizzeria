@@ -29,7 +29,7 @@ public class UsersController : ControllerBase
             if (result.Succeeded)
             {
                 await _signInManager.SignInAsync(user, isPersistent: false);
-                return Ok(user);
+                return Ok(new { user });
             }
 
             foreach (var error in result.Errors)
@@ -49,7 +49,7 @@ public class UsersController : ControllerBase
             if (signedUser is not null)
             {
                 var result = await _signInManager.PasswordSignInAsync(signedUser.UserName, model.Password, false, false);
-                if (result.Succeeded) return Ok(signedUser);
+                if (result.Succeeded) return Ok(new User { FirstName = signedUser.FirstName, Phone = signedUser.Phone, UserName = signedUser.UserName, Email = $"{signedUser.UserName}@gmail.com" });
                 ModelState.AddModelError(string.Empty, "Неверные учетные данные");
             }
         }

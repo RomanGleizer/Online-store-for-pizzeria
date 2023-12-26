@@ -28,7 +28,7 @@ builder.Services.AddIdentity<User, IdentityRole>(options => {
     options.Password.RequireUppercase = false;
     options.Password.RequireDigit = false;
     options.User.RequireUniqueEmail = false;
-    options.SignIn.RequireConfirmedAccount = true;
+    options.SignIn.RequireConfirmedAccount = false;
 })
 .AddEntityFrameworkStores<PizzaShopContext>();
 
