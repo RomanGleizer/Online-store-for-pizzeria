@@ -242,7 +242,7 @@ dispatch(setLastOrder(orderData));
                             </li>
                             <li className="between">
                                 <span className="p-card">CCV:</span>
-                                <input className="no-radio" type="text" required={isCard} />
+                                <input className="no-radio" type="password" required={isCard} />
                             </li>
                         </ul>
                     </div>
