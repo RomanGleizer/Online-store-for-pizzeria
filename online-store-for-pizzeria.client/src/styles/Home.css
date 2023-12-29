@@ -1,44 +1,16 @@
-﻿
-
-.home-div {
-    /* background-color: #CA792D; */
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 15%;
-    margin-bottom: 15%;
-    
-}
-
-.App {
+﻿.body-home {
     margin-left: auto;
     margin-right: auto;
 }
 
-body {
-    background-color: #CA792D;
-    
-    background-image: url("../image/main-image.png");    	
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: 100%;
-}
-
-.body-home {
-    margin-left: auto;
-    margin-right: auto;
-}
-
-li > button.active {
+li>button.active {
     color: white;
     background-color: #CA792D;
 }
 
-#root {
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.categories-item, .pizzas-list-item, .discount-list-item{
+.categories-item,
+.pizzas-list-item,
+.discount-list-item {
     list-style-type: none;
 }
 
@@ -46,125 +18,105 @@ li > button.active {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 2%;
 }
 
 #search {
-    width: 538px;
-    height: 41px;
+    width: 50%;
+    height: 20%;
     border-radius: 25px;
-    padding-left: 24px;
-    font-size: 20px;   
-    margin-left: auto;
-    margin-right: auto; 
+    padding: 1% 2%;
+    font-size: 1.5em;
 }
 
 .pizza-name:hover {
-    color:#CA792D;
-  }
+    color: #CA792D;
+}
 
 .slidebar {
-    width: 1280px;
-    height: 80px;
     background-color: #FFEBB6;
-    border-radius: 33px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 20px;   
+    border-radius: 3rem;
+    padding: 1%;
+    margin: 0 1%;
+    margin-top: 2%;
 }
 
 .categories {
+    height: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    width: 1280px;
-    height: 80px;
-    padding-left: 20px;
-     
+    gap: 2%;
+
 }
 
 .categories-item {
-    line-height: 40px;
-    border-radius: 33px;
+    margin-bottom: 1%;
+    margin-top: 1%;
+    line-height: 2%;
+    border-radius: 3rem;
     background-color: #FFF;
-    width: 162px;
-    height: 40px;
-    margin-top: auto;
-    margin-bottom: auto;
     text-align: center;
-    margin-right: 30px;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);    
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 .categories-item button {
     padding: 0;
-    line-height: 40px;
-    border-radius: 33px;
+    line-height: 2%;
+    border-radius: 3rem;
     background-color: #FFF;
-    width: 162px;
-    height: 40px;
-    margin-top: auto;
-    margin-bottom: auto;
+    width: 10rem;
+    height: 2.5rem;
     text-align: center;
-    color:#000;
+    color: #000;
 }
 
 .discount {
-    width: 1280px;
-    height: 122px;
     background-color: #FFEBB6;
-    border-radius: 33px;
-    margin-left: auto;
-    margin-right: auto;
+    border-radius: 3rem;
+    margin: 0 1%;
+    margin-top: 1%;
 }
 
 .discount-list {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    width: 1280px;
-    height: 122px;
-    padding-left: 20px;
+    padding: 1%;
 }
 
 .discount-list-item {
-    line-height: 94px;
-    border-radius: 33px;
+    line-height: 9rem;
+    border-radius: 3rem;
     background-color: #FFF;
-    width: 273px;
-    height: 94px;
-    margin-top: auto;
-    margin-bottom: auto;
     text-align: center;
-    margin-right: 49px; 
-
     display: grid;
-    grid-template-columns: 85px 188px;
+    grid-template-columns: 6rem 13rem;
     grid-template-areas: "img title"
-                       "img descp"
-                       "img promo"
-                       "img code";
+        "img descp"
+        "img promo"
+        "img code";
 }
 
 .present-h {
-    font-size: 15px;
+    font-size: 1em;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
     grid-area: title;
-    margin-top: 8px;
-    margin-bottom: 3px;
+    margin: 2% 0;
     justify-self: center;
     align-self: center;
 }
 
-.present-description, .present-promo, .present-code {
-    font-size: 12px;
+.present-description,
+.present-promo,
+.present-code {
+    font-size: 0.8em;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    margin: 0;
-    padding: 0;
 }
 
 .present-description {
@@ -180,7 +132,7 @@ li > button.active {
 .present-code {
     grid-area: code;
     justify-self: start;
-    margin-bottom: 8px;
+    margin-bottom: 1%;
 }
 
 .present-img {
@@ -189,50 +141,42 @@ li > button.active {
     align-self: center;
 }
 
-.template_Container{
+.template_Container {
     display: flex;
-    width: 1286px;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     margin: 0 auto;
 }
 
-.template{
-    background-color: #FFEBB6;;
-    margin: 30px;
-    padding: 12px;
-    width: 302px;
-    height: 428px;
+.template {
+    background-color: #FFEBB6;
+    ;
+    margin: 1rem;
+    padding: 0.8rem;
     display: flex;
     flex-direction: column;
-    border-radius: 33px;
+    border-radius: 3rem;
 }
 
 .description {
-    width: 278px;    
-    height: 131px;
-    border-radius: 33px;
+    width: 19rem;
+    height: 8rem;
+    border-radius: 3rem;
     background-color: #FFF9EA;
     margin-left: auto;
     margin-right: auto;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 
     display: flex;
-    flex-direction: column;    
+    flex-direction: column;
 }
 
-.pizza-description {    
-    width: 218px;
-    height: 60px;
-    margin: 0;
-
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 3px;
+.pizza-description {
+    padding: 1%;
 
     text-align: center;
-    font-size: 12px;
+    font-size: 0.8em;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
@@ -240,19 +184,15 @@ li > button.active {
 }
 
 .pizza-name {
-    margin: 0;
-    margin-top: 10px;
+    margin-top: 2%;
     margin-left: auto;
     margin-right: auto;
-    padding: 0;
-
-    width: 139px;
 
     color: #F08F34;
     background-color: #FFF9EA;
 
     text-align: center;
-    font-size: 18px;
+    font-size: 1.3em;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
@@ -261,57 +201,45 @@ li > button.active {
 .pizza-image {
     position: relative;
     display: inline-block;
-    border-radius: 33px;
+    border-radius: 3rem;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 19px;
+    margin-bottom: 5%;
 }
 
-.pizim {    
-    border-radius: 33px;
-    width: 278px;
-    height: 267px;
+.pizim {
+    border-radius: 3rem;    
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 .hit {
-    width: 90px;
-    height: 39px;
-    border-radius: 31px;
+    width: 5rem;
+    border-radius: 3rem;
     background: #FF0101;
     color: #FFF9EA;
     text-align: center;
-    line-height: 39px;
-    font-size: 22px;
+    font-size: 1.4em;
     font-style: normal;
     font-weight: 500;
-    line-height: 39px;
-    margin: 0;
-    padding: 0;
+    line-height: 2.5rem;
 
     position: absolute;
-    top: 5px;
-    left: -25px;
+    top: 1%;
+    left: -5%;
 }
 
 .pizza-price {
-    width: 90px;
-    height: 39px;
-    border-radius: 31px;
+    width: 5rem;
+    border-radius: 3rem;
     background: #FFF9EA;
     color: #FF0101;
     text-align: center;
-    line-height: 39px;
-    font-size: 22px;
+    line-height: 2.5rem;
+    font-size: 1.4em;
     font-style: normal;
     font-weight: 500;
-    line-height: 39px;
-    margin: 0;
-    padding: 0;
 
     position: absolute;
-    bottom: 10px;
-    right: 10px;
+    bottom: 0.5%;
+    right: 0.5%;
 }
-
-

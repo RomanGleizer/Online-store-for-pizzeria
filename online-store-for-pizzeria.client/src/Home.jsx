@@ -27,7 +27,7 @@ function Home() {
   return (
     <div className="home-div">      
       <div className="container">
-        <div className="search-container">
+        
           <input
             id="search"
             // autoСomplete="off"
@@ -37,7 +37,6 @@ function Home() {
               setSearchTerm(event.target.value);
             }}
           />
-        </div>
       </div>
       <div className="body-home">
         <div className="slidebar">

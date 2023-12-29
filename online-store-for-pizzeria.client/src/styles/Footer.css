@@ -4,13 +4,15 @@
     height: 129px;
     background-color: rgba(177, 116, 58, 0.95);
     margin: 0 auto;
-    position: fixed;
+    /* position: fixed;
     left: 0;
     bottom: 0;
-    z-index: 100;
+    z-index: 100; */
     width: 100vw;
     margin-left: calc(50% - 50vw);
     
+    display: flex;
+    justify-content: space-around;
 }
 
 .pizza-contacts {    
