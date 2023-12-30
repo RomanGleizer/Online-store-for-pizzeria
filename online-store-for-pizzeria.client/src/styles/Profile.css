@@ -8,13 +8,14 @@
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: start;
-  padding: 2% 3%;
+  padding: 2% 5%;
+  margin: 3%;
 }
 
 
 .pr-order-name{
     color: #231F15;
-    font-size: 24px;
+    font-size: 1.5em;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
@@ -24,20 +25,20 @@
 }
 
 .no-order {
-    font-size: 30px;
+    font-size: 2em;
     text-align: center;
 }
 
 
 .profile-exit {
-  border-radius: 11px;
+  border-radius: 1rem;
   background: #E74848;
   
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   color: #FFF;
   
   text-align: center;
-  font-size: 20px;
+  font-size: 1.2em;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
@@ -46,24 +47,24 @@
 
   .profile-notification-h {
     color: #000;
-  font-size: 25px;
+  font-size: 1.6em;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   letter-spacing: -1.625px;
-  margin-bottom: 10px;
+  margin-bottom: 2%;
   }
 
   
   .profile-notification {
-    margin-bottom: 33px;
+    margin-bottom: 15%;
     
   }
   
   .notification {
-    height: 47px;
+    height: 3rem;
     flex-shrink: 0;
-    border-radius: 11px;
+    border-radius: 1rem;
     background: #fff;
     display: flex;
   
@@ -75,10 +76,10 @@
     margin-top: auto;
     margin-bottom: auto;
     color: #000;
-  font-size: 15px;
+  font-size: 1em;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   letter-spacing: -0.975px;
-  margin-left: 10px;
+  margin-left: 2%;
   }
