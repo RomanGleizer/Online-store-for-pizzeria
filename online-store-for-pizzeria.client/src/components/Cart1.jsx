@@ -55,6 +55,7 @@ const Cart = () => {
         </div>
       ) : (
         <div className="cart-not-empty">
+          <div>
           <div className="continue-shopping">
             <Link to="/">
               <span>Продолжить выбирать товары</span>
@@ -104,6 +105,7 @@ const Cart = () => {
                   </div>
                 </div>
               ))}
+          </div>
           </div>
           <div className="cart-summary">
             <button className="clear-btn" onClick={() => handleClearCart()}>

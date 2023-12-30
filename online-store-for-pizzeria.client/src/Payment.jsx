@@ -133,7 +133,7 @@ dispatch(setLastOrder(orderData));
             <div className="about-customer">
                 <h4 className="order-title">Оформление заказа</h4>
                 <div className="div-cust">
-                    <div className="name option between">
+                    <div className=" between">
                         <span className="main-span">Имя</span>
                         <input
                             className="no-radio"
@@ -145,7 +145,7 @@ dispatch(setLastOrder(orderData));
                         />
                     </div>
 
-                    <div className="phone option between">
+                    <div className="phone between">
                         <span className="main-span">Номер телефона</span>
                         <input
                             className="no-radio"
@@ -160,7 +160,7 @@ dispatch(setLastOrder(orderData));
                     <h4 className="main-span">Тип доставки</h4>
 
                     <div className="delivery-type">
-                        <div className="deliv option">
+                        <div className="deliv">
                             <p>Выберите:</p>
                             <ul>
                                 <li>
@@ -187,7 +187,7 @@ dispatch(setLastOrder(orderData));
                             </ul>
                         </div>
 
-                        <div className="address-div option between">
+                        <div className="address-div between">
                             <span className="p-card">Адрес доставки</span>
                             <input
                                 className="no-radio"
@@ -205,7 +205,7 @@ dispatch(setLastOrder(orderData));
 
                 <h4 className="main-span">Оплата</h4>
 
-                <div className="payment-type option">
+                <div className="payment-type">
                     <p>Выберите:</p>
                     <ul>
                         <li>
@@ -230,7 +230,7 @@ dispatch(setLastOrder(orderData));
                             <span className="radio-span">Наличные</span>
                         </li>
                     </ul>
-                    <div className="card-details option">
+                    <div className="card-details">
                         <ul>
                             <li className="between">
                                 <span className="p-card">Номер карты:</span>
@@ -247,7 +247,7 @@ dispatch(setLastOrder(orderData));
                         </ul>
                     </div>
                 </div>
-                <div className="input-promo option">
+                <div className="input-promo">
                     <p className="main-span">Промокод</p>
                     <input
                         type="text"
