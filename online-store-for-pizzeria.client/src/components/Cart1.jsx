@@ -73,16 +73,16 @@ const Cart = () => {
                     src={images[cartItem.id - 1]}
                     alt={cartItem.title}
                   />
-
-                  <h3 className="title-item">{cartItem.title}</h3>
-                  <p>{cartItem.desc}</p>
+<div className="cart-item-info">
+                  <h3 className="title-item">{cartItem.title}</h3>                  
+                  <div className="cart-product-price">{cartItem.price}р.</div>
                   <button
                     className="del-item"
                     onClick={() => handleRemoveFromCart(cartItem)}
                   >
                     Удалить
                   </button>
-                  <div className="cart-product-price">{cartItem.price}р.</div>
+                  
                   <div className="count-div">
                     <button
                       className="minus"
@@ -100,6 +100,7 @@ const Cart = () => {
                   </div>
                   <div className="cart-product-total-price">
                     {cartItem.price * cartItem.cartQuantity}р.
+                  </div>
                   </div>
                 </div>
               ))}

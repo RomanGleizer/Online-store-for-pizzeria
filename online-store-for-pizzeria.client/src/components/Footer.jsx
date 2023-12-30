@@ -7,8 +7,8 @@ function Footer() {
                 <li className='pizza-contact-item'>Малышева 32</li>
                 <li className='pizza-contact-item'>Контакты: +7-000-000-00-00</li>
                 <li className='pizza-contact-item telegram'>Наш чат-бот в Телеграмм</li>
+                <li className='copyright'>©  Pizz&duck</li>
             </ul>
-            <div className='copyright'>©  Pizz&duck</div>
         </footer>
     );
 

@@ -146,12 +146,10 @@ li>button.active {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    margin: 0 auto;
 }
 
 .template {
-    background-color: #FFEBB6;
-    ;
+    background-color: #FFEBB6;    
     margin: 1rem;
     padding: 0.8rem;
     display: flex;

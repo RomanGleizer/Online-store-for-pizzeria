@@ -1,11 +1,8 @@
 .cont {
-  width: 979px;
-  height: 721px;
-  margin-top: 15%;
-  margin-bottom: 15%;
+  
   background-image: url("../image/login.png");
-  background-size: 979px 721px;
-  padding: 35px;
+  background-size: 100% 100%;
+  padding: 5%;
   display: flex;
   flex-direction: column;
   justify-content: center;
