@@ -1,4 +1,6 @@
 .cont {  
+  width: 90%;
+  max-width: 55rem;
   background-image: url("../image/login.png");
   background-size: 100% 100%;
   padding: 5%;
@@ -9,8 +11,6 @@
 }
 
 .l-input {
-  width: 627px;
-  height: 62px;
   font-size: 18px;
   background-color: #E4E4E4;
   border-radius: 50px;
@@ -34,8 +34,6 @@ margin-bottom: 15px;
 
 .sub-btn {
   margin-top: 45px;
-  width: 264px;
-  height: 64px;
   border-radius: 18px;
   background: #f08f34;
 
