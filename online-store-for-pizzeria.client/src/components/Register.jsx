@@ -109,12 +109,11 @@ function Register() {
                         type="phone"
                         className="mobile-input no-radio l-input"
                     />
-                </div>
-
-                <button onClick={handleRegisteredChange} className="sub-btn">
+                </div>                
+            </div>
+            <button onClick={handleRegisteredChange} className="sub-btn">
                     Создать профиль
                 </button>
-            </div>
             <div className="delo">Это для дела, честно!</div>
         </div>
     );

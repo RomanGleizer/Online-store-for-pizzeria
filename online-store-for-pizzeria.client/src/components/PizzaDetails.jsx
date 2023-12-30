@@ -34,7 +34,7 @@ const PizzaDetails = () => {
                     <div className="ingredients">{product.ingredients}</div>
                     <div className="price">{product.price}р.</div>
                     <div className="about">
-                        <p>Пищевая ценность продукта на 100 г</p>
+                        <p>Пищевая ценность продукта на 100г:</p>
                         <p>Белки - 11</p>
                         <p>Жиры - 13</p>
                         <p>Углеводы - 18</p>
