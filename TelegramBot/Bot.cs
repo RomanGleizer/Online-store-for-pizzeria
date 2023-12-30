@@ -58,13 +58,6 @@ namespace TelegramBot
                                 return;
                             }
 
-                            if (message.Text.StartsWith("/id"))
-                            {
-                                var chatId = ChatIdManager.GetChatId();
-                                await botClient.SendTextMessageAsync(chatId, "123!");
-                                return;
-                            }
-
                             await botClient.SendTextMessageAsync(chat.Id, message.Text, replyToMessageId: message.MessageId);
                             return;
                         }

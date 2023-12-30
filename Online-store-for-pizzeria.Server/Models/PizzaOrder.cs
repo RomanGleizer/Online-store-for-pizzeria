@@ -1,8 +1,6 @@
 ﻿public class PizzaOrder
 {
-    public int PizzaId { get; set; }
+    public string Name { get; set; }
 
-    public string PizzaName { get; set; }
-
-    public int Quantity { get; set; }
+    public int CreatingTime { get; set; } 
 }
